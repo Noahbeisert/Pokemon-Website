@@ -7,6 +7,9 @@ __pycache__/
 *.db-shm
 *.db-wal
 
+# Scraped data — regenerate by running scrapers
+showdown_replays.json
+
 # Scraper logs and error dumps
 *_log.txt
 *_err.txt

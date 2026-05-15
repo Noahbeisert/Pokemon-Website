@@ -347,6 +347,30 @@ function searchPokemon(query) {
 
 ---
 
+---
+
+## Future Work
+
+### Data pipeline
+- **Full replay scrape:** run `scrape_replays.py` to completion — both `regma` and `regmb`. The search API caps at 5100 per format. Older replays beyond that are not accessible via search; would need a different approach (battle ID enumeration).
+- **Reg M-B scraping:** update `FORMATS` list in `scrape_replays.py` once enough M-B replays accumulate to be meaningful.
+- **Move flags in DB:** `scrape_moves.py` already hits PokeAPI — extend it to store the `flags` array (sound, contact, spread, punch, protect, bullet) so the frontend can use them for threat matrix logic.
+- **Automated re-scrape:** replay data goes stale. Set up a weekly cron to append new replays (resume logic already handles this).
+
+### Analysis
+- **Per-archetype win rates:** cluster teams by archetype (rain, TR, sand, HO) and compare win rates vs each other.
+- **Bring rate vs bench rate per pokemon:** already tracked in `analyze_replays.py` — surface this in the website.
+- **Move flag analysis:** which sound moves are being used vs which Substitute users they counter.
+- **Season comparison:** run the same analysis on M-B replays once enough exist and diff against M-A.
+
+### Website
+- **Replay viewer page:** display a parsed replay in readable form (turns, moves, damage %) using the log data we're already scraping.
+- **Usage stats page:** live win rates and usage from `showdown_replays.json` — top pokemon, top pairs, move rankings.
+- **Mechanics reference:** surface the move flags data as a searchable table (e.g. "show me all sound moves", "show me all spread moves").
+- **Mobile:** `preview.html` / team builder must work on phone — used during actual matches.
+
+---
+
 ## Notes for the implementing Claude chat
 
 - All pages: dark theme only, match type-chart.html exactly (fonts, colors, card style)
