@@ -76,6 +76,7 @@ CREATE TABLE team_pokemon (
         ability      TEXT,
         item         TEXT,
         nature       TEXT,
+        tera_type    TEXT,
         PRIMARY KEY (team_id, position)
     );
 
@@ -83,10 +84,13 @@ CREATE TABLE teams (
         id              TEXT PRIMARY KEY,
         tournament_id   TEXT REFERENCES tournaments(id),
         player          TEXT,
+        player_name     TEXT,
+        country         TEXT,
         placing         INTEGER,
         wins            INTEGER,
         losses          INTEGER,
-        ties            INTEGER
+        ties            INTEGER,
+        drop_round      INTEGER
     );
 
 CREATE TABLE tournament_usage (

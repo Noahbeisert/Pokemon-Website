@@ -1,24 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Dropdown Form</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PokéTools — VGC Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d0f14;
+    --surface: #161a23;
+    --border: rgba(255,255,255,0.07);
+    --text: #e8eaf0;
+    --muted: #6b7280;
+    --accent: #7c6af7;
+  }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+  h1 {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .subtitle {
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 48px;
+  }
+  .tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    width: 100%;
+    max-width: 760px;
+  }
+  a.card {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 20px;
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.18s, transform 0.15s;
+  }
+  a.card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+  .card-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .card-desc {
+    color: var(--muted);
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+</style>
 </head>
 <body>
-<h2>Select an Option</h2>
-
-<form action="process.php" method="post">
-    <label for="choice">Choose an option:</label>
-    <select name="choice" id="choice" required>
-        <option value="">--Please choose--</option>
-        <option value="Option 1">Option 1</option>
-        <option value="Option 2">Option 2</option>
-        <option value="Option 3">Option 3</option>
-    </select>
-
-    <br><br>
-    <button type="submit">Submit</button>
-</form>
-
+<h1>POKÉTOOLS</h1>
+<p class="subtitle">VGC Competitive Toolkit</p>
+<div class="tools">
+  <a class="card" href="type-chart.html">
+    <div class="card-title">Type Chart</div>
+    <div class="card-desc">Defensive and offensive matchups for any type or Pokémon.</div>
+  </a>
+  <a class="card" href="type-chart-advanced.html">
+    <div class="card-title">Type Chart — Advanced</div>
+    <div class="card-desc">Type matchups with learnset-aware move lookup via GraphQL.</div>
+  </a>
+  <a class="card" href="damage-calc.html">
+    <div class="card-title">Damage Calculator</div>
+    <div class="card-desc">Damage rolls, KO percentages, and stat spreads for your team.</div>
+  </a>
+  <a class="card" href="pokeplan.html">
+    <div class="card-title">POKÉPLAN</div>
+    <div class="card-desc">Plan your VGC Doubles team, scout enemies, and save loadouts.</div>
+  </a>
+</div>
 </body>
 </html>

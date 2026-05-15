@@ -1,3 +1,16 @@
 __pycache__/
 *.pyc
 *.pyo
+
+# SQLite
+*.db
+*.db-shm
+*.db-wal
+
+# Scraper logs and error dumps
+*_log.txt
+*_err.txt
+scraper_log.txt
+
+# IDE
+.idea/
