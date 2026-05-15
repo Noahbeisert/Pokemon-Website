@@ -1,0 +1,612 @@
+[
+  {
+    "rank": 1,
+    "pokemon": "Sneasler",
+    "moves": [
+      { "name": "Close Combat", "usage": "99.5%" },
+      { "name": "Dire Claw", "usage": "98.5%" },
+      { "name": "Fake Out", "usage": "89.0%" },
+      { "name": "Protect", "usage": "67.8%" },
+      { "name": "Rock Slide", "usage": "9.6%" },
+      { "name": "Coaching", "usage": "9.6%" },
+      { "name": "Rock Tomb", "usage": "7.0%" },
+      { "name": "Throat Chop", "usage": "4.4%" },
+      { "name": "Feint", "usage": "3.2%" },
+      { "name": "U-Turn", "usage": "2.7%" }
+    ],
+    "items": [
+      { "name": "White Herb", "usage": "80.0%" },
+      { "name": "Focus Sash", "usage": "17.6%" },
+      { "name": "Mental Herb", "usage": "0.4%" },
+      { "name": "Sitrus Berry", "usage": "0.3%" },
+      { "name": "King's Rock", "usage": "0.3%" },
+      { "name": "Lum Berry", "usage": "0.2%" },
+      { "name": "Black Belt", "usage": "0.2%" },
+      { "name": "Poison Barb", "usage": "0.1%" },
+      { "name": "Quick Claw", "usage": "0.1%" },
+      { "name": "Shuca Berry", "usage": "0.1%" }
+    ],
+    "teammates": [
+      { "rank": 1, "name": "Garchomp" },
+      { "rank": 2, "name": "Incineroar" },
+      { "rank": 3, "name": "Kingambit" },
+      { "rank": 4, "name": "Basculegion" },
+      { "rank": 5, "name": "Charizard" },
+      { "rank": 6, "name": "Sinistcha" },
+      { "rank": 7, "name": "Aerodactyl" },
+      { "rank": 8, "name": "Whimsicott" },
+      { "rank": 9, "name": "Floette" },
+      { "rank": 10, "name": "Rotom-Wash" }
+    ],
+    "nature": [
+      { "name": "Jolly", "usage": "60.7%" },
+      { "name": "Adamant", "usage": "36.7%" },
+      { "name": "Naive", "usage": "1.1%" },
+      { "name": "Lonely", "usage": "0.3%" },
+      { "name": "Hasty", "usage": "0.3%" },
+      { "name": "Naughty", "usage": "0.3%" },
+      { "name": "Impish", "usage": "0.2%" },
+      { "name": "Timid", "usage": "0.1%" },
+      { "name": "Brave", "usage": "0.1%" },
+      { "name": "Careful", "usage": "0.1%" }
+    ],
+    "ev_spreads": [
+      { "hp": 2,  "atk": 32, "spa": 0, "def": 0, "spd": 0,  "spe": 32, "usage": "47.2%" },
+      { "hp": 0,  "atk": 32, "spa": 2, "def": 0, "spd": 0,  "spe": 32, "usage": "12.6%" },
+      { "hp": 1,  "atk": 32, "spa": 1, "def": 0, "spd": 0,  "spe": 32, "usage": "7.3%" },
+      { "hp": 0,  "atk": 32, "spa": 0, "def": 0, "spd": 2,  "spe": 32, "usage": "6.1%" },
+      { "hp": 0,  "atk": 32, "spa": 1, "def": 0, "spd": 0,  "spe": 32, "usage": "3.4%" },
+      { "hp": 0,  "atk": 32, "spa": 0, "def": 0, "spd": 0,  "spe": 32, "usage": "3.0%" },
+      { "hp": 0,  "atk": 32, "spa": 1, "def": 0, "spd": 1,  "spe": 32, "usage": "2.9%" },
+      { "hp": 1,  "atk": 32, "spa": 0, "def": 0, "spd": 0,  "spe": 32, "usage": "2.4%" },
+      { "hp": 1,  "atk": 32, "spa": 0, "def": 0, "spd": 1,  "spe": 32, "usage": "1.7%" },
+      { "hp": 0,  "atk": 32, "spa": 0, "def": 0, "spd": 1,  "spe": 32, "usage": "0.6%" }
+    ],
+    "ability": [
+      { "name": "Unburden", "usage": "92.3%" },
+      { "name": "Poison Touch", "usage": "7.4%" },
+      { "name": "Pressure", "usage": "0.3%" }
+    ]
+  },
+  {
+    "rank": 2,
+    "pokemon": "Incineroar",
+    "moves": [
+      { "name": "Fake Out", "usage": "99.5%" },
+      { "name": "Parting Shot", "usage": "95.5%" },
+      { "name": "Flare Blitz", "usage": "90.5%" },
+      { "name": "Darkest Lariat", "usage": "50.2%" },
+      { "name": "Throat Chop", "usage": "31.7%" },
+      { "name": "Protect", "usage": "10.8%" },
+      { "name": "Will-O-Wisp", "usage": "4.5%" },
+      { "name": "Snarl", "usage": "4.1%" },
+      { "name": "Helping Hand", "usage": "3.5%" },
+      { "name": "Close Combat", "usage": "2.9%" }
+    ],
+    "items": [
+      { "name": "Sitrus Berry", "usage": "62.2%" },
+      { "name": "Chople Berry", "usage": "12.1%" },
+      { "name": "Shuca Berry", "usage": "8.1%" },
+      { "name": "Leftovers", "usage": "7.0%" },
+      { "name": "Lum Berry", "usage": "3.5%" },
+      { "name": "Passho Berry", "usage": "1.7%" },
+      { "name": "White Herb", "usage": "1.3%" },
+      { "name": "Quick Claw", "usage": "0.8%" },
+      { "name": "Bright Powder", "usage": "0.6%" },
+      { "name": "Charcoal", "usage": "0.5%" }
+    ],
+    "teammates": [
+      { "rank": 1, "name": "Sneasler" },
+      { "rank": 2, "name": "Garchomp" },
+      { "rank": 3, "name": "Sinistcha" },
+      { "rank": 4, "name": "Kingambit" },
+      { "rank": 5, "name": "Basculegion" },
+      { "rank": 6, "name": "Charizard" },
+      { "rank": 7, "name": "Floette" },
+      { "rank": 8, "name": "Rotom-Wash" },
+      { "rank": 9, "name": "Whimsicott" },
+      { "rank": 10, "name": "Aerodactyl" }
+    ],
+    "nature": [
+      { "name": "Careful", "usage": "36.5%" },
+      { "name": "Adamant", "usage": "26.7%" },
+      { "name": "Impish", "usage": "23.5%" },
+      { "name": "Brave", "usage": "4.5%" },
+      { "name": "Sassy", "usage": "3.7%" },
+      { "name": "Jolly", "usage": "2.0%" },
+      { "name": "Relaxed", "usage": "1.8%" },
+      { "name": "Calm", "usage": "0.2%" },
+      { "name": "Bold", "usage": "0.2%" },
+      { "name": "Naughty", "usage": "0.1%" }
+    ],
+    "ev_spreads": [
+      { "hp": 32, "atk": 0,  "spa": 14, "def": 0, "spd": 20, "spe": 0, "usage": "4.5%" },
+      { "hp": 32, "atk": 32, "spa": 0,  "def": 0, "spd": 0,  "spe": 2, "usage": "3.0%" },
+      { "hp": 32, "atk": 5,  "spa": 7,  "def": 0, "spd": 16, "spe": 6, "usage": "3.0%" },
+      { "hp": 31, "atk": 1,  "spa": 10, "def": 0, "spd": 23, "spe": 1, "usage": "1.8%" },
+      { "hp": 32, "atk": 32, "spa": 0,  "def": 0, "spd": 2,  "spe": 0, "usage": "1.6%" },
+      { "hp": 32, "atk": 32, "spa": 2, "def": 0, "spd": 0, "spe": 0, "usage": "1.5%" },
+      { "hp": 32, "atk": 1, "spa": 22, "def": 0, "spd": 11, "spe": 0, "usage": "1.3%" },
+      { "hp": 32, "atk": 0, "spa": 20, "def": 0, "spd": 14, "spe": 0, "usage": "1.2%" },
+      { "hp": 32, "atk": 0, "spa": 2, "def": 0, "spd": 32, "spe": 0, "usage": "1.2%" },
+      { "hp": 32, "atk": 5, "spa": 11, "def": 0, "spd": 8, "spe": 10, "usage": "1.2%" }
+    ],
+    "ability": [
+      { "name": "Intimidate", "usage": "99.8%" },
+      { "name": "Blaze", "usage": "0.2%" }
+    ]
+  },
+  {
+    "rank": 3,
+    "pokemon": "Garchomp",
+    "moves": [
+      { "name": "Earthquake", "usage": "89.4%" },
+      { "name": "Rock Slide", "usage": "83.5%" },
+      { "name": "Dragon Claw", "usage": "82.3%" },
+      { "name": "Protect", "usage": "68.6%" },
+      { "name": "Stomping Tantrum", "usage": "36.0%" },
+      { "name": "Stone Edge", "usage": "6.3%" },
+      { "name": "Iron Head", "usage": "6.0%" },
+      { "name": "Poison Jab", "usage": "5.5%" },
+      { "name": "Swords Dance", "usage": "4.3%" },
+      { "name": "Bulldoze", "usage": "3.4%" }
+    ],
+    "items": [
+      { "name": "Choice Scarf", "usage": "26.7%" },
+      { "name": "White Herb", "usage": "14.8%" },
+      { "name": "Soft Sand", "usage": "13.1%" },
+      { "name": "Sitrus Berry", "usage": "8.5%" },
+      { "name": "Haban Berry", "usage": "8.0%" },
+      { "name": "Lum Berry", "usage": "6.0%" },
+      { "name": "Focus Sash", "usage": "5.5%" },
+      { "name": "Yache Berry", "usage": "4.5%" },
+      { "name": "Bright Powder", "usage": "3.0%" },
+      { "name": "Garchompite", "usage": "2.7%" }
+    ],
+    "teammates": [
+      { "rank": 1, "name": "Sneasler" },
+      { "rank": 2, "name": "Incineroar" },
+      { "rank": 3, "name": "Charizard" },
+      { "rank": 4, "name": "Kingambit" },
+      { "rank": 5, "name": "Rotom-Wash" },
+      { "rank": 6, "name": "Floette" },
+      { "rank": 7, "name": "Whimsicott" },
+      { "rank": 8, "name": "Aerodactyl" },
+      { "rank": 9, "name": "Basculegion" },
+      { "rank": 10, "name": "Sinistcha" }
+    ],
+    "nature": [
+      { "name": "Jolly", "usage": "52.5%" },
+      { "name": "Adamant", "usage": "46.0%" },
+      { "name": "Brave", "usage": "0.2%" },
+      { "name": "Impish", "usage": "0.2%" },
+      { "name": "Careful", "usage": "0.1%" },
+      { "name": "Naive", "usage": "0.1%" },
+      { "name": "Lonely", "usage": "0.1%" },
+      { "name": "Naughty", "usage": "0.1%" },
+      { "name": "Hasty", "usage": "0.1%" },
+      { "name": "Modest", "usage": "0.1%" }
+    ],
+    "ev_spreads": [
+      { "hp": 2, "atk": 32, "spa": 0, "def": 0, "spd": 0, "spe": 32, "usage": "41.7%" },
+      { "hp": 0, "atk": 32, "spa": 0, "def": 0, "spd": 2, "spe": 32, "usage": "5.1%" },
+      { "hp": 1, "atk": 32, "spa": 1, "def": 0, "spd": 0, "spe": 32, "usage": "4.6%" },
+      { "hp": 0, "atk": 32, "spa": 2, "def": 0, "spd": 0, "spe": 32, "usage": "3.7%" },
+      { "hp": 24, "atk": 20, "spa": 0, "def": 0, "spd": 1, "spe": 21, "usage": "3.4%" },
+      { "hp": 1, "atk": 32, "spa": 0, "def": 0, "spd": 0, "spe": 32, "usage": "2.0%" },
+      { "hp": 0, "atk": 32, "spa": 1, "def": 0, "spd": 1, "spe": 32, "usage": "2.0%" },
+      { "hp": 6, "atk": 25, "spa": 2, "def": 0, "spd": 1, "spe": 32, "usage": "1.7%" },
+      { "hp": 32, "atk": 15, "spa": 0, "def": 0, "spd": 0, "spe": 19, "usage": "1.7%" },
+      { "hp": 1, "atk": 32, "spa": 0, "def": 0, "spd": 1, "spe": 32, "usage": "1.3%" }
+    ],
+    "ability": [
+      { "name": "Rough Skin", "usage": "93.0%" },
+      { "name": "Sand Veil", "usage": "6.9%" }
+    ]
+  },
+  {
+    "rank": 4,
+    "pokemon": "Kingambit",
+    "moves": [
+      { "name": "Sucker Punch", "usage": "98.5%" },
+      { "name": "Protect", "usage": "85.5%" },
+      { "name": "Kowtow Cleave", "usage": "84.5%" },
+      { "name": "Iron Head", "usage": "73.9%" },
+      { "name": "Low Kick", "usage": "29.7%" },
+      { "name": "Swords Dance", "usage": "21.7%" },
+      { "name": "Brick Break", "usage": "1.8%" },
+      { "name": "Assurance", "usage": "1.1%" },
+      { "name": "Low Sweep", "usage": "0.4%" },
+      { "name": "Guillotine", "usage": "0.4%" }
+    ],
+    "items": [
+      { "name": "Black Glasses", "usage": "51.5%" },
+      { "name": "Chople Berry", "usage": "34.2%" },
+      { "name": "Focus Sash", "usage": "5.8%" },
+      { "name": "Leftovers", "usage": "1.6%" },
+      { "name": "Sitrus Berry", "usage": "1.5%" },
+      { "name": "Lum Berry", "usage": "1.3%" },
+      { "name": "Occa Berry", "usage": "1.0%" },
+      { "name": "Quick Claw", "usage": "0.6%" },
+      { "name": "Shuca Berry", "usage": "0.6%" },
+      { "name": "Black Belt", "usage": "0.4%" }
+    ],
+    "teammates": [
+      { "rank": 1, "name": "Sneasler" },
+      { "rank": 2, "name": "Garchomp" },
+      { "rank": 3, "name": "Incineroar" },
+      { "rank": 4, "name": "Sinistcha" },
+      { "rank": 5, "name": "Basculegion" },
+      { "rank": 6, "name": "Aerodactyl" },
+      { "rank": 7, "name": "Charizard" },
+      { "rank": 8, "name": "Floette" },
+      { "rank": 9, "name": "Farigiraf" },
+      { "rank": 10, "name": "Froslass" }
+    ],
+    "nature": [
+      { "name": "Adamant", "usage": "83.4%" },
+      { "name": "Brave", "usage": "14.1%" },
+      { "name": "Jolly", "usage": "0.6%" },
+      { "name": "Impish", "usage": "0.5%" },
+      { "name": "Careful", "usage": "0.5%" }
+    ],
+    "ev_spreads": [
+        { "hp": 32, "atk": 32, "spa": 0, "def": 0, "spd": 2, "spe": 0, "usage": "17.1%" },
+        { "hp": 32, "atk": 32, "spa": 2, "def": 0, "spd": 0, "spe": 0, "usage": "7.9%" },
+        { "hp": 32, "atk": 32, "spa": 0, "def": 0, "spd": 0, "spe": 2, "usage": "7.5%" },
+        { "hp": 32, "atk": 32, "spa": 1, "def": 0, "spd": 1, "spe": 0, "usage": "3.2%" },
+        { "hp": 32, "atk": 30, "spa": 2, "def": 0, "spd": 0, "spe": 2, "usage": "3.0%" },
+        { "hp": 24, "atk": 32, "spa": 2, "def": 0, "spd": 5, "spe": 3, "usage": "3.0%" },
+        { "hp": 32, "atk": 32, "spa": 0, "def": 0, "spd": 1, "spe": 0, "usage": "2.2%" },
+        { "hp": 26, "atk": 22, "spa": 18, "def": 0, "spd": 0, "spe": 0, "usage": "2.0%" },
+        { "hp": 0, "atk": 32, "spa": 0, "def": 0, "spd": 2, "spe": 32, "usage": "1.8%" },
+        { "hp": 2, "atk": 32, "spa": 0, "def": 0, "spd": 0, "spe": 32, "usage": "1.8%" }
+    ],
+    "ability": [
+      { "name": "Defiant", "usage": "95.4%" },
+      { "name": "Supreme Overlord", "usage": "4.4%" },
+      { "name": "Pressure", "usage": "0.1%" }
+    ]
+  },
+  {
+    "rank": 5,
+    "pokemon": "Sinistcha",
+    "moves": [
+      { "name": "Matcha Gotcha", "usage": "99.0%" },
+      { "name": "Rage Powder", "usage": "96.3%" },
+      { "name": "Trick Room", "usage": "63.9%" },
+      { "name": "Life Dew", "usage": "56.9%" },
+      { "name": "Protect", "usage": "34.2%" },
+      { "name": "Strength Sap", "usage": "22.2%" },
+      { "name": "Shadow Ball", "usage": "18.8%" },
+      { "name": "Imprison", "usage": "2.2%" },
+      { "name": "Scald", "usage": "1.6%" },
+      { "name": "Calm Mind", "usage": "0.8%" }
+    ],
+    "items": [
+      { "name": "Sitrus Berry", "usage": "47.5%" },
+      { "name": "Leftovers", "usage": "20.6%" },
+      { "name": "Occa Berry", "usage": "6.1%" },
+      { "name": "Colbur Berry", "usage": "6.0%" },
+      { "name": "Mental Herb", "usage": "4.5%" },
+      { "name": "Bright Powder", "usage": "3.2%" },
+      { "name": "Focus Sash", "usage": "3.0%" },
+      { "name": "Kasib Berry", "usage": "2.7%" },
+      { "name": "Coba Berry", "usage": "1.7%" },
+      { "name": "Miracle Seed", "usage": "1.5%" }
+    ],
+    "teammates": [
+      { "rank": 1, "name": "Incineroar" },
+      { "rank": 2, "name": "Sneasler" },
+      { "rank": 3, "name": "Kingambit" },
+      { "rank": 4, "name": "Garchomp" },
+      { "rank": 5, "name": "Tyranitar" },
+      { "rank": 6, "name": "Pelipper" },
+      { "rank": 7, "name": "Basculegion" },
+      { "rank": 8, "name": "Floette" },
+      { "rank": 9, "name": "Aerodactyl" },
+      { "rank": 10, "name": "Archaludon" }
+    ],
+    "nature": [
+      { "name": "Bold", "usage": "39.9%" },
+      { "name": "Calm", "usage": "36.4%" },
+      { "name": "Modest", "usage": "9.8%" },
+      { "name": "Sassy", "usage": "4.6%" },
+      { "name": "Relaxed", "usage": "4.1%" },
+      { "name": "Quiet", "usage": "3.4%" },
+      { "name": "Timid", "usage": "1.1%" },
+      { "name": "Mild", "usage": "0.1%" },
+      { "name": "Careful", "usage": "0.1%" },
+      { "name": "Impish", "usage": "0.1%" }
+    ],
+    "ev_spreads": [
+      { "hp": 32, "atk": 0, "spa": 14, "def": 0, "spd": 20, "spe": 0, "usage": "9.6%" },
+      { "hp": 32, "atk": 0, "spa": 4, "def": 0, "spd": 30, "spe": 0, "usage": "7.6%" },
+      { "hp": 32, "atk": 0, "spa": 2, "def": 0, "spd": 32, "spe": 0, "usage": "6.5%" },
+      { "hp": 31, "atk": 0, "spa": 10, "def": 1, "spd": 23, "spe": 1, "usage": "4.1%" },
+      { "hp": 32, "atk": 0, "spa": 32, "def": 0, "spd": 2, "spe": 0, "usage": "2.9%" },
+      { "hp": 32, "atk": 0, "spa": 24, "def": 0, "spd": 10, "spe": 0, "usage": "1.8%" },
+      { "hp": 32, "atk": 0, "spa": 0, "def": 32, "spd": 2, "spe": 0, "usage": "1.8%" },
+      { "hp": 31, "atk": 0, "spa": 12, "def": 0, "spd": 23, "spe": 0, "usage": "1.7%" },
+      { "hp": 32, "atk": 0, "spa": 10, "def": 0, "spd": 24, "spe": 0, "usage": "1.5%" },
+      { "hp": 32, "atk": 0, "spa": 2, "def": 32, "spd": 0, "spe": 0, "usage": "1.5%" }
+    ],
+    "ability": [
+      { "name": "Hospitality", "usage": "98.4%" },
+      { "name": "Heatproof", "usage": "1.6%" }
+    ]
+  },
+  {
+    "rank": 7,
+    "pokemon": "Charizard",
+    "moves": [
+      { "name": "Protect", "usage": "95.0%" },
+      { "name": "Heat Wave", "usage": "91.5%" },
+      { "name": "Solar Beam", "usage": "76.5%" },
+      { "name": "Weather Ball", "usage": "46.7%" },
+      { "name": "Air Slash", "usage": "26.6%" },
+      { "name": "Overheat", "usage": "14.0%" },
+      { "name": "Dragon Pulse", "usage": "6.5%" },
+      { "name": "Flare Blitz", "usage": "6.3%" },
+      { "name": "Dragon Claw", "usage": "5.9%" },
+      { "name": "Scorching Sands", "usage": "5.5%" }
+    ],
+    "items": [
+      { "name": "Charizardite Y", "usage": "92.3%" },
+      { "name": "Charizardite X", "usage": "6.6%" },
+      { "name": "Choice Scarf", "usage": "0.3%" },
+      { "name": "Charcoal", "usage": "0.1%" },
+      { "name": "Focus Sash", "usage": "0.0%" },
+      { "name": "Lum Berry", "usage": "0.0%" },
+      { "name": "Sitrus Berry", "usage": "0.0%" },
+      { "name": "Charti Berry", "usage": "0.0%" },
+      { "name": "Leftovers", "usage": "0.0%" },
+      { "name": "Silk Scarf", "usage": "0.0%" }
+    ],
+    "teammates": [
+      { "rank": 1, "name": "Garchomp" },
+      { "rank": 2, "name": "Sneasler" },
+      { "rank": 3, "name": "Incineroar" },
+      { "rank": 4, "name": "Whimsicott" },
+      { "rank": 5, "name": "Venusaur" },
+      { "rank": 6, "name": "Kingambit" },
+      { "rank": 7, "name": "Rotom-Wash" },
+      { "rank": 8, "name": "Basculegion" },
+      { "rank": 9, "name": "Milotic" },
+      { "rank": 10, "name": "Aerodactyl" }
+    ],
+    "nature": [
+      { "name": "Modest", "usage": "56.2%" },
+      { "name": "Timid", "usage": "35.5%" },
+      { "name": "Adamant", "usage": "5.3%" },
+      { "name": "Jolly", "usage": "1.3%" },
+      { "name": "Quiet", "usage": "0.3%" },
+      { "name": "Mild", "usage": "0.2%" },
+      { "name": "Bold", "usage": "0.2%" },
+      { "name": "Hasty", "usage": "0.1%" },
+      { "name": "Rash", "usage": "0.1%" },
+      { "name": "Calm", "usage": "0.1%" }
+    ],
+    "ev_spreads": [
+      { "hp": 2, "atk": 0, "spa": 0, "def": 32, "spd": 0, "spe": 32, "usage": "29.8%" },
+      { "hp": 6, "atk": 0, "spa": 16, "def": 31, "spd": 0, "spe": 13, "usage": "7.0%" },
+      { "hp": 0, "atk": 0, "spa": 2, "def": 32, "spd": 0, "spe": 32, "usage": "6.0%" },
+      { "hp": 30, "atk": 0, "spa": 1, "def": 15, "spd": 1, "spe": 19, "usage": "4.1%" },
+      { "hp": 1, "atk": 0, "spa": 0, "def": 32, "spd": 1, "spe": 32, "usage": "3.7%" },
+      { "hp": 20, "atk": 0, "spa": 14, "def": 21, "spd": 0, "spe": 11, "usage": "3.2%" },
+      { "hp": 0, "atk": 0, "spa": 0, "def": 32, "spd": 2, "spe": 32, "usage": "2.9%" },
+      { "hp": 1, "atk": 0, "spa": 0, "def": 32, "spd": 0, "spe": 32, "usage": "2.0%" },
+      { "hp": 0, "atk": 0, "spa": 0, "def": 32, "spd": 0, "spe": 32, "usage": "1.7%" },
+      { "hp": 22, "atk": 0, "spa": 19, "def": 11, "spd": 1, "spe": 13, "usage": "1.5%" }
+    ],
+    "ability": [
+      { "name": "Blaze", "usage": "59.4%" },
+      { "name": "Solar Power", "usage": "40.5%" }
+    ]
+  },
+  {
+    "rank": 8,
+    "pokemon": "Aerodactyl",
+    "moves": [
+      { "name": "Rock Slide", "usage": "98.6%" },
+      { "name": "Dual Wingbeat", "usage": "93.5%" },
+      { "name": "Tailwind", "usage": "92.5%" },
+      { "name": "Protect", "usage": "85.3%" },
+      { "name": "Wide Guard", "usage": "10.8%" },
+      { "name": "Ice Fang", "usage": "3.9%" },
+      { "name": "Taunt", "usage": "2.9%" },
+      { "name": "Iron Head", "usage": "2.5%" },
+      { "name": "Earthquake", "usage": "1.7%" },
+      { "name": "Psychic Fangs", "usage": "0.8%" }
+    ],
+    "items": [
+      { "name": "Focus Sash", "usage": "77.9%" },
+      { "name": "Aerodactylite", "usage": "13.5%" },
+      { "name": "King's Rock", "usage": "1.7%" },
+      { "name": "Lum Berry", "usage": "1.2%" },
+      { "name": "Hard Stone", "usage": "1.1%" },
+      { "name": "White Herb", "usage": "0.8%" },
+      { "name": "Sitrus Berry", "usage": "0.6%" },
+      { "name": "Sharp Beak", "usage": "0.6%" },
+      { "name": "Bright Powder", "usage": "0.5%" },
+      { "name": "Mental Herb", "usage": "0.5%" }
+    ],
+    "teammates": [
+      { "rank": 1, "name": "Sneasler" },
+      { "rank": 2, "name": "Garchomp" },
+      { "rank": 3, "name": "Incineroar" },
+      { "rank": 4, "name": "Kingambit" },
+      { "rank": 5, "name": "Floette" },
+      { "rank": 6, "name": "Sinistcha" },
+      { "rank": 7, "name": "Basculegion" },
+      { "rank": 8, "name": "Rotom-Wash" },
+      { "rank": 9, "name": "Charizard" },
+      { "rank": 10, "name": "Milotic" }
+    ],
+    "nature": [
+      { "name": "Jolly", "usage": "89.9%" },
+      { "name": "Adamant", "usage": "8.5%" },
+      { "name": "Naive", "usage": "0.4%" },
+      { "name": "Hasty", "usage": "0.2%" },
+      { "name": "Timid", "usage": "0.2%" },
+      { "name": "Lonely", "usage": "0.2%" },
+      { "name": "Naughty", "usage": "0.2%" },
+      { "name": "Impish", "usage": "0.1%" },
+      { "name": "Careful", "usage": "0.1%" },
+      { "name": "Quirky", "usage": "0.0%" }
+    ],
+    "ev_spreads": [
+      { "hp": 2, "atk": 32, "spa": 0, "def": 0, "spd": 0, "spe": 32, "usage": "58.7%" },
+      { "hp": 0, "atk": 32, "spa": 2, "def": 0, "spd": 0, "spe": 32, "usage": "12.8%" },
+      { "hp": 0, "atk": 32, "spa": 0, "def": 0, "spd": 2, "spe": 32, "usage": "5.1%" },
+      { "hp": 0, "atk": 32, "spa": 1, "def": 0, "spd": 1, "spe": 32, "usage": "4.1%" },
+      { "hp": 0, "atk": 32, "spa": 0, "def": 0, "spd": 0, "spe": 32, "usage": "2.9%" },
+      { "hp": 1, "atk": 32, "spa": 1, "def": 0, "spd": 0, "spe": 32, "usage": "2.7%" },
+      { "hp": 1, "atk": 32, "spa": 0, "def": 0, "spd": 0, "spe": 32, "usage": "1.0%" },
+      { "hp": 16, "atk": 18, "spa": 0, "def": 0, "spd": 0, "spe": 32, "usage": "0.8%" },
+      { "hp": 1, "atk": 32, "spa": 0, "def": 0, "spd": 1, "spe": 32, "usage": "0.6%" },
+      { "hp": 20, "atk": 20, "spa": 0, "def": 0, "spd": 0, "spe": 26, "usage": "0.6%" }
+    ],
+    "ability": [
+      { "name": "Unnerve", "usage": "94.4%" },
+      { "name": "Pressure", "usage": "4.0%" },
+      { "name": "Rock Head", "usage": "1.6%" }
+    ]
+  },
+  {
+    "rank": 9,
+    "pokemon": "Whimsicott",
+    "moves": [
+      { "name": "Tailwind", "usage": "98.8%" },
+      { "name": "Moonblast", "usage": "89.0%" },
+      { "name": "Encore", "usage": "73.0%" },
+      { "name": "Protect", "usage": "37.4%" },
+      { "name": "Sunny Day", "usage": "32.5%" },
+      { "name": "Taunt", "usage": "14.1%" },
+      { "name": "Fake Tears", "usage": "9.1%" },
+      { "name": "Helping Hand", "usage": "9.0%" },
+      { "name": "Endeavor", "usage": "7.4%" },
+      { "name": "Dazzling Gleam", "usage": "5.4%" }
+    ],
+    "items": [
+      { "name": "Focus Sash", "usage": "76.6%" },
+      { "name": "Mental Herb", "usage": "8.3%" },
+      { "name": "Sitrus Berry", "usage": "2.5%" },
+      { "name": "Bright Powder", "usage": "2.5%" },
+      { "name": "Fairy Feather", "usage": "2.2%" },
+      { "name": "Occa Berry", "usage": "1.8%" },
+      { "name": "Leftovers", "usage": "1.3%" },
+      { "name": "Coba Berry", "usage": "1.0%" },
+      { "name": "Babiri Berry", "usage": "0.6%" },
+      { "name": "Kebia Berry", "usage": "0.6%" }
+    ],
+    "teammates": [
+      { "rank": 1, "name": "Sneasler" },
+      { "rank": 2, "name": "Garchomp" },
+      { "rank": 3, "name": "Charizard" },
+      { "rank": 4, "name": "Incineroar" },
+      { "rank": 5, "name": "Kingambit" },
+      { "rank": 6, "name": "Rotom-Wash" },
+      { "rank": 7, "name": "Basculegion" },
+      { "rank": 8, "name": "Venusaur" },
+      { "rank": 9, "name": "Milotic" },
+      { "rank": 10, "name": "Farigiraf" }
+    ],
+    "nature": [
+      { "name": "Timid", "usage": "75.6%" },
+      { "name": "Modest", "usage": "11.3%" },
+      { "name": "Bold", "usage": "5.8%" },
+      { "name": "Calm", "usage": "5.5%" },
+      { "name": "Hasty", "usage": "0.3%" },
+      { "name": "Quiet", "usage": "0.2%" },
+      { "name": "Jolly", "usage": "0.2%" },
+      { "name": "Mild", "usage": "0.2%" },
+      { "name": "Relaxed", "usage": "0.2%" },
+      { "name": "Naive", "usage": "0.1%" }
+    ],
+    "ev_spreads": [
+      { "hp": 2, "atk": 0, "spa": 0, "def": 32, "spd": 0, "spe": 32, "usage": "45.5%" },
+      { "hp": 0, "atk": 0, "spa": 0, "def": 32, "spd": 2, "spe": 32, "usage": "5.3%" },
+      { "hp": 32, "atk": 0, "spa": 0, "def": 2, "spd": 0, "spe": 32, "usage": "3.0%" },
+      { "hp": 0, "atk": 0, "spa": 2, "def": 32, "spd": 0, "spe": 32, "usage": "2.9%" },
+      { "hp": 0, "atk": 0, "spa": 0, "def": 32, "spd": 0, "spe": 32, "usage": "2.2%" },
+      { "hp": 1, "atk": 0, "spa": 0, "def": 32, "spd": 0, "spe": 32, "usage": "2.2%" },
+      { "hp": 32, "atk": 0, "spa": 0, "def": 0, "spd": 2, "spe": 32, "usage": "1.7%" },
+      { "hp": 32, "atk": 0, "spa": 2, "def": 0, "spd": 0, "spe": 32, "usage": "1.3%" },
+      { "hp": 0, "atk": 0, "spa": 1, "def": 32, "spd": 1, "spe": 32, "usage": "1.1%" },
+      { "hp": 32, "atk": 0, "spa": 0, "def": 32, "spd": 0, "spe": 2, "usage": "0.8%" }
+    ],
+    "ability": [
+      { "name": "Prankster", "usage": "99.0%" },
+      { "name": "Chlorophyll", "usage": "0.6%" },
+      { "name": "Infiltrator", "usage": "0.2%" }
+    ]
+  },
+  {
+    "rank": 10,
+    "pokemon": "Rotom-Wash",
+    "moves": [
+      { "name": "Hydro Pump", "usage": "98.0%" },
+      { "name": "Thunderbolt", "usage": "71.6%" },
+      { "name": "Volt Switch", "usage": "58.7%" },
+      { "name": "Protect", "usage": "51.0%" },
+      { "name": "Will-O-Wisp", "usage": "49.7%" },
+      { "name": "Electroweb", "usage": "29.8%" },
+      { "name": "Trick", "usage": "9.5%" },
+      { "name": "Discharge", "usage": "8.3%" },
+      { "name": "Helping Hand", "usage": "7.4%" },
+      { "name": "Shadow Ball", "usage": "3.2%" }
+    ],
+    "items": [
+      { "name": "Sitrus Berry", "usage": "32.2%" },
+      { "name": "Leftovers", "usage": "30.2%" },
+      { "name": "Choice Scarf", "usage": "27.2%" },
+      { "name": "Magnet", "usage": "4.5%" },
+      { "name": "Rindo Berry", "usage": "1.3%" },
+      { "name": "Quick Claw", "usage": "1.1%" },
+      { "name": "Mystic Water", "usage": "0.8%" },
+      { "name": "Bright Powder", "usage": "0.6%" },
+      { "name": "Lum Berry", "usage": "0.5%" },
+      { "name": "Focus Sash", "usage": "0.4%" }
+    ],
+    "teammates": [
+      { "rank": 1, "name": "Garchomp" },
+      { "rank": 2, "name": "Sneasler" },
+      { "rank": 3, "name": "Incineroar" },
+      { "rank": 4, "name": "Tyranitar" },
+      { "rank": 5, "name": "Charizard" },
+      { "rank": 6, "name": "Sinistcha" },
+      { "rank": 7, "name": "Floette" },
+      { "rank": 8, "name": "Kingambit" },
+      { "rank": 9, "name": "Aerodactyl" },
+      { "rank": 10, "name": "Whimsicott" }
+    ],
+    "nature": [
+      { "name": "Modest", "usage": "53.5%" },
+      { "name": "Timid", "usage": "19.2%" },
+      { "name": "Bold", "usage": "16.6%" },
+      { "name": "Calm", "usage": "8.6%" },
+      { "name": "Quiet", "usage": "0.8%" },
+      { "name": "Sassy", "usage": "0.2%" },
+      { "name": "Relaxed", "usage": "0.2%" },
+      { "name": "Mild", "usage": "0.1%" },
+      { "name": "Gentle", "usage": "0.1%" },
+      { "name": "Hasty", "usage": "0.1%" }
+    ],
+    "ev_spreads": [
+      { "hp": 2, "atk": 0, "spa": 0, "def": 32, "spd": 0, "spe": 32, "usage": "11.3%" },
+      { "hp": 32, "atk": 0, "spa": 0, "def": 32, "spd": 0, "spe": 2, "usage": "7.1%" },
+      { "hp": 32, "atk": 0, "spa": 11, "def": 16, "spd": 0, "spe": 7, "usage": "4.5%" },
+      { "hp": 32, "atk": 0, "spa": 0, "def": 25, "spd": 0, "spe": 8, "usage": "3.0%" },
+      { "hp": 10, "atk": 0, "spa": 0, "def": 31, "spd": 0, "spe": 25, "usage": "2.9%" },
+      { "hp": 32, "atk": 0, "spa": 0, "def": 32, "spd": 2, "spe": 0, "usage": "1.7%" },
+      { "hp": 32, "atk": 0, "spa": 0, "def": 25, "spd": 0, "spe": 9, "usage": "1.7%" },
+      { "hp": 30, "atk": 0, "spa": 2, "def": 8, "spd": 1, "spe": 25, "usage": "1.7%" },
+      { "hp": 32, "atk": 0, "spa": 2, "def": 32, "spd": 0, "spe": 0, "usage": "1.6%" },
+      { "hp": 0, "atk": 0, "spa": 0, "def": 32, "spd": 2, "spe": 32, "usage": "1.5%" }
+    ],
+    "ability": [
+      { "name": "Levitate", "usage": "100.0%" }
+    ]
+  }
+]

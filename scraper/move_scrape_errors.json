@@ -1,0 +1,14 @@
+[
+  {
+    "slug": "pokemon-go",
+    "error": "404 Client Error: Not Found for url: https://pokebase.app/pokemon-champions/moves/pokemon-go"
+  },
+  {
+    "slug": "pokemon-champions",
+    "error": "404 Client Error: Not Found for url: https://pokebase.app/pokemon-champions/moves/pokemon-champions"
+  },
+  {
+    "slug": "pokemon-tcg-pocket",
+    "error": "404 Client Error: Not Found for url: https://pokebase.app/pokemon-champions/moves/pokemon-tcg-pocket"
+  }
+]
