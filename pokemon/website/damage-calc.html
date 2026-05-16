@@ -17,6 +17,36 @@
       <div class="sel-row"><label>Move</label><select id="sel-move"><option value="">— pick attacker first —</option></select></div>
       <div class="sel-row"><label>Defender</label><select id="sel-def"><option value="">— pick —</option></select></div>
     </div>
+    <div class="field-panel">
+      <div class="field-group">
+        <div class="field-group-label">Weather</div>
+        <div class="field-btns">
+          <button class="weather-btn field-btn active" data-w="none" onclick="setWeather('none')">—</button>
+          <button class="weather-btn field-btn" data-w="sun" onclick="setWeather('sun')">Sun</button>
+          <button class="weather-btn field-btn" data-w="rain" onclick="setWeather('rain')">Rain</button>
+          <button class="weather-btn field-btn" data-w="sand" onclick="setWeather('sand')">Sand</button>
+          <button class="weather-btn field-btn" data-w="snow" onclick="setWeather('snow')">Snow</button>
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field-group-label">Terrain</div>
+        <div class="field-btns">
+          <button class="terrain-btn field-btn active" data-t="none" onclick="setTerrain('none')">—</button>
+          <button class="terrain-btn field-btn" data-t="electric" onclick="setTerrain('electric')">Electric</button>
+          <button class="terrain-btn field-btn" data-t="grassy" onclick="setTerrain('grassy')">Grassy</button>
+          <button class="terrain-btn field-btn" data-t="psychic" onclick="setTerrain('psychic')">Psychic</button>
+          <button class="terrain-btn field-btn" data-t="misty" onclick="setTerrain('misty')">Misty</button>
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field-group-label">Screens</div>
+        <div class="field-btns">
+          <label class="field-check"><input type="checkbox" onchange="S.screens.reflect=this.checked"> Reflect</label>
+          <label class="field-check"><input type="checkbox" onchange="S.screens.lightscreen=this.checked"> Light Screen</label>
+          <label class="field-check"><input type="checkbox" onchange="S.screens.auroraveil=this.checked"> Aurora Veil</label>
+        </div>
+      </div>
+    </div>
     <button class="calc-btn" onclick="calculate()">Calculate</button>
     <div id="result"><div class="empty">Fill in teams and press Calculate</div></div>
   </div>
