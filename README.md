@@ -102,7 +102,7 @@ python analyze_replays.py
 |---|---|
 | `tournaments` | id, name, date, num_players, limitless_id |
 | `teams` | id, tournament_id, player, placing, W/L/T |
-| `team_pokemon` | team_id, position (0–5), pokemon_slug, ability, item, tera_type |
+| `team_pokemon` | team_id, position (0–5), pokemon_slug, ability, item |
 | `team_move` | team_id, position, move_slug |
 | `pokemon` | slug, name, types (JSON), base stats, image_url |
 | `moves` | slug, name, type, power, accuracy, PP, flags (JSON) |

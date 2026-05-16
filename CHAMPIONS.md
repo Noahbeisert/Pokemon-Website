@@ -2,6 +2,10 @@
 
 ## Mechanics — Rules Worth Knowing
 
+**Extra mechanic: Mega Evolution only.** No Terastallization, no Z-Moves, no Dynamax. Multiple Mega-capable pokemon can be on the same team, but only one can Mega Evolve per battle. Activates on the turn you select it.
+
+A common team-building pattern is to run **2 Mega-capable pokemon** and use team preview to bring whichever is the better fit for the matchup — the unchosen Mega functions as a normal pokemon. This makes the "which Mega to bring" choice a meaningful team preview decision, and means benching a Mega is not necessarily a misplay (it may be the correct read).
+
 Doubles-specific interactions that affect play decisions. Log new ones here as discovered.
 
 ### Move flags (from PokeAPI `moves/{id}` — `flags` array)

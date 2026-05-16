@@ -31,6 +31,9 @@ brought_losses = Counter()
 
 benched_winners = Counter()  # left on bench by winner
 benched_losers  = Counter()  # left on bench by loser
+mega_capable    = set()      # pokemon that Mega Evolved at least once across all replays
+mega_benched_winners = Counter()  # Mega-capable pokemon benched by winner
+mega_benched_losers  = Counter()  # Mega-capable pokemon benched by loser
 
 move_by_winner = Counter()
 move_by_loser  = Counter()
@@ -78,6 +81,13 @@ def parse(log):
         m = re.match(r"\|win\|(.+)", l)
         if m:
             winner = m.group(1).strip()
+
+    # Mega Evolutions that actually happened this game (base form name)
+    megas_used = {"p1": set(), "p2": set()}
+    for l in lines:
+        m = re.match(r"\|-mega\|(p[12])[ab]: [^|]+\|([^|]+)\|", l)
+        if m:
+            megas_used[m.group(1)].add(m.group(2).strip())
 
     # Pokemon brought (unique first-time switches after |start)
     brought = {"p1": [], "p2": []}
@@ -197,6 +207,7 @@ def parse(log):
     return {
         "teams": teams, "players": players, "winner": winner,
         "brought": brought, "leads": leads,
+        "megas_used": megas_used,
         "moves_by_side": moves_by_side, "misses": misses,
         "protect_wasted": protect_wasted, "double_protects": double_protects,
         "sucker_fails": sucker_fails, "conf_hits": conf_hits,
@@ -235,12 +246,24 @@ for replay in replays:
     for mon in d["leads"][loser_side]:
         lead_losses[mon] += 1
 
+    # Track which pokemon are Mega-capable (evolved at least once in any game)
+    for side in ("p1", "p2"):
+        mega_capable.update(d["megas_used"][side])
+
     bench_w = set(d["teams"][winner_side]) - set(d["brought"][winner_side])
     bench_l = set(d["teams"][loser_side]) - set(d["brought"][loser_side])
     for mon in bench_w:
         benched_winners[mon] += 1
+        if mon in d["megas_used"][winner_side] or any(
+            mon in d["megas_used"][s] for s in ("p1", "p2")
+        ):
+            mega_benched_winners[mon] += 1
     for mon in bench_l:
         benched_losers[mon] += 1
+        if mon in d["megas_used"][loser_side] or any(
+            mon in d["megas_used"][s] for s in ("p1", "p2")
+        ):
+            mega_benched_losers[mon] += 1
 
     # ── Winning pairs ──────────────────────────────────────────────────────────
     for pair in combinations(sorted(d["brought"][winner_side]), 2):
@@ -329,8 +352,9 @@ for mon, (bp, wp, n) in sorted(bring_rates.items(), key=lambda x: -x[1][0])[:20]
 # ══ TEAM PREVIEW MISPLAYS ════════════════════════════════════════════════════
 sep("TEAM PREVIEW — what do LOSERS leave on the bench vs WINNERS?")
 print("  Pokemon benched often by losers but rarely by winners = likely misplay")
-print(f"\n  {'Pokemon':<26} {'Benched by losers':>18}  {'Benched by winners':>18}  {'Diff':>6}")
-print(f"  {'-'*70}")
+print("  [M] = Mega-capable: benching may be intentional (running 2 Megas, chose the other)")
+print(f"\n  {'':3} {'Pokemon':<23} {'Benched losers':>15}  {'Benched winners':>15}  {'Diff':>6}  Note")
+print(f"  {'-'*82}")
 all_bench = set(benched_losers) | set(benched_winners)
 bench_diff = []
 for mon in all_bench:
@@ -339,14 +363,20 @@ for mon in all_bench:
     total = pokemon_appearances[mon]
     if total < 8:
         continue
-    # Normalize by how often the pokemon appears
     bl_rate = bl / total
     bw_rate = bw / total
     bench_diff.append((mon, bl, bw, bl_rate - bw_rate))
 
 for mon, bl, bw, diff in sorted(bench_diff, key=lambda x: -x[3])[:20]:
-    arrow = "<<< leave at home" if diff > 0.15 else ""
-    print(f"  {mon:<26}  {bl:>10}x        {bw:>10}x        {diff:+.2f}  {arrow}")
+    is_mega = mon in mega_capable
+    tag = "[M]" if is_mega else "   "
+    if is_mega and diff > 0.15:
+        note = "Mega matchup choice — not necessarily a misplay"
+    elif diff > 0.15:
+        note = "likely misplay"
+    else:
+        note = ""
+    print(f"  {tag} {mon:<23}  {bl:>10}x        {bw:>10}x      {diff:+.2f}  {note}")
 
 # ══ LEAD WIN RATES ═══════════════════════════════════════════════════════════
 sep("LEAD WIN RATES  (min 5 times led)")
