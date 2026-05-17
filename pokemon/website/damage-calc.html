@@ -11,12 +11,20 @@
 <div class="layout">
   <div class="team-col"><h2>My Team</h2><div id="my-slots"></div></div>
   <div class="calc-col">
-    <h2>Calculator</h2>
-    <div class="calc-selectors">
-      <div class="sel-row"><label>Attacker</label><select id="sel-atk" onchange="onAtkChange()"><option value="">— pick —</option></select></div>
-      <div class="sel-row"><label>Move</label><select id="sel-move"><option value="">— pick attacker first —</option></select></div>
-      <div class="sel-row"><label>Defender</label><select id="sel-def"><option value="">— pick —</option></select></div>
+    <h2>Turn Simulator</h2>
+
+    <div class="active-panel">
+      <div class="active-side">
+        <div class="active-slot"><label>My Slot 1</label><select id="act-my-0" onchange="onActiveChange()"><option value="">— pick —</option></select></div>
+        <div class="active-slot"><label>My Slot 2</label><select id="act-my-1" onchange="onActiveChange()"><option value="">— pick —</option></select></div>
+      </div>
+      <div class="active-vs">vs</div>
+      <div class="active-side">
+        <div class="active-slot"><label>Enemy Slot 1</label><select id="act-en-0" onchange="onActiveChange()"><option value="">— pick —</option></select></div>
+        <div class="active-slot"><label>Enemy Slot 2</label><select id="act-en-1" onchange="onActiveChange()"><option value="">— pick —</option></select></div>
+      </div>
     </div>
+
     <div class="field-panel">
       <div class="field-group">
         <div class="field-group-label">Weather</div>
@@ -46,12 +54,66 @@
           <label class="field-check"><input type="checkbox" onchange="S.screens.auroraveil=this.checked"> Aurora Veil</label>
         </div>
       </div>
+      <div class="field-group">
+        <div class="field-group-label">Speed Control</div>
+        <div class="field-btns">
+          <button class="field-btn" id="tw-my-btn" onclick="toggleTailwind('my')">Tailwind (My)</button>
+          <button class="field-btn" id="tw-en-btn" onclick="toggleTailwind('en')">Tailwind (Enemy)</button>
+          <button class="field-btn" id="tr-btn" onclick="toggleTrickRoom()">Trick Room</button>
+        </div>
+      </div>
+      <div class="field-group">
+        <div class="field-group-label">Ruin Abilities</div>
+        <div class="field-btns">
+          <label class="field-check"><input type="checkbox" onchange="S.ruinAbils.sword=this.checked"> Sword of Ruin — Def ×0.75</label>
+          <label class="field-check"><input type="checkbox" onchange="S.ruinAbils.beads=this.checked"> Beads of Ruin — SpD ×0.75</label>
+          <label class="field-check"><input type="checkbox" onchange="S.ruinAbils.tablets=this.checked"> Tablets of Ruin — Atk ×0.75</label>
+          <label class="field-check"><input type="checkbox" onchange="S.ruinAbils.vessel=this.checked"> Vessel of Ruin — SpA ×0.75</label>
+        </div>
+      </div>
     </div>
-    <button class="calc-btn" onclick="calculate()">Calculate</button>
-    <div id="result"><div class="empty">Fill in teams and press Calculate</div></div>
+
+    <div class="turn-moves">
+      <div class="turn-side-label">My Team Moves</div>
+      <div class="turn-row">
+        <span class="tr-name" id="trn-my-0">Slot 1</span>
+        <select class="tr-move" id="mv-my-0" onchange="onMoveChange('my',0)"><option value="">— no move —</option></select>
+        <div class="tgt-wrap" id="tgt-wrap-my-0"><span class="tr-arrow">→</span><select class="tr-target" id="tgt-my-0"><option value="">— target —</option></select></div>
+        <label class="hh-label"><input type="checkbox" id="hh-my-0"> HH</label>
+      </div>
+      <div class="turn-row">
+        <span class="tr-name" id="trn-my-1">Slot 2</span>
+        <select class="tr-move" id="mv-my-1" onchange="onMoveChange('my',1)"><option value="">— no move —</option></select>
+        <div class="tgt-wrap" id="tgt-wrap-my-1"><span class="tr-arrow">→</span><select class="tr-target" id="tgt-my-1"><option value="">— target —</option></select></div>
+        <label class="hh-label"><input type="checkbox" id="hh-my-1"> HH</label>
+      </div>
+      <div class="turn-side-label">Enemy Team Moves <span class="optional-tag">optional</span></div>
+      <div class="turn-row">
+        <span class="tr-name" id="trn-en-0">Slot 1</span>
+        <select class="tr-move" id="mv-en-0" onchange="onMoveChange('en',0)"><option value="">— no move —</option></select>
+        <div class="tgt-wrap" id="tgt-wrap-en-0"><span class="tr-arrow">→</span><select class="tr-target" id="tgt-en-0"><option value="">— target —</option></select></div>
+        <label class="hh-label"><input type="checkbox" id="hh-en-0"> HH</label>
+      </div>
+      <div class="turn-row">
+        <span class="tr-name" id="trn-en-1">Slot 2</span>
+        <select class="tr-move" id="mv-en-1" onchange="onMoveChange('en',1)"><option value="">— no move —</option></select>
+        <div class="tgt-wrap" id="tgt-wrap-en-1"><span class="tr-arrow">→</span><select class="tr-target" id="tgt-en-1"><option value="">— target —</option></select></div>
+        <label class="hh-label"><input type="checkbox" id="hh-en-1"> HH</label>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="simulateTurn()">Simulate Turn</button>
+    <div id="turn-result"><div class="empty">Pick active Pokémon and assign moves</div></div>
   </div>
   <div class="team-col"><h2>Enemy Team</h2><div id="enemy-slots"></div></div>
 </div>
+<div id="modal-overlay" onclick="closeModal()">
+  <div id="modal-box" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
 <script src="js/damage-calc.js"></script>
+<script>document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal();});</script>
 </body>
 </html>
