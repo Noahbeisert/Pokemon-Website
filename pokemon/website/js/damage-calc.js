@@ -186,7 +186,8 @@ const S={
   weather:'none', terrain:'none',
   screens:{reflect:false,lightscreen:false,auroraveil:false},
   tailwind:{my:false,en:false},trickroom:false,
-  ruinAbils:{sword:false,tablets:false,vessel:false,beads:false}
+  ruinAbils:{sword:false,tablets:false,vessel:false,beads:false},
+  predictData:{}
 };
 
 function mkP(side){
@@ -240,6 +241,7 @@ async function loadMove(slug){
   const res={slug:d.name,name:fmt(d.name),type:d.type.name,
     dc:d.damage_class?.name,power:d.power,acc:d.accuracy,pp:d.pp,pri:d.priority,target:d.target?.name,
     flags:(d.flags||[]).map(f=>f.name),
+    drain:meta.drain||0,
     recoil:(meta.drain||0)<0,
     secondary:(meta.ailment_chance||0)>0||(meta.stat_chance||0)>0||(meta.flinch_chance||0)>0,
     ailment:meta.ailment?.name&&meta.ailment.name!=='none'?meta.ailment.name:null,
@@ -254,6 +256,14 @@ async function loadMove(slug){
     protect:PROTECT_MOVES.has(d.name)};
   if(SPREAD_OVERRIDES[d.name]) res.target=SPREAD_OVERRIDES[d.name];
   S.moveCache[slug]=res; return res;
+}
+
+async function loadPredictData(){
+  if(Object.keys(S.predictData).length) return;
+  try{
+    const r=await fetch('data/PredictData.json');
+    if(r.ok) S.predictData=await r.json();
+  }catch(_){}
 }
 
 function fmt(s){return s.split('-').map(w=>w[0].toUpperCase()+w.slice(1)).join(' ')}
@@ -638,6 +648,7 @@ function cardHTML(p,side,idx){
       <select class="status-sel" onchange="setF('${side}',${idx},'status',this.value)" style="width:auto;font-size:11px;margin-left:8px">
         <option value="">No status</option>
         <option value="burn"${p.status==='burn'?' selected':''}>Burn</option>
+        <option value="paralysis"${p.status==='paralysis'?' selected':''}>Paralysis</option>
         <option value="poison"${p.status==='poison'?' selected':''}>Poison</option>
         <option value="badly"${p.status==='badly'?' selected':''}>Badly Poisoned</option>
       </select>
@@ -950,6 +961,16 @@ function dmgSection(label,r){
   else if(r.dMax*2>=r.dHP) badge=`<span class="badge warn">2HKO — Possible</span>`;
   else                  badge=`<span class="badge great">No OHKO / No 2HKO</span>`;
 
+  let drainHTML='';
+  if(r.move?.drain){
+    const pct=Math.abs(r.move.drain);
+    const lo=Math.floor(r.dMin*pct/100), hi=Math.floor(r.dMax*pct/100);
+    if(r.move.drain<0)
+      drainHTML=`<div style="font-size:11px;color:#ef9a9a;margin-top:3px">Recoil: ${lo}–${hi} HP (${pct}%)</div>`;
+    else
+      drainHTML=`<div style="font-size:11px;color:#81c784;margin-top:3px">Heals: ${lo}–${hi} HP (${pct}%)</div>`;
+  }
+
   return`<div>
   <div class="section-label">${label}</div>
   <div class="dmg-bar-bg">
@@ -957,7 +978,7 @@ function dmgSection(label,r){
     <div class="dmg-bar-fill" style="width:${Math.min(100,maxP)}%;background:${barColor}"></div>
   </div>
   <div class="dmg-nums"><strong>${r.dMin}–${r.dMax}</strong> / ${r.dHP} HP &nbsp; (<strong>${r.pMin}%–${r.pMax}%</strong>)</div>
-  ${badge}
+  ${badge}${drainHTML}
   </div>`;
 }
 
@@ -969,6 +990,7 @@ function effectiveSpeed(p,side){
   if(stage) spe=Math.floor(spe*stageMult(stage));
   if(norm(p.item)==='choice-scarf') spe=Math.floor(spe*1.5);
   const a=norm(p.ability);
+  if(p.status==='paralysis'&&a!=='quick-feet') spe=Math.floor(spe*0.5);
   if((a==='swift-swim'&&S.weather==='rain')||(a==='chlorophyll'&&S.weather==='sun')||
      (a==='sand-rush'&&S.weather==='sand')||(a==='slush-rush'&&S.weather==='snow')||
      (a==='surge-surfer'&&S.terrain==='electric')) spe*=2;
@@ -991,6 +1013,7 @@ function buildSpeInfo(p,side,spe){
   if(a==='quick-feet'&&p.status) mods.push('Quick Feet');
   if(a==='unburden'&&p.abilityActive) mods.push('Unburden');
   if(a==='slow-start'&&p.abilityActive) mods.push('Slow Start ↓');
+  if(p.status==='paralysis'&&a!=='quick-feet') mods.push('Paralyzed ×0.5');
   if(S.tailwind[side]) mods.push('Tailwind');
   if(S.trickroom) mods.push('TR');
   return`Spe ${spe}${mods.length?` (${mods.join(', ')})`:''}`;
@@ -1264,6 +1287,7 @@ function buildModalTurn(actions){
   });
 
   // End of turn
+  html+=buildSpeedMatchups(actions);
   html+=buildEndOfTurn(actions);
 
   return html;
@@ -1390,6 +1414,115 @@ function buildEndOfTurn(actions){
   </div>`;
 }
 
+// ── Speed Matchups ────────────────────────────────────────────────────────────
+function calcSpeRaw(p,nature,evSpe,item,ability,tailwind,status,weather,terrain){
+  const nat=NATURES[nature]||NATURES.none;
+  let s=calcStat(p.base.spe||0,31,evSpe,nat.sp);
+  if(norm(item)==='choice-scarf') s=Math.floor(s*1.5);
+  const a=norm(ability);
+  if(status==='paralysis'&&a!=='quick-feet') s=Math.floor(s*0.5);
+  if((a==='swift-swim'&&weather==='rain')||(a==='chlorophyll'&&weather==='sun')||
+     (a==='sand-rush'&&weather==='sand')||(a==='slush-rush'&&weather==='snow')||
+     (a==='surge-surfer'&&terrain==='electric')) s*=2;
+  if(a==='quick-feet'&&status) s=Math.floor(s*1.5);
+  if(tailwind) s*=2;
+  return Math.floor(s);
+}
+
+function speRow(val,label,out,exact,pct,predicted){
+  const icon=out==='faster'?'⚠':out==='tied'?'≈':'✓';
+  const res=out==='faster'?'Moves before you':out==='tied'?'Speed tie':'You move first';
+  const pctTag=pct!=null?`<span class="spe-pct">${pct}%</span>`:'';
+  return`<div class="spe-row ${out}${exact?' exact':''}${predicted?' predicted':''}">
+    <span class="spe-lbl">${label}${pctTag}</span>
+    <span class="spe-val">${val}</span>
+    <span class="spe-res">${icon} ${res}</span>
+  </div>`;
+}
+
+function buildSpeedMatchups(actions){
+  const myActs=actions.filter(a=>a.side==='my');
+  const enActs=actions.filter(a=>a.side==='en');
+  if(!myActs.length||!enActs.length) return'';
+
+  let html=`<div class="modal-speed"><div class="modal-section-label">Speed Matchups</div>`;
+
+  myActs.forEach(myA=>{
+    enActs.forEach(enA=>{
+      const mySpe=myA.spe;
+      const p=enA.mon;
+      const tr=S.trickroom;
+      const wx=S.weather,te=S.terrain;
+      const pAbil=p.ability||'';
+
+      const scenarios=[
+        {label:'Neutral, 0 EVs',       spe:calcSpeRaw(p,'none',0,'',pAbil,false,'',wx,te)},
+        {label:'Jolly, max EVs',        spe:calcSpeRaw(p,'jolly',31,'',pAbil,false,'',wx,te)},
+        {label:'Scarf + Jolly, max EVs',spe:calcSpeRaw(p,'jolly',31,'choice-scarf',pAbil,false,'',wx,te)},
+        {label:'Tailwind + Jolly, max EVs',spe:calcSpeRaw(p,'jolly',31,'',pAbil,true,'',wx,te)},
+        {label:'Paralyzed + Jolly, max EVs',spe:calcSpeRaw(p,'jolly',31,'',pAbil,false,'paralysis',wx,te)},
+      ];
+
+      // weather/terrain speed ability — show scenario if condition isn't currently active
+      const WABIL={'swift-swim':['rain',false],'chlorophyll':['sun',false],
+        'sand-rush':['sand',false],'slush-rush':['snow',false],'surge-surfer':['electric',true]};
+      const abilInfo=WABIL[norm(pAbil)];
+      if(abilInfo){
+        const[req,isTerrain]=abilInfo;
+        const active=isTerrain?te===req:wx===req;
+        if(!active){
+          const owx=isTerrain?wx:req, ote=isTerrain?req:te;
+          scenarios.push({label:`${fmt(pAbil)} active, Jolly, max EVs`,spe:calcSpeRaw(p,'jolly',31,'',pAbil,false,'',owx,ote)});
+        }
+      }
+      if(norm(pAbil)==='quick-feet')
+        scenarios.push({label:'Quick Feet active, Jolly, max EVs',spe:calcSpeRaw(p,'jolly',31,'',pAbil,false,'burn',wx,te)});
+
+      // dedup by speed value
+      const seen=new Set();
+      const unique=scenarios.filter(sc=>{
+        if(seen.has(sc.spe)) return false;
+        seen.add(sc.spe); return true;
+      });
+      unique.sort((a,b)=>tr?a.spe-b.spe:b.spe-a.spe);
+
+      function outcome(enSpe){
+        const fst=tr?enSpe<mySpe:enSpe>mySpe;
+        return fst?'faster':enSpe===mySpe?'tied':'slower';
+      }
+
+      const pred=S.predictData[p.slug]||null;
+
+      // Build prediction rows from tournament data
+      let predHTML='';
+      if(pred?.speeds?.length){
+        const sorted=tr?[...pred.speeds].sort((a,b)=>a.spe-b.spe):pred.speeds;
+        predHTML=`<div class="spe-group-label">Tournament data</div>`+
+          sorted.map(s=>speRow(s.spe,s.label,outcome(s.spe),false,s.pct,true)).join('');
+      } else if(pred){
+        const itemStr=pred.topItem?fmt(pred.topItem):'?';
+        const abilStr=pred.topAbility?fmt(pred.topAbility):'?';
+        predHTML=`<div class="spe-info-row">Most common: ${itemStr} · ${abilStr}</div>`;
+      }
+
+      const trNote=tr?` <span style="font-size:10px;color:#ffcc80">(TR)</span>`:'';
+      html+=`<div class="speed-matchup">
+        <div class="spe-my-row">${myA.mon.name} — <strong>${mySpe}</strong>${trNote} <span class="spe-mods">${buildSpeInfo(myA.mon,myA.side,mySpe)}</span></div>
+        <div class="spe-vs">vs <strong>${enA.mon.name}</strong> ${p.types.map(tb).join('')}</div>
+        <div class="spe-rows">
+          ${speRow(enA.spe,'As configured',outcome(enA.spe),true)}
+          ${predHTML}
+          ${predHTML?'<div class="spe-group-label">Benchmarks</div>':''}
+          ${unique.map(sc=>speRow(sc.spe,sc.label,outcome(sc.spe),false)).join('')}
+        </div>
+      </div>`;
+    });
+  });
+
+  html+=`</div>`;
+  return html;
+}
+
 // ── Init ──────────────────────────────────────────────────────────────────────
 // Fire-and-forget: loads learned_by_pokemon for competitive moves in the background.
 // By the time a user has typed a pokemon name and picked one, these will be ready.
@@ -1399,3 +1532,4 @@ function preloadMoves(){
 
 renderTeams();
 preloadMoves();
+loadPredictData();
