@@ -1089,6 +1089,10 @@ function buildTargetOpts(attackerSide){
 function updateTgtArea(side,i,mvData){
   const wrap=document.getElementById(`tgt-wrap-${side}-${i}`);
   if(!wrap) return;
+  if(mvData?.protect){
+    wrap.innerHTML=`<span class="badge ok">Protects</span>`;
+    return;
+  }
   const isAOP=mvData?.target==='all-other-pokemon';
   const isSpread=mvData?.target==='all-opponents'||isAOP;
   if(isSpread){
@@ -1103,7 +1107,7 @@ function updateTgtArea(side,i,mvData){
 
 function refreshTargets(side,i){
   const wrap=document.getElementById(`tgt-wrap-${side}-${i}`);
-  if(!wrap||wrap.querySelector('.tr-spread-tag')) return; // spread — don't touch
+  if(!wrap||wrap.querySelector('.tr-spread-tag')||wrap.querySelector('.badge.ok')) return; // spread/protect — don't touch
   const prev=wrap.querySelector('select')?.value||'';
   wrap.innerHTML=`<span class="tr-arrow">→</span><select class="tr-target" id="tgt-${side}-${i}">${buildTargetOpts(side)}</select>`;
   const sel=document.getElementById(`tgt-${side}-${i}`);
@@ -1288,6 +1292,7 @@ function buildModalTurn(actions){
 
   // End of turn
   html+=buildSpeedMatchups(actions);
+  html+=buildCombinedDamage(actions);
   html+=buildEndOfTurn(actions);
 
   return html;
@@ -1344,6 +1349,59 @@ function buildThreeScenarios(atk,mv,defender,hh,movingLast=false){
   ${dmgSection('Critical hit',rCrit)}
   <hr class="divider">
   ${dmgSection(worstLabel,rWorst)}`;
+}
+
+// ── Combined Damage ───────────────────────────────────────────────────────────
+function buildCombinedDamage(actions){
+  const myAtks=actions.filter(a=>a.side==='my'&&!a.mvData.protect&&a.mvData.power);
+  if(myAtks.length<2) return '';
+
+  const hitMap=new Map();
+  myAtks.forEach(a=>{
+    const targets=a.spread
+      ?(a.targets?.filter(t=>!t.isAlly&&t.mon?.slug)||[]).map(t=>t.mon)
+      :(a.target&&a.tgtSide==='en'&&a.target.slug?[a.target]:[]);
+    targets.forEach(tmon=>{
+      if(!hitMap.has(tmon)) hitMap.set(tmon,[]);
+      hitMap.get(tmon).push(a);
+    });
+  });
+
+  const groups=[...hitMap.entries()].filter(([,acts])=>acts.length>=2);
+  if(!groups.length) return '';
+
+  let html=`<div class="modal-combined"><div class="modal-section-label">Combined Damage</div>`;
+  groups.forEach(([tmon,grpActs])=>{
+    const calcs=grpActs.map(a=>{
+      const r=calc(a.mon,a.mvData.slug,tmon,null,false,a.hh,false);
+      return{r,label:`${a.mon.name}'s ${a.mvData.name}`};
+    }).filter(({r})=>r&&!r.immune&&!r.status&&r.dMin!=null);
+    if(calcs.length<2) return;
+
+    const dHP=calcs[0].r.dHP;
+    const totalMin=calcs.reduce((s,{r})=>s+r.dMin,0);
+    const totalMax=calcs.reduce((s,{r})=>s+r.dMax,0);
+    const minPct=(totalMin/dHP*100).toFixed(1);
+    const maxPct=(totalMax/dHP*100).toFixed(1);
+    const barColor=+maxPct>=100?'#f44336':+maxPct>=75?'#ff6d00':+maxPct>=50?'#ffb300':'#7c83fd';
+
+    let badge;
+    if(totalMin>=dHP)      badge=`<span class="badge kill">Guaranteed KO</span>`;
+    else if(totalMax>=dHP) badge=`<span class="badge warn">Possible KO</span>`;
+    else                   badge=`<span class="badge great">Not a KO</span>`;
+
+    html+=`<div class="combined-group">
+      <div class="combined-label">${calcs.map(c=>c.label).join(' + ')} → <strong>${tmon.name}</strong></div>
+      <div class="dmg-bar-bg">
+        <div class="dmg-bar-fill low" style="width:${Math.min(100,+minPct)}%;background:${barColor}"></div>
+        <div class="dmg-bar-fill" style="width:${Math.min(100,+maxPct)}%;background:${barColor}"></div>
+      </div>
+      <div class="dmg-nums"><strong>${totalMin}–${totalMax}</strong> / ${dHP} HP &nbsp; (<strong>${minPct}%–${maxPct}%</strong>)</div>
+      ${badge}
+    </div>`;
+  });
+  html+=`</div>`;
+  return html;
 }
 
 // ── End of turn ────────────────────────────────────────────────────────────────

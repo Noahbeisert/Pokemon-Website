@@ -181,6 +181,9 @@ label{font-size:10px;color:var(--sub);display:block;margin-bottom:2px}
 .modal-eot{border-top:1px solid var(--border);padding-top:14px;margin-top:4px}
 .eot-row{display:flex;gap:8px;font-size:12px;margin-bottom:5px;flex-wrap:wrap}
 .eot-name{font-weight:700;min-width:90px;flex-shrink:0}
+.modal-combined{border-top:1px solid var(--border);padding-top:14px;margin-top:4px}
+.combined-group{margin-bottom:12px}
+.combined-label{font-size:11px;color:var(--sub);margin-bottom:6px}
 
 /* speed matchups */
 .modal-speed{border-top:1px solid var(--border);padding-top:14px;margin-top:4px}
