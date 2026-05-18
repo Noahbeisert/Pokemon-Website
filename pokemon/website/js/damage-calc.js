@@ -47,7 +47,9 @@ const API_STAT={hp:'hp',attack:'atk',defense:'def','special-attack':'spa','speci
 const MANUAL_ABILITIES={
   'unburden':'Item Lost',
   'slow-start':'Slow Start Active',
-  'stakeout':'Vs. Switched-In'
+  'stakeout':'Vs. Switched-In',
+  'disguise':'Disguise Broken',
+  'ice-face':'Ice Face Broken'
 };
 
 // Protect-type moves: whole-turn protection; any attack targeting the user is blocked
@@ -511,6 +513,8 @@ function calc(atker,mvSlug,defer,evOver=null,isCrit=false,hh=false,movingLast=fa
   }
   if(eff===0) return{immune:true,move:mv};
   if(da==='wonder-guard'&&eff<=1) return{immune:true,move:mv,wg:true};
+  if(da==='disguise'&&!defer.abilityActive) return{immune:true,move:mv,disguise:true};
+  if(da==='ice-face'&&!defer.abilityActive&&phys) return{immune:true,move:mv,iceFace:true};
 
   const st=stab(mv.type,atker.types,atker.ability);
   const aim=atkItemMult(atker.item,mv,eff);
@@ -561,9 +565,32 @@ function calc(atker,mvSlug,defer,evOver=null,isCrit=false,hh=false,movingLast=fa
   const dMin=rs[0], dMax=rs[15];
   const ohko=rs.filter(d=>d>=dHP).length;
 
+  const nHitsMin=mv.minHits||1, nHitsMax=mv.maxHits||1;
+  const extra={};
+  if(ohko>0&&(defer.hpPct??100)>=100){
+    if(da==='sturdy') extra.blocked='sturdy';
+    else if(norm(defer.item)==='focus-sash') extra.blocked='sash';
+  }
+  if(nHitsMax>1){
+    extra.nHitsMin=nHitsMin; extra.nHitsMax=nHitsMax;
+    extra.dMinPost=dMin; extra.dMaxPost=dMax;
+    const damPost=defAbiMult(defer.ability,mv,eff,0);
+    if(damPost!==dam){
+      const rsPost=rolls16(aStat,dStat,mv.power).map(r=>{
+        let d=r;
+        d=Math.floor(d*st); d=Math.floor(d*eff); d=Math.floor(d*aim); d=Math.floor(d*aam);
+        d=Math.floor(d*damPost); d=Math.floor(d*dbm); d=Math.floor(d*wm); d=Math.floor(d*tm);
+        d=Math.floor(d*sm); d=Math.floor(d*cm); d=Math.floor(d*hhm); d=Math.floor(d*stakeoutM);
+        d=Math.floor(d*analyticM); d=Math.floor(d*blazeM); d=Math.floor(d*spm);
+        return d;
+      });
+      extra.dMinPost=rsPost[0]; extra.dMaxPost=rsPost[15];
+    }
+  }
+
   return{dMin,dMax,dHP,aStat,dStat,hh,spread:spm<1,
     pMin:(dMin/dHP*100).toFixed(1),pMax:(dMax/dHP*100).toFixed(1),
-    ohko,eff,st,move:mv,dbm,defItem:defer.item,wm,tm,sm,cm,atkStage,defStage};
+    ohko,eff,st,move:mv,dbm,defItem:defer.item,wm,tm,sm,cm,atkStage,defStage,...extra};
 }
 
 // ── Type badge ─────────────────────────────────────────────────────────────────
@@ -955,11 +982,14 @@ function dmgSection(label,r){
   const barColor=maxP>=100?'#f44336':maxP>=75?'#ff6d00':maxP>=50?'#ffb300':'#7c83fd';
 
   let badge;
-  if(r.ohko===16)       badge=`<span class="badge kill">OHKO — Guaranteed (16/16)</span>`;
-  else if(r.ohko>0)     badge=`<span class="badge warn">OHKO — ${r.ohko}/16 rolls (${(r.ohko/16*100).toFixed(0)}%)</span>`;
-  else if(r.dMin*2>=r.dHP) badge=`<span class="badge ok">2HKO — Guaranteed</span>`;
-  else if(r.dMax*2>=r.dHP) badge=`<span class="badge warn">2HKO — Possible</span>`;
-  else                  badge=`<span class="badge great">No OHKO / No 2HKO</span>`;
+  if(r.blocked){
+    const who=r.blocked==='sturdy'?'Sturdy':'Focus Sash';
+    badge=`<span class="badge ok">${who} — Survives at 1 HP</span>`;
+  } else if(r.ohko===16)  badge=`<span class="badge kill">OHKO — Guaranteed (16/16)</span>`;
+  else if(r.ohko>0)       badge=`<span class="badge warn">OHKO — ${r.ohko}/16 rolls (${(r.ohko/16*100).toFixed(0)}%)</span>`;
+  else if(r.dMin*2>=r.dHP)badge=`<span class="badge ok">2HKO — Guaranteed</span>`;
+  else if(r.dMax*2>=r.dHP)badge=`<span class="badge warn">2HKO — Possible</span>`;
+  else                    badge=`<span class="badge great">No OHKO / No 2HKO</span>`;
 
   let drainHTML='';
   if(r.move?.drain){
@@ -971,15 +1001,60 @@ function dmgSection(label,r){
       drainHTML=`<div style="font-size:11px;color:#81c784;margin-top:3px">Heals: ${lo}–${hi} HP (${pct}%)</div>`;
   }
 
-  return`<div>
+  let mhHTML='';
+  if(r.nHitsMax>1){
+    mhHTML=`<div class="mh-counter"
+      data-dmin="${r.dMin}" data-dmax="${r.dMax}"
+      data-dminp="${r.dMinPost}" data-dmaxp="${r.dMaxPost}"
+      data-dhp="${r.dHP}" data-maxh="${r.nHitsMax}">
+      <button class="mh-btn" onclick="mhAdj(this,-1)">−</button>
+      <span class="mh-count">1</span>× hit
+      <button class="mh-btn" onclick="mhAdj(this,1)">+</button>
+    </div>`;
+  }
+
+  return`<div class="dmg-section">
   <div class="section-label">${label}</div>
   <div class="dmg-bar-bg">
     <div class="dmg-bar-fill low" style="width:${Math.min(100,minP)}%;background:${barColor}"></div>
     <div class="dmg-bar-fill" style="width:${Math.min(100,maxP)}%;background:${barColor}"></div>
   </div>
   <div class="dmg-nums"><strong>${r.dMin}–${r.dMax}</strong> / ${r.dHP} HP &nbsp; (<strong>${r.pMin}%–${r.pMax}%</strong>)</div>
-  ${badge}${drainHTML}
+  <div class="dmg-badge">${badge}</div>${drainHTML}${mhHTML}
   </div>`;
+}
+
+function mhAdj(btn,delta){
+  const ctr=btn.closest('.mh-counter');
+  const dMin=+ctr.dataset.dmin, dMax=+ctr.dataset.dmax;
+  const dMinP=+ctr.dataset.dminp, dMaxP=+ctr.dataset.dmaxp;
+  const dHP=+ctr.dataset.dhp, maxH=+ctr.dataset.maxh;
+  const countEl=ctr.querySelector('.mh-count');
+  const count=Math.max(1,Math.min(maxH,+countEl.textContent+delta));
+  countEl.textContent=count;
+
+  const totMin=dMin+(count-1)*dMinP;
+  const totMax=dMax+(count-1)*dMaxP;
+  const minPct=(totMin/dHP*100).toFixed(1);
+  const maxPct=(totMax/dHP*100).toFixed(1);
+  const barColor=+maxPct>=100?'#f44336':+maxPct>=75?'#ff6d00':+maxPct>=50?'#ffb300':'#7c83fd';
+
+  const sec=ctr.closest('.dmg-section');
+  const fills=sec.querySelectorAll('.dmg-bar-fill');
+  fills[0].style.width=Math.min(100,+minPct)+'%';
+  fills[0].style.background=barColor;
+  fills[1].style.width=Math.min(100,+maxPct)+'%';
+  fills[1].style.background=barColor;
+  sec.querySelector('.dmg-nums').innerHTML=
+    `<strong>${totMin}–${totMax}</strong> / ${dHP} HP &nbsp; (<strong>${minPct}%–${maxPct}%</strong>)`;
+
+  let badge;
+  if(totMin>=dHP)        badge=`<span class="badge kill">OHKO — Guaranteed</span>`;
+  else if(totMax>=dHP)   badge=`<span class="badge warn">OHKO — Possible</span>`;
+  else if(totMin*2>=dHP) badge=`<span class="badge ok">2HKO — Guaranteed</span>`;
+  else if(totMax*2>=dHP) badge=`<span class="badge warn">2HKO — Possible</span>`;
+  else                   badge=`<span class="badge great">No OHKO / No 2HKO</span>`;
+  sec.querySelector('.dmg-badge').innerHTML=badge;
 }
 
 // ── Speed & Turn Simulator ────────────────────────────────────────────────────
@@ -1319,7 +1394,11 @@ function buildActionScenarios(a,movingLast=false,protecting=new Set()){
 function buildThreeScenarios(atk,mv,defender,hh,movingLast=false){
   const r=calc(atk,mv.slug,defender,null,false,hh,movingLast);
   if(!r) return`<div class="empty" style="padding:8px;font-size:11px">Missing stats — fill in the Pokémon card</div>`;
-  if(r.immune) return`<div style="margin-top:6px"><span class="badge kill">No Effect</span></div>`;
+  if(r.immune){
+    if(r.disguise) return`<div style="margin-top:6px"><span class="badge ok">Disguise absorbs hit — 0 damage</span></div>`;
+    if(r.iceFace) return`<div style="margin-top:6px"><span class="badge ok">Ice Face absorbs hit — 0 damage</span></div>`;
+    return`<div style="margin-top:6px"><span class="badge kill">No Effect</span></div>`;
+  }
 
   const phys=mv.dc==='physical';
   const rCrit=calc(atk,mv.slug,defender,null,true,hh,movingLast);
