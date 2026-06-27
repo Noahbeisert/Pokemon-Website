@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Preview — PokéTools</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0d0f14;--surface:#161a23;--surface2:#1e2330;--border:rgba(255,255,255,0.07);
+  --text:#e8eaf0;--muted:#6b7280;--accent:#7c6af7;--accent2:#a78bfa;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;padding:0 0 60px}
+a{color:var(--accent);text-decoration:none}
+
+/* ── Nav ─────────────────────────────────────── */
+nav{padding:14px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px}
+nav a{color:var(--muted);font-size:.8rem;letter-spacing:1px;text-transform:uppercase}
+nav a:hover{color:var(--text)}
+
+/* ── Header ──────────────────────────────────── */
+header{text-align:center;padding:36px 24px 28px}
+header h1{font-family:'Rajdhani',sans-serif;font-size:2rem;font-weight:700;letter-spacing:3px;color:var(--accent)}
+header p{color:var(--muted);font-size:.8rem;letter-spacing:1.5px;text-transform:uppercase;margin-top:4px}
+
+/* ── Input section ───────────────────────────── */
+.input-wrap{max-width:960px;margin:0 auto;padding:0 20px 32px}
+.teams-row{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:start}
+.team-label{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:600;letter-spacing:1.5px;color:var(--accent2);margin-bottom:12px}
+.vs-divider{display:flex;align-items:center;justify-content:center;font-family:'Rajdhani',sans-serif;font-size:1.2rem;font-weight:700;color:var(--muted);padding-top:36px}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+
+/* ── Slot ─────────────────────────────────────── */
+.slot{position:relative}
+.slot-input-wrap{position:relative}
+.slot input[type=text]{
+  width:100%;background:var(--surface);border:1px solid var(--border);
+  border-radius:7px;padding:8px 10px;color:var(--text);font-size:.82rem;
+  font-family:'Inter',sans-serif;outline:none;transition:border-color .15s
+}
+.slot input[type=text]:focus{border-color:var(--accent)}
+.slot input[type=text]::placeholder{color:var(--muted)}
+.slot-dropdown{
+  position:absolute;top:100%;left:0;right:0;z-index:100;
+  background:#1e2330;border:1px solid var(--border);border-top:none;
+  border-radius:0 0 7px 7px;max-height:180px;overflow-y:auto;
+  display:none
+}
+.slot-dropdown.open{display:block}
+.slot-dropdown div{
+  padding:7px 10px;font-size:.82rem;cursor:pointer;transition:background .1s;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.slot-dropdown div:hover{background:var(--accent)}
+.slot-mini{
+  display:none;flex-direction:column;align-items:center;gap:4px;
+  padding:6px;background:var(--surface);border:1px solid var(--border);
+  border-radius:7px;cursor:pointer;min-height:72px
+}
+.slot-mini.active{display:flex}
+.slot-mini img{width:48px;height:48px;object-fit:contain;image-rendering:crisp-edges}
+.slot-mini .mini-name{font-size:.7rem;color:var(--muted);text-align:center;line-height:1.2}
+.slot-mini .mini-types{display:flex;gap:3px;flex-wrap:wrap;justify-content:center}
+.type-badge{
+  font-size:.6rem;font-weight:600;padding:1px 5px;border-radius:3px;
+  text-transform:uppercase;letter-spacing:.5px
+}
+
+.analyze-row{display:flex;justify-content:center;margin-top:20px}
+#analyze-btn{
+  background:var(--accent);color:#fff;border:none;border-radius:8px;
+  padding:11px 36px;font-family:'Rajdhani',sans-serif;font-size:1.1rem;
+  font-weight:600;letter-spacing:1.5px;cursor:pointer;transition:opacity .15s
+}
+#analyze-btn:hover{opacity:.85}
+
+/* ── Results ──────────────────────────────────── */
+#results{max-width:1080px;margin:0 auto;padding:0 20px}
+#results[hidden]{display:none}
+.section-hdr{
+  font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;color:var(--muted);
+  padding:24px 0 12px;border-bottom:1px solid var(--border);margin-bottom:16px
+}
+
+/* ── Profile cards ─────────────────────────────── */
+.profiles-row{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:6px}
+.prof-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:9px;
+  padding:10px 8px;display:flex;flex-direction:column;align-items:center;gap:5px;
+  position:relative;overflow:hidden;transition:border-color .15s
+}
+.prof-card:hover{border-color:rgba(124,106,247,.4)}
+.prof-card .type-bar{
+  position:absolute;top:0;left:0;right:0;height:3px;
+}
+.prof-img{width:56px;height:56px;object-fit:contain;margin-top:4px}
+.prof-img-placeholder{
+  width:56px;height:56px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:.65rem;color:#fff;font-weight:600;margin-top:4px
+}
+.prof-name{font-size:.75rem;font-weight:600;text-align:center;line-height:1.2;color:var(--text)}
+.prof-types{display:flex;gap:3px;flex-wrap:wrap;justify-content:center}
+.prof-ability{
+  font-size:.65rem;color:var(--muted);text-align:center;
+  padding:1px 6px;background:var(--surface2);border-radius:4px;
+  border:1px solid var(--border);width:100%;text-align:center;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.prof-ability.immune-ability{color:#38bdf8;border-color:rgba(56,189,248,.3)}
+.prof-item{
+  font-size:.62rem;color:#d97706;text-align:center;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%
+}
+.prof-roles{display:flex;flex-wrap:wrap;gap:3px;justify-content:center}
+.role-chip{
+  font-size:.58rem;font-weight:600;padding:2px 5px;border-radius:3px;
+  text-transform:uppercase;letter-spacing:.3px;white-space:nowrap
+}
+.prof-mega{
+  font-size:.6rem;color:var(--accent2);text-align:center;
+  font-style:italic;width:100%;text-align:center
+}
+.speed-badge{
+  font-size:.6rem;padding:2px 6px;border-radius:3px;font-weight:600;
+  text-transform:uppercase;letter-spacing:.5px
+}
+.speed-fast{background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.3)}
+.speed-mid{background:rgba(234,179,8,.12);color:#facc15;border:1px solid rgba(234,179,8,.25)}
+.speed-slow{background:rgba(239,68,68,.12);color:#f87171;border:1px solid rgba(239,68,68,.25)}
+
+/* ── Coverage matrix ───────────────────────────── */
+.coverage-wrap{overflow-x:auto;margin-bottom:8px}
+.cov-label{font-size:.72rem;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.cov-table{border-collapse:collapse;font-size:.75rem;min-width:100%}
+.cov-table th{
+  padding:6px 8px;color:var(--muted);font-weight:500;font-size:.7rem;
+  text-align:center;border-bottom:1px solid var(--border);white-space:nowrap
+}
+.cov-table .row-header{
+  padding:6px 10px 6px 4px;text-align:right;white-space:nowrap;
+  color:var(--text);font-size:.72rem;font-weight:500
+}
+.cov-table .row-types{display:flex;gap:2px;justify-content:flex-end;flex-wrap:wrap;margin-top:2px}
+.cov-cell{
+  width:60px;text-align:center;padding:6px 4px;
+  font-size:.7rem;font-weight:600;cursor:default;border-radius:3px
+}
+.cov-4x{background:rgba(220,38,38,.3);color:#fca5a5}
+.cov-2x{background:rgba(234,88,12,.25);color:#fb923c}
+.cov-1x{background:transparent;color:var(--muted)}
+.cov-half{background:rgba(22,163,74,.2);color:#4ade80}
+.cov-quarter{background:rgba(22,163,74,.35);color:#86efac}
+.cov-immune{background:rgba(99,102,241,.2);color:#818cf8}
+.cov-tables-row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:700px){.cov-tables-row{grid-template-columns:1fr}}
+
+/* ── Strategy analysis ─────────────────────────── */
+.strategy-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:8px}
+@media(max-width:600px){.strategy-grid{grid-template-columns:1fr}}
+.strategy-card{
+  background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:14px 16px
+}
+.strategy-card h3{
+  font-family:'Rajdhani',sans-serif;font-size:.95rem;font-weight:600;
+  letter-spacing:1.5px;color:var(--accent2);margin-bottom:10px
+}
+.strat-row{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;font-size:.78rem}
+.strat-icon{font-size:.9rem;flex-shrink:0;margin-top:1px}
+.strat-content{flex:1}
+.strat-title{color:var(--text);font-weight:500}
+.strat-detail{color:var(--muted);font-size:.72rem;margin-top:1px}
+.strat-empty{color:var(--muted);font-size:.78rem;font-style:italic}
+.team-tag{
+  display:inline-block;padding:1px 6px;border-radius:3px;font-size:.65rem;
+  font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-right:4px
+}
+.team-tag.my{background:rgba(124,106,247,.15);color:var(--accent2)}
+.team-tag.opp{background:rgba(239,68,68,.12);color:#f87171}
+
+/* ── Notes ─────────────────────────────────────── */
+.notes-list{display:flex;flex-direction:column;gap:8px}
+.note-item{
+  background:var(--surface);border:1px solid var(--border);border-radius:7px;
+  padding:10px 14px;font-size:.78rem;display:flex;gap:10px;align-items:flex-start
+}
+.note-icon{font-size:1rem;flex-shrink:0}
+.note-text{color:var(--muted);line-height:1.5}
+.note-text strong{color:var(--text)}
+
+/* ── Bring prediction ───────────────────────────── */
+.bring-bars{display:flex;flex-direction:column;gap:8px;margin-bottom:4px}
+.bring-bar-row{display:flex;align-items:center;gap:10px}
+.bring-bar-name{width:130px;font-size:.78rem;color:var(--text);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex-shrink:0}
+.bring-bar-track{flex:1;height:7px;background:var(--surface2);border-radius:4px;overflow:hidden}
+.bring-bar-fill{height:100%;background:var(--accent);border-radius:4px}
+.bring-bar-pct{width:36px;font-size:.72rem;color:var(--muted);flex-shrink:0}
+.scenarios-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:8px}
+@media(max-width:600px){.scenarios-row{grid-template-columns:1fr}}
+.scenario-card{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:12px 14px}
+.scenario-rank{font-family:'Rajdhani',sans-serif;font-size:1.1rem;font-weight:700;color:var(--accent2);margin-bottom:6px}
+.scenario-conf{height:3px;background:var(--surface2);border-radius:2px;margin-bottom:10px;overflow:hidden}
+.scenario-conf-fill{height:100%;background:var(--accent);border-radius:2px}
+.scenario-mons{display:flex;flex-direction:column;gap:5px}
+.scenario-mon{display:flex;align-items:center;gap:6px;font-size:.78rem}
+.scenario-img{width:28px;height:28px;object-fit:contain;flex-shrink:0}
+.scenario-mon-name{color:var(--text)}
+.tag-lead{font-size:.58rem;font-weight:600;padding:1px 5px;border-radius:3px;background:rgba(124,106,247,.22);color:var(--accent2);text-transform:uppercase;letter-spacing:.4px;flex-shrink:0}
+.tag-back{font-size:.58rem;font-weight:600;padding:1px 5px;border-radius:3px;background:rgba(107,114,128,.15);color:var(--muted);text-transform:uppercase;letter-spacing:.4px;flex-shrink:0}
+.scenario-synergy{margin-top:8px;font-size:.64rem;color:var(--accent2);background:rgba(124,106,247,.1);padding:3px 7px;border-radius:4px;text-align:center}
+.scenarios-sub-hdr{font-family:'Rajdhani',sans-serif;font-size:.88rem;font-weight:600;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin:16px 0 10px}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html">← PokéTools</a>
+</nav>
+
+<header>
+  <h1>TEAM PREVIEW</h1>
+  <p>Analyze matchups · identify strategies · find your answer</p>
+</header>
+
+<div class="input-wrap">
+  <div class="teams-row">
+    <div>
+      <div class="team-label">My Team</div>
+      <div class="slots" id="my-slots"></div>
+    </div>
+    <div class="vs-divider">VS</div>
+    <div>
+      <div class="team-label">Opponent</div>
+      <div class="slots" id="opp-slots"></div>
+    </div>
+  </div>
+  <div class="analyze-row">
+    <button id="analyze-btn">Analyze Preview</button>
+  </div>
+</div>
+
+<section id="results" hidden>
+  <div class="section-hdr">Opponent's Team</div>
+  <div class="profiles-row" id="opp-profiles"></div>
+
+  <div class="section-hdr" style="margin-top:8px">My Team</div>
+  <div class="profiles-row" id="my-profiles"></div>
+
+  <div class="section-hdr">Opponent Bring Prediction</div>
+  <div id="bring-prediction"></div>
+
+  <div class="section-hdr">Type Coverage</div>
+  <div class="cov-tables-row">
+    <div>
+      <div class="cov-label">My STAB vs Their Team</div>
+      <div class="coverage-wrap"><table class="cov-table" id="my-cov-table"></table></div>
+    </div>
+    <div>
+      <div class="cov-label">Their STAB vs My Team</div>
+      <div class="coverage-wrap"><table class="cov-table" id="opp-cov-table"></table></div>
+    </div>
+  </div>
+
+  <div class="section-hdr">Strategy Analysis</div>
+  <div class="strategy-grid">
+    <div class="strategy-card" id="speed-card">
+      <h3>Speed Control</h3>
+      <div id="speed-content"></div>
+    </div>
+    <div class="strategy-card" id="mega-card">
+      <h3>Mega Matchup</h3>
+      <div id="mega-content"></div>
+    </div>
+  </div>
+
+  <div class="section-hdr">Key Matchup Notes</div>
+  <div class="notes-list" id="notes-list"></div>
+</section>
+
+<script>
+const TYPE_COLORS = {
+  Normal:'#A8A77A',Fire:'#EE8130',Water:'#6390F0',Electric:'#F7D02C',
+  Grass:'#7AC74C',Ice:'#96D9D6',Fighting:'#C22E28',Poison:'#A33EA1',
+  Ground:'#E2BF65',Flying:'#A98FF3',Psychic:'#F95587',Bug:'#A6B91A',
+  Rock:'#B6A136',Ghost:'#735797',Dragon:'#6F35FC',Dark:'#705746',
+  Steel:'#B7B7CE',Fairy:'#D685AD'
+};
+
+const ROLE_STYLE = {
+  'fake-out':          ['#78350f','#fef3c7'],
+  'tr-setter':         ['#3b0764','#e9d5ff'],
+  'tailwind-setter':   ['#0c4a6e','#bae6fd'],
+  'weather-setter':    ['#451a03','#fed7aa'],
+  'weather-speed':     ['#042f2e','#99f6e4'],
+  'scarf-user':        ['#1f2937','#9ca3af'],
+  'setup':             ['#7c2d12','#fed7aa'],
+  'redirector':        ['#14532d','#bbf7d0'],
+  'fake-out':          ['#78350f','#fef3c7'],
+  'priority':          ['#450a0a','#fecaca'],
+  'spread-attacker':   ['#4c0519','#fecdd3'],
+  'pivot':             ['#2e1065','#ddd6fe'],
+  'support':           ['#052e16','#d1fae5'],
+  'screen-setter':     ['#1e3a8a','#bfdbfe'],
+  'terrain-setter':    ['#022c22','#a7f3d0'],
+  'speed-drop':        ['#0c4a6e','#bae6fd'],
+  'physical-attacker': ['#1c1917','#d6d3d1'],
+  'special-attacker':  ['#1e1b4b','#c7d2fe'],
+  'mixed-attacker':    ['#2d1b69','#c4b5fd'],
+};
+
+const IMMUNITY_ABILITIES = new Set([
+  'Levitate','Lightning Rod','Volt Absorb','Motor Drive',
+  'Storm Drain','Water Absorb','Flash Fire','Sap Sipper','Earth Eater','Dry Skin',
+]);
+
+const SPEED_CTRL_ROLES = new Set([
+  'tr-setter','tailwind-setter','weather-setter','weather-speed','scarf-user','speed-drop'
+]);
+
+const SPEED_ICONS = {
+  'tr-setter':'🔄','tailwind-setter':'💨','weather-setter':'🌦',
+  'weather-speed':'⚡','scarf-user':'🎀','speed-drop':'↓'
+};
+
+const SPEED_LABELS = {
+  'tr-setter':'Trick Room setter',
+  'tailwind-setter':'Tailwind setter',
+  'weather-setter':'Auto-weather ability',
+  'weather-speed':'Weather speed ability (Chlorophyll/Swift Swim)',
+  'scarf-user':'Often runs Choice Scarf',
+  'speed-drop':'Speed drop moves (Icy Wind / Electroweb)',
+};
+
+let PROFILES = null;
+let BRING_RATES = {};
+
+// ── Autocomplete slots ───────────────────────────────────────────────────────
+function makeSlot(containerId, idx) {
+  const container = document.getElementById(containerId);
+  const wrap = document.createElement('div');
+  wrap.className = 'slot';
+  wrap.dataset.idx = idx;
+  wrap.innerHTML = `
+    <div class="slot-input-wrap">
+      <input type="text" placeholder="Pokémon…" autocomplete="off">
+      <div class="slot-dropdown"></div>
+    </div>
+    <div class="slot-mini"></div>
+  `;
+  container.appendChild(wrap);
+
+  const input = wrap.querySelector('input');
+  const dropdown = wrap.querySelector('.slot-dropdown');
+  const mini = wrap.querySelector('.slot-mini');
+
+  input.addEventListener('focus', () => showDropdown(''));
+  input.addEventListener('input', () => showDropdown(input.value));
+
+  input.addEventListener('blur', () => {
+    setTimeout(() => { dropdown.classList.remove('open'); }, 150);
+  });
+
+  function showDropdown(q) {
+    if (!PROFILES) return;
+    const lower = q.toLowerCase();
+    const matches = Object.entries(PROFILES)
+      .filter(([slug, p]) => !slug.includes('-mega') && p.name.toLowerCase().includes(lower))
+      .sort((a,b) => {
+        const ai = a[1].name.toLowerCase().indexOf(lower);
+        const bi = b[1].name.toLowerCase().indexOf(lower);
+        return ai - bi || a[1].name.localeCompare(b[1].name);
+      })
+      .slice(0, 40);
+
+    dropdown.innerHTML = '';
+    if (!matches.length) { dropdown.classList.remove('open'); return; }
+    matches.forEach(([slug, p]) => {
+      const d = document.createElement('div');
+      d.textContent = p.name;
+      d.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        selectMon(slug, p);
+      });
+      dropdown.appendChild(d);
+    });
+    dropdown.classList.add('open');
+  }
+
+  function selectMon(slug, p) {
+    wrap.dataset.slug = slug;
+    input.style.display = 'none';
+    dropdown.classList.remove('open');
+
+    mini.innerHTML = '';
+    const types = p.types || [];
+    const imgEl = document.createElement('img');
+    imgEl.className = 'prof-img';
+    imgEl.src = p.image_url || '';
+    imgEl.alt = p.name;
+    imgEl.style.width = '42px';
+    imgEl.style.height = '42px';
+    imgEl.onerror = () => {
+      imgEl.replaceWith(makePlaceholder(p.name, types));
+    };
+    const nameEl = document.createElement('div');
+    nameEl.className = 'mini-name';
+    nameEl.textContent = p.name;
+    const typesEl = document.createElement('div');
+    typesEl.className = 'mini-types';
+    types.forEach(t => {
+      const b = document.createElement('span');
+      b.className = 'type-badge';
+      b.textContent = t;
+      b.style.background = TYPE_COLORS[t] || '#555';
+      b.style.color = '#fff';
+      typesEl.appendChild(b);
+    });
+
+    mini.appendChild(imgEl);
+    mini.appendChild(nameEl);
+    mini.appendChild(typesEl);
+    mini.classList.add('active');
+    mini.addEventListener('click', () => clearSlot());
+    input.value = p.name;
+  }
+
+  function clearSlot() {
+    wrap.dataset.slug = '';
+    input.style.display = '';
+    input.value = '';
+    mini.classList.remove('active');
+    mini.innerHTML = '';
+    input.focus();
+  }
+}
+
+function makePlaceholder(name, types) {
+  const el = document.createElement('div');
+  el.className = 'prof-img-placeholder';
+  el.textContent = name.slice(0,2).toUpperCase();
+  el.style.background = TYPE_COLORS[types[0]] || '#374151';
+  return el;
+}
+
+// ── Build input slots ────────────────────────────────────────────────────────
+for (let i = 0; i < 6; i++) makeSlot('my-slots', i);
+for (let i = 0; i < 6; i++) makeSlot('opp-slots', i);
+
+// ── Load profiles + bring rates ──────────────────────────────────────────────
+Promise.all([
+  fetch('data/TeamProfiles.json').then(r => r.json()),
+  fetch('data/BringRates.json').then(r => r.json()),
+]).then(([profiles, rates]) => {
+  PROFILES = profiles;
+  BRING_RATES = rates;
+});
+
+// ── Collect selected slugs ───────────────────────────────────────────────────
+function getTeam(containerId) {
+  return [...document.querySelectorAll(`#${containerId} .slot`)]
+    .map(s => s.dataset.slug || '')
+    .filter(Boolean);
+}
+
+// ── Analyze ──────────────────────────────────────────────────────────────────
+document.getElementById('analyze-btn').addEventListener('click', () => {
+  if (!PROFILES) return;
+  const myTeam  = getTeam('my-slots');
+  const oppTeam = getTeam('opp-slots');
+  if (!myTeam.length && !oppTeam.length) return;
+
+  renderProfiles(myTeam,  'my-profiles');
+  renderProfiles(oppTeam, 'opp-profiles');
+  renderBringPrediction(oppTeam, myTeam);
+  renderCoverageTable(myTeam,  oppTeam, 'my-cov-table');
+  renderCoverageTable(oppTeam, myTeam,  'opp-cov-table');
+  renderSpeedAnalysis(myTeam, oppTeam);
+  renderMegaAnalysis(myTeam, oppTeam);
+  renderNotes(myTeam, oppTeam);
+
+  document.getElementById('results').removeAttribute('hidden');
+  document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+// ── Profile cards ─────────────────────────────────────────────────────────────
+function renderProfiles(team, containerId) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = '';
+  team.forEach(slug => {
+    const p = PROFILES[slug];
+    if (!p) return;
+    el.appendChild(makeProfileCard(slug, p));
+  });
+}
+
+function makeProfileCard(slug, p) {
+  const card = document.createElement('div');
+  card.className = 'prof-card';
+
+  // Type colour bar
+  const bar = document.createElement('div');
+  bar.className = 'type-bar';
+  const t0 = TYPE_COLORS[p.types[0]] || '#555';
+  const t1 = p.types[1] ? TYPE_COLORS[p.types[1]] : t0;
+  bar.style.background = `linear-gradient(90deg, ${t0} 50%, ${t1} 50%)`;
+  card.appendChild(bar);
+
+  // Sprite
+  if (p.image_url) {
+    const img = document.createElement('img');
+    img.className = 'prof-img';
+    img.src = p.image_url;
+    img.alt = p.name;
+    img.onerror = () => img.replaceWith(makePlaceholder(p.name, p.types));
+    card.appendChild(img);
+  } else {
+    card.appendChild(makePlaceholder(p.name, p.types));
+  }
+
+  // Name
+  const name = document.createElement('div');
+  name.className = 'prof-name';
+  name.textContent = p.name;
+  card.appendChild(name);
+
+  // Types
+  const typesEl = document.createElement('div');
+  typesEl.className = 'prof-types';
+  p.types.forEach(t => {
+    const b = document.createElement('span');
+    b.className = 'type-badge';
+    b.textContent = t;
+    b.style.background = TYPE_COLORS[t] || '#555';
+    b.style.color = '#fff';
+    typesEl.appendChild(b);
+  });
+  card.appendChild(typesEl);
+
+  // Speed tier
+  const spd = document.createElement('span');
+  spd.className = `speed-badge speed-${p.speed_tier}`;
+  spd.textContent = p.speed_tier === 'fast' ? `Fast (${p.stats.spe})` :
+                    p.speed_tier === 'mid'  ? `Mid (${p.stats.spe})` :
+                                              `Slow (${p.stats.spe})`;
+  card.appendChild(spd);
+
+  // Ability
+  const abl = document.createElement('div');
+  abl.className = 'prof-ability' + (IMMUNITY_ABILITIES.has(p.top_ability) ? ' immune-ability' : '');
+  abl.textContent = p.top_ability || '—';
+  abl.title = p.top_ability || '';
+  card.appendChild(abl);
+
+  // Item
+  if (p.top_item) {
+    const item = document.createElement('div');
+    item.className = 'prof-item';
+    item.textContent = p.top_item;
+    item.title = p.top_item;
+    card.appendChild(item);
+  }
+
+  // Roles
+  const rolesEl = document.createElement('div');
+  rolesEl.className = 'prof-roles';
+  const shownRoles = filterRoles(p.roles);
+  shownRoles.forEach(role => {
+    const chip = document.createElement('span');
+    chip.className = 'role-chip';
+    const style = ROLE_STYLE[role] || ['#374151','#9ca3af'];
+    chip.style.background = style[0];
+    chip.style.color = style[1];
+    chip.textContent = role.replace(/-/g,' ');
+    chip.title = role;
+    rolesEl.appendChild(chip);
+  });
+  card.appendChild(rolesEl);
+
+  // Mega info
+  if (p.mega) {
+    const megaEl = document.createElement('div');
+    megaEl.className = 'prof-mega';
+    const formNames = p.mega.forms.map(f => {
+      const weatherNote = f.weather_roles.length ? ` (${f.ability})` : '';
+      return f.name + weatherNote;
+    });
+    megaEl.textContent = '★ ' + formNames.join(' / ');
+    megaEl.title = p.mega.forms.map(f =>
+      `${f.name}: ${f.types.join('/')} | ${f.ability} | Used ${f.usage_count}x`
+    ).join('\n');
+    card.appendChild(megaEl);
+  }
+
+  return card;
+}
+
+function filterRoles(roles) {
+  // Priority: speed control + utility first, then attacker axis last
+  const priority = [
+    'fake-out','tr-setter','tailwind-setter','weather-setter','weather-speed',
+    'scarf-user','redirector','setup','priority','spread-attacker','pivot',
+    'support','screen-setter','terrain-setter','speed-drop',
+    'physical-attacker','special-attacker','mixed-attacker'
+  ];
+  const sorted = [...roles].sort((a,b) =>
+    (priority.indexOf(a)+1 || 99) - (priority.indexOf(b)+1 || 99)
+  );
+  // Drop attacker-axis if there are already 4+ meaningful roles
+  const meaningful = sorted.filter(r => !r.includes('-attacker'));
+  if (meaningful.length >= 3) return sorted.filter(r => !r.endsWith('-attacker')).slice(0,5);
+  return sorted.slice(0,5);
+}
+
+// ── Coverage matrix ──────────────────────────────────────────────────────────
+function renderCoverageTable(atkTeam, defTeam, tableId) {
+  const table = document.getElementById(tableId);
+  table.innerHTML = '';
+
+  // Header row
+  const thead = table.createTHead();
+  const hrow = thead.insertRow();
+  hrow.insertCell().className = 'row-header'; // blank corner
+  defTeam.forEach(dSlug => {
+    const p = PROFILES[dSlug];
+    const th = document.createElement('th');
+    th.innerHTML = `<div>${p ? p.name : dSlug}</div>`;
+    if (p) {
+      const tb = document.createElement('div');
+      tb.style.cssText = 'display:flex;gap:2px;justify-content:center;margin-top:2px;flex-wrap:wrap';
+      p.types.forEach(t => {
+        const b = document.createElement('span');
+        b.className = 'type-badge';
+        b.textContent = t;
+        b.style.background = TYPE_COLORS[t] || '#555';
+        b.style.color = '#fff';
+        tb.appendChild(b);
+      });
+      th.appendChild(tb);
+    }
+    hrow.appendChild(th);
+  });
+
+  const tbody = table.createTBody();
+  atkTeam.forEach(aSlug => {
+    const ap = PROFILES[aSlug];
+    const row = tbody.insertRow();
+
+    // Row header
+    const rh = row.insertCell();
+    rh.className = 'row-header';
+    rh.innerHTML = `<div>${ap ? ap.name : aSlug}</div>`;
+    if (ap) {
+      const tb = document.createElement('div');
+      tb.className = 'row-types';
+      ap.types.forEach(t => {
+        const b = document.createElement('span');
+        b.className = 'type-badge';
+        b.textContent = t;
+        b.style.background = TYPE_COLORS[t] || '#555';
+        b.style.color = '#fff';
+        tb.appendChild(b);
+      });
+      rh.appendChild(tb);
+    }
+
+    defTeam.forEach(dSlug => {
+      const dp = PROFILES[dSlug];
+      const cell = row.insertCell();
+      cell.className = 'cov-cell';
+      if (!ap || !dp) { cell.textContent = '—'; return; }
+
+      const { mult, bestType } = maxStabEff(ap, dp);
+      cell.title = `${ap.name} (${ap.stab_types.join('/')}) vs ${dp.name} → ${bestType}: ×${mult}`;
+      cell.textContent = multLabel(mult);
+      cell.className = 'cov-cell ' + multClass(mult);
+    });
+  });
+}
+
+function maxStabEff(atkProfile, defProfile) {
+  const chart = defProfile.defensive.chart || {};
+  let max = 0, bestType = '—';
+  for (const t of atkProfile.stab_types) {
+    const m = chart[t] ?? 1;
+    if (m > max) { max = m; bestType = t; }
+  }
+  // Special case: if all stab types are immune, max=0 which is still notable
+  if (max === 0) {
+    bestType = atkProfile.stab_types.find(t => (chart[t] ?? 1) === 0) || '—';
+  }
+  return { mult: max, bestType };
+}
+
+function multLabel(m) {
+  if (m === 0)    return '0';
+  if (m === 0.25) return '¼';
+  if (m === 0.5)  return '½';
+  if (m === 1)    return '·';
+  if (m === 2)    return '×2';
+  if (m === 4)    return '×4';
+  return `×${m}`;
+}
+
+function multClass(m) {
+  if (m === 0)    return 'cov-immune';
+  if (m <= 0.25)  return 'cov-quarter';
+  if (m < 1)      return 'cov-half';
+  if (m === 1)    return 'cov-1x';
+  if (m < 4)      return 'cov-2x';
+  return 'cov-4x';
+}
+
+// ── Speed analysis ────────────────────────────────────────────────────────────
+function renderSpeedAnalysis(myTeam, oppTeam) {
+  const el = document.getElementById('speed-content');
+  el.innerHTML = '';
+
+  function teamSpeedRows(team, tag, tagClass) {
+    const rows = [];
+    team.forEach(slug => {
+      const p = PROFILES[slug];
+      if (!p) return;
+      const speedRoles = p.roles.filter(r => SPEED_CTRL_ROLES.has(r));
+      speedRoles.forEach(role => {
+        let detail = '';
+        if (role === 'scarf-user') detail = `${p.scarf_pct}% usage`;
+        else if (role === 'weather-speed') detail = `needs weather active`;
+        rows.push({ slug, name: p.name, role, detail, tag, tagClass });
+      });
+    });
+    return rows;
+  }
+
+  const myRows  = teamSpeedRows(myTeam,  'My',  'my');
+  const oppRows = teamSpeedRows(oppTeam, 'Opp', 'opp');
+  const allRows = [...oppRows, ...myRows];
+
+  if (!allRows.length) {
+    el.innerHTML = '<div class="strat-empty">No speed control detected on either team</div>';
+    return;
+  }
+
+  // Group by role
+  const grouped = {};
+  allRows.forEach(r => {
+    if (!grouped[r.role]) grouped[r.role] = [];
+    grouped[r.role].push(r);
+  });
+
+  Object.entries(grouped).forEach(([role, items]) => {
+    const row = document.createElement('div');
+    row.className = 'strat-row';
+    row.innerHTML = `
+      <div class="strat-icon">${SPEED_ICONS[role] || '·'}</div>
+      <div class="strat-content">
+        <div class="strat-title">${SPEED_LABELS[role] || role}</div>
+        <div class="strat-detail">
+          ${items.map(i =>
+            `<span class="team-tag ${i.tagClass}">${i.tag}</span>${i.name}${i.detail ? ` <em style="color:var(--muted);font-size:.68rem">(${i.detail})</em>` : ''}`
+          ).join('  ·  ')}
+        </div>
+      </div>
+    `;
+    el.appendChild(row);
+  });
+}
+
+// ── Mega matchup analysis ─────────────────────────────────────────────────────
+function renderMegaAnalysis(myTeam, oppTeam) {
+  const el = document.getElementById('mega-content');
+  el.innerHTML = '';
+
+  function megaRows(team, defTeam, tag, tagClass) {
+    const rows = [];
+    team.forEach(slug => {
+      const p = PROFILES[slug];
+      if (!p || !p.mega) return;
+      if (p.mega.forms.length === 1) {
+        const f = p.mega.forms[0];
+        const weatherNote = f.weather_roles.length
+          ? ` — sets ${f.ability} on evolution`
+          : '';
+        rows.push({ name: p.name, text: `→ ${f.name}${weatherNote}`, tag, tagClass, forms: p.mega.forms, defTeam });
+      } else {
+        // Multiple megas — predict which is better vs opponent
+        const scored = p.mega.forms.map(f => ({
+          form: f,
+          score: scoreMegaVs(f, defTeam),
+        })).sort((a,b) => b.score - a.score);
+        const best = scored[0].form;
+        const weatherNote = best.weather_roles.length ? ` (${best.ability})` : '';
+        rows.push({
+          name: p.name,
+          text: `Best vs opp: ${best.name}${weatherNote}`,
+          tag, tagClass, forms: scored.map(s => s.form), defTeam, multi: true,
+        });
+      }
+    });
+    return rows;
+  }
+
+  const myMegas  = megaRows(myTeam,  oppTeam, 'My',  'my');
+  const oppMegas = megaRows(oppTeam, myTeam,  'Opp', 'opp');
+  const allMegas = [...oppMegas, ...myMegas];
+
+  if (!allMegas.length) {
+    el.innerHTML = '<div class="strat-empty">No mega-capable Pokémon on either team</div>';
+    return;
+  }
+
+  allMegas.forEach(m => {
+    const row = document.createElement('div');
+    row.className = 'strat-row';
+    const formDetails = m.forms.map(f => {
+      const wn = f.weather_roles.length ? ` [${f.ability}]` : '';
+      return `${f.name}${wn} — weak to: ${f.defensive.weaknesses.join(', ') || 'none'}`;
+    }).join('\n');
+    row.innerHTML = `
+      <div class="strat-icon">⬟</div>
+      <div class="strat-content">
+        <div class="strat-title">
+          <span class="team-tag ${m.tagClass}">${m.tag}</span>${m.name}
+        </div>
+        <div class="strat-detail" title="${formDetails}">${m.text}</div>
+      </div>
+    `;
+    el.appendChild(row);
+  });
+}
+
+function scoreMegaVs(megaForm, defTeam) {
+  // Score = number of opposing pokemon this mega's STAB threatens (≥2x)
+  let score = 0;
+  defTeam.forEach(dSlug => {
+    const dp = PROFILES[dSlug];
+    if (!dp) return;
+    const { mult } = maxStabEff({ stab_types: megaForm.types }, dp);
+    if (mult >= 2) score += mult;
+  });
+  // Bonus: weather setter mega
+  if (megaForm.weather_roles.includes('weather-setter')) score += 1;
+  return score;
+}
+
+// ── Bring prediction ──────────────────────────────────────────────────────────
+const ROLE_BRING_SCORE = {
+  'fake-out': 0.88, 'tr-setter': 0.80, 'tailwind-setter': 0.80,
+  'weather-setter': 0.72, 'redirector': 0.65, 'setup': 0.55,
+  'spread-attacker': 0.50, 'screen-setter': 0.50, 'priority': 0.45,
+  'pivot': 0.40, 'weather-speed': 0.40, 'support': 0.38,
+};
+
+const ROLE_LEAD_SCORE = {
+  'fake-out': 0.92, 'tailwind-setter': 0.82, 'tr-setter': 0.78,
+  'weather-setter': 0.70, 'redirector': 0.65, 'screen-setter': 0.60,
+  'terrain-setter': 0.55, 'speed-drop': 0.50, 'setup': 0.42,
+  'weather-speed': 0.38, 'spread-attacker': 0.30, 'pivot': 0.30,
+};
+
+function computeBringScore(slug, profile, myTeam) {
+  const rate = BRING_RATES[slug];
+  const n = rate ? rate.appearances : 0;
+  const confidence = Math.min(1, Math.sqrt(n / 30));
+  const historical = rate ? rate.bring_rate * confidence : 0;
+
+  const roleScore = Math.min(1, profile.roles.reduce((best, r) =>
+    Math.max(best, ROLE_BRING_SCORE[r] || 0), 0.28));
+
+  let covScore = 0;
+  if (myTeam && myTeam.length) {
+    let maxMult = 0;
+    myTeam.forEach(dSlug => {
+      const dp = PROFILES[dSlug];
+      if (!dp) return;
+      const { mult } = maxStabEff(profile, dp);
+      if (mult > maxMult) maxMult = mult;
+    });
+    covScore = maxMult >= 4 ? 1 : maxMult >= 2 ? 0.6 : 0;
+  }
+
+  const megaBonus = profile.mega ? 0.08 : 0;
+  return 0.35 * historical + 0.40 * roleScore + 0.25 * covScore + megaBonus;
+}
+
+function computeLeadScore(slug, profile) {
+  const rate = BRING_RATES[slug];
+  const n = rate ? rate.appearances : 0;
+  const confidence = Math.min(1, Math.sqrt(n / 30));
+  const historical = rate ? rate.lead_rate * confidence : 0;
+  const roleScore = Math.min(1, profile.roles.reduce((best, r) =>
+    Math.max(best, ROLE_LEAD_SCORE[r] || 0), 0.15));
+  return 0.5 * historical + 0.5 * roleScore;
+}
+
+function combinations(arr, k) {
+  if (k === 0) return [[]];
+  if (arr.length < k) return [];
+  const [first, ...rest] = arr;
+  return [
+    ...combinations(rest, k - 1).map(c => [first, ...c]),
+    ...combinations(rest, k),
+  ];
+}
+
+function synergyBonus(combo) {
+  let bonus = 0;
+  const profiles = combo.map(m => PROFILES[m.slug]).filter(Boolean);
+  const roles = profiles.flatMap(p => p.roles);
+  if (roles.includes('tr-setter') && profiles.some(p => p.speed_tier === 'slow'))          bonus += 0.30;
+  if (roles.includes('weather-setter') && roles.includes('weather-speed'))                  bonus += 0.30;
+  if (roles.includes('tailwind-setter') && profiles.some(p =>
+    ['spread-attacker','physical-attacker','special-attacker'].some(r => p.roles.includes(r)))) bonus += 0.20;
+  if (roles.includes('fake-out') && roles.includes('setup'))                                bonus += 0.20;
+  if (roles.includes('redirector') && profiles.some(p =>
+    ['spread-attacker','physical-attacker','special-attacker'].some(r => p.roles.includes(r)))) bonus += 0.15;
+  // Penalty: bringing 2+ mega-capable mons means one has a dead item slot
+  const megaCount = profiles.filter(p => p.mega).length;
+  if (megaCount > 1) bonus -= 0.25 * (megaCount - 1);
+  return bonus;
+}
+
+function synergyLabel(combo) {
+  const profiles = combo.map(m => PROFILES[m.slug]).filter(Boolean);
+  const roles = profiles.flatMap(p => p.roles);
+  const labels = [];
+  if (roles.includes('tr-setter') && profiles.some(p => p.speed_tier === 'slow'))          labels.push('TR core');
+  if (roles.includes('weather-setter') && roles.includes('weather-speed'))                  labels.push('Weather core');
+  if (roles.includes('tailwind-setter') && profiles.some(p =>
+    ['spread-attacker','physical-attacker','special-attacker'].some(r => p.roles.includes(r)))) labels.push('Tailwind core');
+  if (roles.includes('fake-out') && roles.includes('setup'))                                labels.push('Fake-out + Setup');
+  if (roles.includes('redirector') && profiles.some(p =>
+    ['spread-attacker','physical-attacker','special-attacker'].some(r => p.roles.includes(r)))) labels.push('Redirect core');
+  return labels.join(' · ');
+}
+
+function renderBringPrediction(oppTeam, myTeam) {
+  const el = document.getElementById('bring-prediction');
+  el.innerHTML = '';
+
+  if (!oppTeam.length) return;
+
+  const scored = oppTeam.map(slug => {
+    const p = PROFILES[slug];
+    if (!p) return { slug, name: slug, score: 0.5, leadScore: 0.3 };
+    return { slug, name: p.name, score: computeBringScore(slug, p, myTeam), leadScore: computeLeadScore(slug, p) };
+  }).sort((a, b) => b.score - a.score);
+
+  // Individual bring likelihood bars
+  const barsWrap = document.createElement('div');
+  barsWrap.className = 'bring-bars';
+  scored.forEach(m => {
+    const pct = Math.min(100, Math.round(m.score * 100));
+    const row = document.createElement('div');
+    row.className = 'bring-bar-row';
+    row.innerHTML = `
+      <div class="bring-bar-name">${m.name}</div>
+      <div class="bring-bar-track"><div class="bring-bar-fill" style="width:${pct}%"></div></div>
+      <div class="bring-bar-pct">${pct}%</div>
+    `;
+    barsWrap.appendChild(row);
+  });
+  el.appendChild(barsWrap);
+
+  // Top 3 scenarios via C(6,4)=15 combos
+  const combos = combinations(scored, Math.min(4, scored.length));
+  const rankedCombos = combos.map(combo => {
+    const base = combo.reduce((s, m) => s + m.score, 0) / combo.length;
+    const syn = synergyBonus(combo);
+    return { combo, total: base + syn * 0.3, syn };
+  }).sort((a, b) => b.total - a.total);
+
+  if (!rankedCombos.length) return;
+
+  const subHdr = document.createElement('div');
+  subHdr.className = 'scenarios-sub-hdr';
+  subHdr.textContent = 'Top 3 Bring Scenarios';
+  el.appendChild(subHdr);
+
+  const scenariosRow = document.createElement('div');
+  scenariosRow.className = 'scenarios-row';
+
+  rankedCombos.slice(0, 3).forEach((sc, i) => {
+    const card = document.createElement('div');
+    card.className = 'scenario-card';
+
+    const rank = document.createElement('div');
+    rank.className = 'scenario-rank';
+    rank.textContent = `#${i + 1}`;
+    card.appendChild(rank);
+
+    const maxTotal = rankedCombos[0].total;
+    const confPct = Math.round((sc.total / (maxTotal || 1)) * 100);
+    card.innerHTML += `<div class="scenario-conf"><div class="scenario-conf-fill" style="width:${confPct}%"></div></div>`;
+
+    // Predict leads = top 2 by leadScore within this combo
+    const byLead = [...sc.combo].sort((a, b) => b.leadScore - a.leadScore);
+    const leadSet = new Set(byLead.slice(0, 2).map(m => m.slug));
+
+    const monList = document.createElement('div');
+    monList.className = 'scenario-mons';
+    // Show leads first, then backs
+    const ordered = [...byLead.slice(0,2), ...byLead.slice(2)];
+    ordered.forEach(m => {
+      const isLead = leadSet.has(m.slug);
+      const p = PROFILES[m.slug];
+      const monRow = document.createElement('div');
+      monRow.className = 'scenario-mon';
+      const imgHtml = p?.image_url
+        ? `<img src="${p.image_url}" class="scenario-img" alt="${m.name}" onerror="this.style.display='none'">`
+        : '';
+      monRow.innerHTML = `<span class="tag-${isLead ? 'lead' : 'back'}">${isLead ? 'Lead' : 'Back'}</span>${imgHtml}<span class="scenario-mon-name">${m.name}</span>`;
+      monList.appendChild(monRow);
+    });
+    card.appendChild(monList);
+
+    const syn = synergyLabel(sc.combo);
+    if (syn) {
+      const synEl = document.createElement('div');
+      synEl.className = 'scenario-synergy';
+      synEl.textContent = syn;
+      card.appendChild(synEl);
+    }
+
+    scenariosRow.appendChild(card);
+  });
+
+  el.appendChild(scenariosRow);
+}
+
+// ── Key notes ─────────────────────────────────────────────────────────────────
+function renderNotes(myTeam, oppTeam) {
+  const el = document.getElementById('notes-list');
+  el.innerHTML = '';
+  const notes = [];
+
+  // Wasted STAB: top offensive move type is 0x against opponent
+  [...myTeam.map(s=>({slug:s,tag:'My',tc:'my'})), ...oppTeam.map(s=>({slug:s,tag:'Opp',tc:'opp'}))]
+    .forEach(({slug, tag, tc}) => {
+      const p = PROFILES[slug];
+      if (!p) return;
+      const defTeam = tc === 'my' ? oppTeam : myTeam;
+      p.stab_types.forEach(stabType => {
+        defTeam.forEach(dSlug => {
+          const dp = PROFILES[dSlug];
+          if (!dp) return;
+          const mult = dp.defensive.chart[stabType] ?? 1;
+          if (mult === 0) {
+            const reason = dp.top_ability && IMMUNITY_ABILITIES.has(dp.top_ability)
+              ? `${dp.top_ability}`
+              : `${dp.types.join('/')} typing`;
+            notes.push({
+              icon: '⚠',
+              text: `<strong>${p.name}</strong>'s ${stabType} STAB has no effect vs <strong>${dp.name}</strong> (${reason})`,
+            });
+          }
+        });
+      });
+    });
+
+  // Weather synergy: weather setter + weather speed user on same team
+  function detectWeatherSynergy(team, tag) {
+    const setters  = team.filter(s => PROFILES[s]?.roles.includes('weather-setter')).map(s => PROFILES[s].name);
+    const abusers  = team.filter(s => PROFILES[s]?.roles.includes('weather-speed')).map(s => PROFILES[s].name);
+    const megaSetters = team.flatMap(s => {
+      const p = PROFILES[s];
+      if (!p?.mega) return [];
+      return p.mega.forms.filter(f => f.weather_roles.includes('weather-setter'))
+        .map(f => `${p.name} (${f.name})`);
+    });
+    const allSetters = [...setters, ...megaSetters];
+    if (allSetters.length && abusers.length) {
+      notes.push({
+        icon: '☀',
+        text: `<strong>${tag} team weather core:</strong> ${allSetters.join(', ')} sets weather → ${abusers.join(', ')} doubles speed`,
+      });
+    }
+  }
+  detectWeatherSynergy(myTeam,  'My');
+  detectWeatherSynergy(oppTeam, 'Opponent');
+
+  // Coverage gaps: for each opponent pokemon, list which of mine can STAB threaten it
+  oppTeam.forEach(dSlug => {
+    const dp = PROFILES[dSlug];
+    if (!dp) return;
+    const answers = myTeam
+      .map(aSlug => {
+        const ap = PROFILES[aSlug];
+        if (!ap) return null;
+        const { mult, bestType } = maxStabEff(ap, dp);
+        return mult >= 2 ? { name: ap.name, mult, bestType } : null;
+      })
+      .filter(Boolean)
+      .sort((a,b) => b.mult - a.mult);
+
+    if (!answers.length) {
+      notes.push({
+        icon: '🔴',
+        text: `<strong>No STAB answer</strong> to <strong>${dp.name}</strong> on your team — no Pokémon threatens it with STAB`,
+      });
+    } else if (answers.length <= 2) {
+      const answerList = answers.map(a => `${a.name} (${a.bestType} ×${a.mult})`).join(', ');
+      notes.push({
+        icon: '🎯',
+        text: `Your only STAB answer${answers.length > 1 ? 's' : ''} to <strong>${dp.name}</strong>: ${answerList}`,
+      });
+    }
+  });
+
+  // TR detection: tr-setter + multiple slow mons
+  function detectTR(team, tag) {
+    const hasTR = team.some(s => PROFILES[s]?.roles.includes('tr-setter'));
+    if (!hasTR) return;
+    const slowCount = team.filter(s => PROFILES[s]?.speed_tier === 'slow').length;
+    if (slowCount >= 2) {
+      const slowMons = team.filter(s => PROFILES[s]?.speed_tier === 'slow').map(s => PROFILES[s].name);
+      notes.push({
+        icon: '🔄',
+        text: `<strong>${tag} team likely runs Trick Room</strong> — TR setter + ${slowCount} slow Pokémon (${slowMons.join(', ')})`,
+      });
+    }
+  }
+  detectTR(myTeam,  'My');
+  detectTR(oppTeam, 'Opponent');
+
+  if (!notes.length) {
+    notes.push({ icon: '✓', text: 'No critical matchup issues detected.' });
+  }
+
+  notes.forEach(n => {
+    const item = document.createElement('div');
+    item.className = 'note-item';
+    item.innerHTML = `<span class="note-icon">${n.icon}</span><div class="note-text">${n.text}</div>`;
+    el.appendChild(item);
+  });
+}
+</script>
+</body>
+</html>

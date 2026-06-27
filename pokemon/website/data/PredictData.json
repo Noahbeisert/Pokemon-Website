@@ -1,0 +1,1728 @@
+{
+  "sneasler": {
+    "speeds": [
+      {
+        "spe": 186,
+        "label": "Jolly, 32 Spe EVs",
+        "pct": 87.2
+      },
+      {
+        "spe": 172,
+        "label": "Adamant, 32 Spe EVs",
+        "pct": 24.8
+      }
+    ],
+    "topNature": "jolly",
+    "topItem": "white-herb",
+    "topAbility": "unburden",
+    "topMoves": [
+      "close-combat",
+      "dire-claw",
+      "fake-out",
+      "protect"
+    ],
+    "items": [
+      [
+        "white-herb",
+        80.0
+      ],
+      [
+        "focus-sash",
+        17.6
+      ],
+      [
+        "mental-herb",
+        0.4
+      ],
+      [
+        "sitrus-berry",
+        0.3
+      ],
+      [
+        "kings-rock",
+        0.3
+      ]
+    ],
+    "natures": [
+      [
+        "jolly",
+        60.7
+      ],
+      [
+        "adamant",
+        36.7
+      ],
+      [
+        "naive",
+        1.1
+      ]
+    ]
+  },
+  "incineroar": {
+    "speeds": [
+      {
+        "spe": 80,
+        "label": "Careful, 0 Spe EVs",
+        "pct": 11.3
+      },
+      {
+        "spe": 82,
+        "label": "Careful, 2 Spe EVs",
+        "pct": 3.0
+      },
+      {
+        "spe": 86,
+        "label": "Careful, 6 Spe EVs",
+        "pct": 3.0
+      },
+      {
+        "spe": 81,
+        "label": "Careful, 1 Spe EVs",
+        "pct": 1.8
+      },
+      {
+        "spe": 90,
+        "label": "Careful, 10 Spe EVs",
+        "pct": 1.2
+      },
+      {
+        "spe": 72,
+        "label": "Brave, 0 Spe EVs",
+        "pct": 0.2
+      }
+    ],
+    "topNature": "careful",
+    "topItem": "sitrus-berry",
+    "topAbility": "intimidate",
+    "topMoves": [
+      "fake-out",
+      "parting-shot",
+      "flare-blitz",
+      "darkest-lariat"
+    ],
+    "items": [
+      [
+        "sitrus-berry",
+        62.2
+      ],
+      [
+        "chople-berry",
+        12.1
+      ],
+      [
+        "shuca-berry",
+        8.1
+      ],
+      [
+        "leftovers",
+        7.0
+      ],
+      [
+        "lum-berry",
+        3.5
+      ]
+    ],
+    "natures": [
+      [
+        "careful",
+        36.5
+      ],
+      [
+        "adamant",
+        26.7
+      ],
+      [
+        "impish",
+        23.5
+      ]
+    ]
+  },
+  "garchomp": {
+    "speeds": [
+      {
+        "spe": 166,
+        "label": "Jolly, 32 Spe EVs",
+        "pct": 62.1
+      },
+      {
+        "spe": 154,
+        "label": "Adamant, 32 Spe EVs",
+        "pct": 23.7
+      },
+      {
+        "spe": 155,
+        "label": "Jolly, 21 Spe EVs",
+        "pct": 3.4
+      },
+      {
+        "spe": 153,
+        "label": "Jolly, 19 Spe EVs",
+        "pct": 1.7
+      },
+      {
+        "spe": 141,
+        "label": "Brave, 32 Spe EVs",
+        "pct": 0.1
+      }
+    ],
+    "topNature": "jolly",
+    "topItem": "choice-scarf",
+    "topAbility": "rough-skin",
+    "topMoves": [
+      "earthquake",
+      "rock-slide",
+      "dragon-claw",
+      "protect"
+    ],
+    "items": [
+      [
+        "choice-scarf",
+        26.7
+      ],
+      [
+        "white-herb",
+        14.8
+      ],
+      [
+        "soft-sand",
+        13.1
+      ],
+      [
+        "sitrus-berry",
+        8.5
+      ],
+      [
+        "haban-berry",
+        8.0
+      ]
+    ],
+    "natures": [
+      [
+        "jolly",
+        52.5
+      ],
+      [
+        "adamant",
+        46.0
+      ],
+      [
+        "brave",
+        0.2
+      ]
+    ]
+  },
+  "kingambit": {
+    "speeds": [
+      {
+        "spe": 70,
+        "label": "Adamant, 0 Spe EVs",
+        "pct": 32.4
+      },
+      {
+        "spe": 72,
+        "label": "Adamant, 2 Spe EVs",
+        "pct": 10.5
+      },
+      {
+        "spe": 102,
+        "label": "Adamant, 32 Spe EVs",
+        "pct": 3.6
+      },
+      {
+        "spe": 63,
+        "label": "Brave, 0 Spe EVs",
+        "pct": 3.5
+      },
+      {
+        "spe": 73,
+        "label": "Adamant, 3 Spe EVs",
+        "pct": 3.0
+      },
+      {
+        "spe": 65,
+        "label": "Brave, 2 Spe EVs",
+        "pct": 1.1
+      }
+    ],
+    "topNature": "adamant",
+    "topItem": "black-glasses",
+    "topAbility": "defiant",
+    "topMoves": [
+      "sucker-punch",
+      "protect",
+      "kowtow-cleave",
+      "iron-head"
+    ],
+    "items": [
+      [
+        "black-glasses",
+        51.5
+      ],
+      [
+        "chople-berry",
+        34.2
+      ],
+      [
+        "focus-sash",
+        5.8
+      ],
+      [
+        "leftovers",
+        1.6
+      ],
+      [
+        "sitrus-berry",
+        1.5
+      ]
+    ],
+    "natures": [
+      [
+        "adamant",
+        83.4
+      ],
+      [
+        "brave",
+        14.1
+      ],
+      [
+        "jolly",
+        0.6
+      ]
+    ]
+  },
+  "sinistcha": {
+    "speeds": [
+      {
+        "spe": 90,
+        "label": "Bold, 0 Spe EVs",
+        "pct": 34.9
+      },
+      {
+        "spe": 91,
+        "label": "Bold, 1 Spe EVs",
+        "pct": 4.1
+      },
+      {
+        "spe": 81,
+        "label": "Sassy, 0 Spe EVs",
+        "pct": 1.1
+      }
+    ],
+    "topNature": "bold",
+    "topItem": "sitrus-berry",
+    "topAbility": "hospitality",
+    "topMoves": [
+      "matcha-gotcha",
+      "rage-powder",
+      "trick-room",
+      "life-dew"
+    ],
+    "items": [
+      [
+        "sitrus-berry",
+        47.5
+      ],
+      [
+        "leftovers",
+        20.6
+      ],
+      [
+        "occa-berry",
+        6.1
+      ],
+      [
+        "colbur-berry",
+        6.0
+      ],
+      [
+        "mental-herb",
+        4.5
+      ]
+    ],
+    "natures": [
+      [
+        "bold",
+        39.9
+      ],
+      [
+        "calm",
+        36.4
+      ],
+      [
+        "modest",
+        9.8
+      ]
+    ]
+  },
+  "charizard": {
+    "speeds": [
+      {
+        "spe": 152,
+        "label": "Modest, 32 Spe EVs",
+        "pct": 46.1
+      },
+      {
+        "spe": 164,
+        "label": "Timid, 32 Spe EVs",
+        "pct": 13.2
+      },
+      {
+        "spe": 133,
+        "label": "Modest, 13 Spe EVs",
+        "pct": 8.5
+      },
+      {
+        "spe": 139,
+        "label": "Modest, 19 Spe EVs",
+        "pct": 4.1
+      },
+      {
+        "spe": 131,
+        "label": "Modest, 11 Spe EVs",
+        "pct": 3.2
+      },
+      {
+        "spe": 145,
+        "label": "Timid, 13 Spe EVs",
+        "pct": 2.6
+      }
+    ],
+    "topNature": "modest",
+    "topItem": "charizardite-y",
+    "topAbility": "blaze",
+    "topMoves": [
+      "protect",
+      "heat-wave",
+      "solar-beam",
+      "weather-ball"
+    ],
+    "items": [
+      [
+        "charizardite-y",
+        92.3
+      ],
+      [
+        "charizardite-x",
+        6.6
+      ],
+      [
+        "choice-scarf",
+        0.3
+      ],
+      [
+        "charcoal",
+        0.1
+      ],
+      [
+        "focus-sash",
+        0.0
+      ]
+    ],
+    "natures": [
+      [
+        "modest",
+        56.2
+      ],
+      [
+        "timid",
+        35.5
+      ],
+      [
+        "adamant",
+        5.3
+      ]
+    ]
+  },
+  "aerodactyl": {
+    "speeds": [
+      {
+        "spe": 197,
+        "label": "Jolly, 32 Spe EVs",
+        "pct": 88.7
+      },
+      {
+        "spe": 182,
+        "label": "Adamant, 32 Spe EVs",
+        "pct": 6.5
+      },
+      {
+        "spe": 191,
+        "label": "Jolly, 26 Spe EVs",
+        "pct": 0.6
+      }
+    ],
+    "topNature": "jolly",
+    "topItem": "focus-sash",
+    "topAbility": "unnerve",
+    "topMoves": [
+      "rock-slide",
+      "dual-wingbeat",
+      "tailwind",
+      "protect"
+    ],
+    "items": [
+      [
+        "focus-sash",
+        77.9
+      ],
+      [
+        "aerodactylite",
+        13.5
+      ],
+      [
+        "kings-rock",
+        1.7
+      ],
+      [
+        "lum-berry",
+        1.2
+      ],
+      [
+        "hard-stone",
+        1.1
+      ]
+    ],
+    "natures": [
+      [
+        "jolly",
+        89.9
+      ],
+      [
+        "adamant",
+        8.5
+      ],
+      [
+        "naive",
+        0.4
+      ]
+    ]
+  },
+  "whimsicott": {
+    "speeds": [
+      {
+        "spe": 181,
+        "label": "Timid, 32 Spe EVs",
+        "pct": 65.2
+      },
+      {
+        "spe": 168,
+        "label": "Modest, 32 Spe EVs",
+        "pct": 12.2
+      },
+      {
+        "spe": 151,
+        "label": "Timid, 2 Spe EVs",
+        "pct": 0.8
+      }
+    ],
+    "topNature": "timid",
+    "topItem": "focus-sash",
+    "topAbility": "prankster",
+    "topMoves": [
+      "tailwind",
+      "moonblast",
+      "encore",
+      "protect"
+    ],
+    "items": [
+      [
+        "focus-sash",
+        76.6
+      ],
+      [
+        "mental-herb",
+        8.3
+      ],
+      [
+        "sitrus-berry",
+        2.5
+      ],
+      [
+        "bright-powder",
+        2.5
+      ],
+      [
+        "fairy-feather",
+        2.2
+      ]
+    ],
+    "natures": [
+      [
+        "timid",
+        75.6
+      ],
+      [
+        "modest",
+        11.3
+      ],
+      [
+        "bold",
+        5.8
+      ]
+    ]
+  },
+  "rotom-wash": {
+    "speeds": [
+      {
+        "spe": 138,
+        "label": "Modest, 32 Spe EVs",
+        "pct": 12.8
+      },
+      {
+        "spe": 108,
+        "label": "Modest, 2 Spe EVs",
+        "pct": 7.1
+      },
+      {
+        "spe": 131,
+        "label": "Modest, 25 Spe EVs",
+        "pct": 4.6
+      },
+      {
+        "spe": 113,
+        "label": "Modest, 7 Spe EVs",
+        "pct": 4.5
+      },
+      {
+        "spe": 106,
+        "label": "Modest, 0 Spe EVs",
+        "pct": 3.3
+      },
+      {
+        "spe": 114,
+        "label": "Modest, 8 Spe EVs",
+        "pct": 3.0
+      }
+    ],
+    "topNature": "modest",
+    "topItem": "sitrus-berry",
+    "topAbility": "levitate",
+    "topMoves": [
+      "hydro-pump",
+      "thunderbolt",
+      "volt-switch",
+      "protect"
+    ],
+    "items": [
+      [
+        "sitrus-berry",
+        32.2
+      ],
+      [
+        "leftovers",
+        30.2
+      ],
+      [
+        "choice-scarf",
+        27.2
+      ],
+      [
+        "magnet",
+        4.5
+      ],
+      [
+        "rindo-berry",
+        1.3
+      ]
+    ],
+    "natures": [
+      [
+        "modest",
+        53.5
+      ],
+      [
+        "timid",
+        19.2
+      ],
+      [
+        "bold",
+        16.6
+      ]
+    ]
+  },
+  "basculegion": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "choice-scarf",
+    "topAbility": "adaptability",
+    "topMoves": [
+      "last-respects",
+      "aqua-jet",
+      "wave-crash",
+      "flip-turn"
+    ],
+    "items": [
+      [
+        "choice-scarf",
+        66.5
+      ],
+      [
+        "focus-sash",
+        12.7
+      ],
+      [
+        "mystic-water",
+        12.0
+      ],
+      [
+        "sitrus-berry",
+        7.8
+      ],
+      [
+        "colbur-berry",
+        1.0
+      ]
+    ],
+    "natures": []
+  },
+  "milotic": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "leftovers",
+    "topAbility": "competitive",
+    "topMoves": [
+      "scald",
+      "protect",
+      "icy-wind",
+      "recover"
+    ],
+    "items": [
+      [
+        "leftovers",
+        83.9
+      ],
+      [
+        "sitrus-berry",
+        12.3
+      ],
+      [
+        "mystic-water",
+        2.8
+      ],
+      [
+        "wacan-berry",
+        0.5
+      ],
+      [
+        "lum-berry",
+        0.5
+      ]
+    ],
+    "natures": []
+  },
+  "pelipper": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "focus-sash",
+    "topAbility": "drizzle",
+    "topMoves": [
+      "hurricane",
+      "weather-ball",
+      "tailwind",
+      "protect"
+    ],
+    "items": [
+      [
+        "focus-sash",
+        68.8
+      ],
+      [
+        "sitrus-berry",
+        20.8
+      ],
+      [
+        "choice-scarf",
+        5.4
+      ],
+      [
+        "leftovers",
+        3.3
+      ],
+      [
+        "mystic-water",
+        1.8
+      ]
+    ],
+    "natures": []
+  },
+  "farigiraf": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "sitrus-berry",
+    "topAbility": "armor-tail",
+    "topMoves": [
+      "trick-room",
+      "psychic",
+      "hyper-voice",
+      "helping-hand"
+    ],
+    "items": [
+      [
+        "sitrus-berry",
+        56.4
+      ],
+      [
+        "colbur-berry",
+        24.6
+      ],
+      [
+        "mental-herb",
+        11.1
+      ],
+      [
+        "leftovers",
+        5.1
+      ],
+      [
+        "silk-scarf",
+        2.8
+      ]
+    ],
+    "natures": []
+  },
+  "archaludon": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "leftovers",
+    "topAbility": "stamina",
+    "topMoves": [
+      "electro-shot",
+      "flash-cannon",
+      "protect",
+      "draco-meteor"
+    ],
+    "items": [
+      [
+        "leftovers",
+        69.0
+      ],
+      [
+        "chople-berry",
+        11.5
+      ],
+      [
+        "white-herb",
+        6.8
+      ],
+      [
+        "choice-scarf",
+        6.5
+      ],
+      [
+        "magnet",
+        6.3
+      ]
+    ],
+    "natures": []
+  },
+  "tyranitar": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "tyranitarite",
+    "topAbility": "sand-stream",
+    "topMoves": [
+      "rock-slide",
+      "protect",
+      "knock-off",
+      "low-kick"
+    ],
+    "items": [
+      [
+        "tyranitarite",
+        76.9
+      ],
+      [
+        "focus-sash",
+        7.6
+      ],
+      [
+        "choice-scarf",
+        7.2
+      ],
+      [
+        "chople-berry",
+        6.7
+      ],
+      [
+        "sitrus-berry",
+        1.6
+      ]
+    ],
+    "natures": []
+  },
+  "venusaur": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "focus-sash",
+    "topAbility": "chlorophyll",
+    "topMoves": [
+      "sludge-bomb",
+      "protect",
+      "sleep-powder",
+      "earth-power"
+    ],
+    "items": [
+      [
+        "focus-sash",
+        50.5
+      ],
+      [
+        "venusaurite",
+        37.9
+      ],
+      [
+        "leftovers",
+        5.1
+      ],
+      [
+        "miracle-seed",
+        3.6
+      ],
+      [
+        "sitrus-berry",
+        2.9
+      ]
+    ],
+    "natures": []
+  },
+  "dragonite": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "dragoninite",
+    "topAbility": "multiscale",
+    "topMoves": [
+      "protect",
+      "hurricane",
+      "extreme-speed",
+      "draco-meteor"
+    ],
+    "items": [
+      [
+        "dragoninite",
+        67.6
+      ],
+      [
+        "dragon-fang",
+        16.1
+      ],
+      [
+        "lum-berry",
+        11.3
+      ],
+      [
+        "white-herb",
+        3.2
+      ],
+      [
+        "sitrus-berry",
+        1.8
+      ]
+    ],
+    "natures": []
+  },
+  "froslass": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "froslassite",
+    "topAbility": "cursed-body",
+    "topMoves": [
+      "blizzard",
+      "protect",
+      "shadow-ball",
+      "aurora-veil"
+    ],
+    "items": [
+      [
+        "froslassite",
+        98.8
+      ],
+      [
+        "froslassite",
+        0.5
+      ],
+      [
+        "focus-sash",
+        0.4
+      ],
+      [
+        "",
+        0.2
+      ],
+      [
+        "frosslassite",
+        0.1
+      ]
+    ],
+    "natures": []
+  },
+  "floette-eternal": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "floettite",
+    "topAbility": "flower-veil",
+    "topMoves": [
+      "protect",
+      "dazzling-gleam",
+      "moonblast",
+      "light-of-ruin"
+    ],
+    "items": [
+      [
+        "floettite",
+        99.1
+      ],
+      [
+        "choice-scarf",
+        0.5
+      ],
+      [
+        "floettite",
+        0.2
+      ],
+      [
+        "fairy-feather",
+        0.2
+      ],
+      [
+        "meganiumite",
+        0.1
+      ]
+    ],
+    "natures": []
+  },
+  "aegislash": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "spell-tag",
+    "topAbility": "stance-change",
+    "topMoves": [
+      "kings-shield",
+      "shadow-sneak",
+      "poltergeist",
+      "iron-head"
+    ],
+    "items": [
+      [
+        "spell-tag",
+        68.0
+      ],
+      [
+        "leftovers",
+        13.5
+      ],
+      [
+        "focus-sash",
+        7.6
+      ],
+      [
+        "colbur-berry",
+        7.1
+      ],
+      [
+        "white-herb",
+        3.8
+      ]
+    ],
+    "natures": []
+  },
+  "corviknight": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "leftovers",
+    "topAbility": "mirror-armor",
+    "topMoves": [
+      "brave-bird",
+      "tailwind",
+      "roost",
+      "bulk-up"
+    ],
+    "items": [
+      [
+        "leftovers",
+        77.6
+      ],
+      [
+        "sitrus-berry",
+        11.9
+      ],
+      [
+        "occa-berry",
+        7.3
+      ],
+      [
+        "lum-berry",
+        2.0
+      ],
+      [
+        "sharp-beak",
+        1.3
+      ]
+    ],
+    "natures": []
+  },
+  "talonflame": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "sharp-beak",
+    "topAbility": "gale-wings",
+    "topMoves": [
+      "tailwind",
+      "protect",
+      "flare-blitz",
+      "acrobatics"
+    ],
+    "items": [
+      [
+        "sharp-beak",
+        48.5
+      ],
+      [
+        "focus-sash",
+        23.0
+      ],
+      [
+        "no-item",
+        18.2
+      ],
+      [
+        "none",
+        5.8
+      ],
+      [
+        "charti-berry",
+        4.4
+      ]
+    ],
+    "natures": []
+  },
+  "gengar": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "gengarite",
+    "topAbility": "cursed-body",
+    "topMoves": [
+      "shadow-ball",
+      "protect",
+      "sludge-bomb",
+      "perish-song"
+    ],
+    "items": [
+      [
+        "gengarite",
+        91.1
+      ],
+      [
+        "focus-sash",
+        6.5
+      ],
+      [
+        "choice-scarf",
+        1.1
+      ],
+      [
+        "quick-claw",
+        0.7
+      ],
+      [
+        "gengarite",
+        0.6
+      ]
+    ],
+    "natures": []
+  },
+  "meganium": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "meganiumite",
+    "topAbility": "overgrow",
+    "topMoves": [
+      "solar-beam",
+      "dazzling-gleam",
+      "weather-ball",
+      "protect"
+    ],
+    "items": [
+      [
+        "meganiumite",
+        99.0
+      ],
+      [
+        "meganiumite",
+        0.5
+      ],
+      [
+        "meganiumita",
+        0.2
+      ],
+      [
+        "leftovers",
+        0.2
+      ],
+      [
+        "lum-berry",
+        0.1
+      ]
+    ],
+    "natures": []
+  },
+  "delphox": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "delphoxite",
+    "topAbility": "blaze",
+    "topMoves": [
+      "protect",
+      "heat-wave",
+      "psychic",
+      "encore"
+    ],
+    "items": [
+      [
+        "delphoxite",
+        99.1
+      ],
+      [
+        "focus-sash",
+        0.4
+      ],
+      [
+        "delphoxite",
+        0.2
+      ],
+      [
+        "lum-berry",
+        0.2
+      ],
+      [
+        "leftovers",
+        0.2
+      ]
+    ],
+    "natures": []
+  },
+  "maushold": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "chople-berry",
+    "topAbility": "friend-guard",
+    "topMoves": [
+      "follow-me",
+      "protect",
+      "super-fang",
+      "taunt"
+    ],
+    "items": [
+      [
+        "chople-berry",
+        49.6
+      ],
+      [
+        "focus-sash",
+        36.5
+      ],
+      [
+        "sitrus-berry",
+        9.1
+      ],
+      [
+        "lum-berry",
+        2.8
+      ],
+      [
+        "bright-powder",
+        2.0
+      ]
+    ],
+    "natures": []
+  },
+  "scizor": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "scizorite",
+    "topAbility": "technician",
+    "topMoves": [
+      "bullet-punch",
+      "protect",
+      "bug-bite",
+      "swords-dance"
+    ],
+    "items": [
+      [
+        "scizorite",
+        83.9
+      ],
+      [
+        "metal-coat",
+        9.4
+      ],
+      [
+        "sitrus-berry",
+        4.2
+      ],
+      [
+        "focus-sash",
+        1.6
+      ],
+      [
+        "scizorite",
+        0.9
+      ]
+    ],
+    "natures": []
+  },
+  "excadrill": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "focus-sash",
+    "topAbility": "sand-rush",
+    "topMoves": [
+      "iron-head",
+      "protect",
+      "rock-slide",
+      "earthquake"
+    ],
+    "items": [
+      [
+        "focus-sash",
+        89.5
+      ],
+      [
+        "excadrite",
+        4.3
+      ],
+      [
+        "white-herb",
+        3.2
+      ],
+      [
+        "choice-scarf",
+        1.9
+      ],
+      [
+        "soft-sand",
+        1.0
+      ]
+    ],
+    "natures": []
+  },
+  "kommo-o": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "leftovers",
+    "topAbility": "soundproof",
+    "topMoves": [
+      "protect",
+      "clanging-scales",
+      "aura-sphere",
+      "clangorous-soul"
+    ],
+    "items": [
+      [
+        "leftovers",
+        68.6
+      ],
+      [
+        "dragon-fang",
+        19.1
+      ],
+      [
+        "haban-berry",
+        5.5
+      ],
+      [
+        "sitrus-berry",
+        4.9
+      ],
+      [
+        "choice-scarf",
+        2.0
+      ]
+    ],
+    "natures": []
+  },
+  "primarina": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "leftovers",
+    "topAbility": "liquid-voice",
+    "topMoves": [
+      "hyper-voice",
+      "moonblast",
+      "protect",
+      "calm-mind"
+    ],
+    "items": [
+      [
+        "leftovers",
+        40.2
+      ],
+      [
+        "mystic-water",
+        28.3
+      ],
+      [
+        "sitrus-berry",
+        24.3
+      ],
+      [
+        "fairy-feather",
+        5.5
+      ],
+      [
+        "quick-claw",
+        1.7
+      ]
+    ],
+    "natures": []
+  },
+  "gardevoir": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "gardevoirite",
+    "topAbility": "trace",
+    "topMoves": [
+      "protect",
+      "hyper-voice",
+      "psychic",
+      "trick-room"
+    ],
+    "items": [
+      [
+        "gardevoirite",
+        82.2
+      ],
+      [
+        "choice-scarf",
+        14.5
+      ],
+      [
+        "fairy-feather",
+        1.3
+      ],
+      [
+        "focus-sash",
+        1.2
+      ],
+      [
+        "sitrus-berry",
+        0.8
+      ]
+    ],
+    "natures": []
+  },
+  "floette": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "floettite",
+    "topAbility": "flower-veil",
+    "topMoves": [
+      "protect",
+      "dazzling-gleam",
+      "moonblast",
+      "calm-mind"
+    ],
+    "items": [
+      [
+        "floettite",
+        98.0
+      ],
+      [
+        "floettite",
+        1.0
+      ],
+      [
+        "floetitte",
+        0.5
+      ],
+      [
+        "choice-scarf",
+        0.5
+      ],
+      [
+        "floetteite",
+        0.1
+      ]
+    ],
+    "natures": []
+  },
+  "torkoal": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "charcoal",
+    "topAbility": "drought",
+    "topMoves": [
+      "eruption",
+      "protect",
+      "heat-wave",
+      "weather-ball"
+    ],
+    "items": [
+      [
+        "charcoal",
+        92.4
+      ],
+      [
+        "leftovers",
+        3.7
+      ],
+      [
+        "sitrus-berry",
+        2.2
+      ],
+      [
+        "quick-claw",
+        1.3
+      ],
+      [
+        "quick-claw",
+        0.5
+      ]
+    ],
+    "natures": []
+  },
+  "sylveon": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "fairy-feather",
+    "topAbility": "pixilate",
+    "topMoves": [
+      "hyper-voice",
+      "protect",
+      "quick-attack",
+      "hyper-beam"
+    ],
+    "items": [
+      [
+        "fairy-feather",
+        85.3
+      ],
+      [
+        "leftovers",
+        7.9
+      ],
+      [
+        "sitrus-berry",
+        4.7
+      ],
+      [
+        "choice-scarf",
+        1.2
+      ],
+      [
+        "quick-claw",
+        0.8
+      ]
+    ],
+    "natures": []
+  },
+  "kangaskhan": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "kangaskhanite",
+    "topAbility": "scrappy",
+    "topMoves": [
+      "fake-out",
+      "double-edge",
+      "sucker-punch",
+      "drain-punch"
+    ],
+    "items": [
+      [
+        "kangaskhanite",
+        86.7
+      ],
+      [
+        "silk-scarf",
+        11.9
+      ],
+      [
+        "chople-berry",
+        0.7
+      ],
+      [
+        "kangaskhanite",
+        0.4
+      ],
+      [
+        "sitrus-berry",
+        0.3
+      ]
+    ],
+    "natures": []
+  },
+  "ninetales-alola": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "focus-sash",
+    "topAbility": "snow-warning",
+    "topMoves": [
+      "blizzard",
+      "protect",
+      "aurora-veil",
+      "freeze-dry"
+    ],
+    "items": [
+      [
+        "focus-sash",
+        63.6
+      ],
+      [
+        "never-melt-ice",
+        20.7
+      ],
+      [
+        "choice-scarf",
+        8.9
+      ],
+      [
+        "occa-berry",
+        4.1
+      ],
+      [
+        "sitrus-berry",
+        2.6
+      ]
+    ],
+    "natures": []
+  },
+  "sableye": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "roseli-berry",
+    "topAbility": "prankster",
+    "topMoves": [
+      "rain-dance",
+      "encore",
+      "light-screen",
+      "reflect"
+    ],
+    "items": [
+      [
+        "roseli-berry",
+        60.2
+      ],
+      [
+        "sitrus-berry",
+        14.4
+      ],
+      [
+        "focus-sash",
+        12.0
+      ],
+      [
+        "mental-herb",
+        8.8
+      ],
+      [
+        "black-glasses",
+        4.5
+      ]
+    ],
+    "natures": []
+  },
+  "politoed": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "sitrus-berry",
+    "topAbility": "drizzle",
+    "topMoves": [
+      "protect",
+      "weather-ball",
+      "perish-song",
+      "encore"
+    ],
+    "items": [
+      [
+        "sitrus-berry",
+        42.3
+      ],
+      [
+        "leftovers",
+        42.0
+      ],
+      [
+        "mystic-water",
+        10.5
+      ],
+      [
+        "wacan-berry",
+        3.2
+      ],
+      [
+        "quick-claw",
+        2.1
+      ]
+    ],
+    "natures": []
+  },
+  "scovillain": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "scovillainite",
+    "topAbility": "moody",
+    "topMoves": [
+      "rage-powder",
+      "protect",
+      "leech-seed",
+      "overheat"
+    ],
+    "items": [
+      [
+        "scovillainite",
+        99.0
+      ],
+      [
+        "miracle-seed",
+        0.3
+      ],
+      [
+        "focus-sash",
+        0.3
+      ],
+      [
+        "sitrus-berry",
+        0.2
+      ],
+      [
+        "lum-berry",
+        0.2
+      ]
+    ],
+    "natures": []
+  },
+  "glimmora": {
+    "speeds": [],
+    "topNature": null,
+    "topItem": "glimmoranite",
+    "topAbility": "toxic-debris",
+    "topMoves": [
+      "power-gem",
+      "spiky-shield",
+      "sludge-bomb",
+      "earth-power"
+    ],
+    "items": [
+      [
+        "glimmoranite",
+        84.7
+      ],
+      [
+        "focus-sash",
+        12.2
+      ],
+      [
+        "choice-scarf",
+        1.4
+      ],
+      [
+        "leftovers",
+        0.9
+      ],
+      [
+        "glimmorite",
+        0.9
+      ]
+    ],
+    "natures": []
+  }
+}

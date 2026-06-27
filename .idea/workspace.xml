@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="121039a7-34c7-440b-b5d3-60d4bd118594" name="Changes" comment="initial commit">
+    <list default="true" id="121039a7-34c7-440b-b5d3-60d4bd118594" name="Changes" comment="Worked on calc (short for calculator btw)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CHAMPIONS.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHAMPIONS.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pokemon/scraper/analyze_replays.py" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon/scraper/analyze_replays.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pokemon/scraper/pokebase_champions.db" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon/scraper/pokebase_champions.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +26,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Noahbeisert&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Noahbeisert/Pokemon-Website.git&quot;,
+    &quot;accountId&quot;: &quot;7f64f503-da04-4e7f-b602-e27f67f2dccc&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -37,21 +49,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Admin\PhpstormProjects\untitled" />
@@ -86,7 +98,15 @@
       <workItem from="1778504584844" duration="18000" />
       <workItem from="1778511164047" duration="1112000" />
       <workItem from="1778880358256" duration="1178000" />
-      <workItem from="1778882965313" duration="4928000" />
+      <workItem from="1778882965313" duration="5613000" />
+      <workItem from="1778960384252" duration="2233000" />
+      <workItem from="1778966924408" duration="787000" />
+      <workItem from="1778973862273" duration="2882000" />
+      <workItem from="1779050031972" duration="1216000" />
+      <workItem from="1779142757543" duration="1024000" />
+      <workItem from="1779227408280" duration="101000" />
+      <workItem from="1779891589668" duration="463000" />
+      <workItem from="1781734800823" duration="659000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -96,7 +116,23 @@
       <option name="project" value="LOCAL" />
       <updated>1778882011853</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Updated files">
+      <option name="closed" value="true" />
+      <created>1778890843460</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1778890843460</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Worked on calc (short for calculator btw)">
+      <option name="closed" value="true" />
+      <created>1778970895332</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1778970895332</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,6 +151,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial commit" />
+    <MESSAGE value="Updated files" />
+    <MESSAGE value="Worked on calc (short for calculator btw)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Worked on calc (short for calculator btw)" />
   </component>
 </project>

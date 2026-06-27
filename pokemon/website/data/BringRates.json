@@ -1,0 +1,914 @@
+{
+  "garchomp": {
+    "appearances": 115,
+    "brought": 76,
+    "led": 45,
+    "bring_rate": 0.661,
+    "lead_rate": 0.592,
+    "lead_win_rate": 0.444
+  },
+  "sneasler": {
+    "appearances": 88,
+    "brought": 54,
+    "led": 30,
+    "bring_rate": 0.614,
+    "lead_rate": 0.556,
+    "lead_win_rate": 0.367
+  },
+  "sylveon": {
+    "appearances": 39,
+    "brought": 19,
+    "led": 5,
+    "bring_rate": 0.487,
+    "lead_rate": 0.263,
+    "lead_win_rate": 0.6
+  },
+  "skarmory": {
+    "appearances": 17,
+    "brought": 8,
+    "led": 5,
+    "bring_rate": 0.471,
+    "lead_rate": 0.625,
+    "lead_win_rate": 0.6
+  },
+  "meowscarada": {
+    "appearances": 19,
+    "brought": 14,
+    "led": 10,
+    "bring_rate": 0.737,
+    "lead_rate": 0.714,
+    "lead_win_rate": 0.8
+  },
+  "arcanine": {
+    "appearances": 9,
+    "brought": 6,
+    "led": 1,
+    "bring_rate": 0.667,
+    "lead_rate": 0.167,
+    "lead_win_rate": 0.0
+  },
+  "kangaskhan": {
+    "appearances": 37,
+    "brought": 20,
+    "led": 11,
+    "bring_rate": 0.541,
+    "lead_rate": 0.55,
+    "lead_win_rate": 0.636
+  },
+  "farigiraf": {
+    "appearances": 81,
+    "brought": 58,
+    "led": 35,
+    "bring_rate": 0.716,
+    "lead_rate": 0.603,
+    "lead_win_rate": 0.629
+  },
+  "abomasnow": {
+    "appearances": 15,
+    "brought": 12,
+    "led": 2,
+    "bring_rate": 0.8,
+    "lead_rate": 0.167,
+    "lead_win_rate": 1.0
+  },
+  "palafin": {
+    "appearances": 14,
+    "brought": 6,
+    "led": 3,
+    "bring_rate": 0.429,
+    "lead_rate": 0.5,
+    "lead_win_rate": 0.667
+  },
+  "conkeldurr": {
+    "appearances": 7,
+    "brought": 3,
+    "led": 3,
+    "bring_rate": 0.429,
+    "lead_rate": 1.0,
+    "lead_win_rate": 1.0
+  },
+  "azumarill": {
+    "appearances": 11,
+    "brought": 5,
+    "led": 4,
+    "bring_rate": 0.455,
+    "lead_rate": 0.8,
+    "lead_win_rate": 0.75
+  },
+  "whimsicott": {
+    "appearances": 90,
+    "brought": 57,
+    "led": 43,
+    "bring_rate": 0.633,
+    "lead_rate": 0.754,
+    "lead_win_rate": 0.419
+  },
+  "golurk": {
+    "appearances": 9,
+    "brought": 8,
+    "led": 3,
+    "bring_rate": 0.889,
+    "lead_rate": 0.375,
+    "lead_win_rate": 0.667
+  },
+  "crabominable": {
+    "appearances": 14,
+    "brought": 7,
+    "led": 2,
+    "bring_rate": 0.5,
+    "lead_rate": 0.286,
+    "lead_win_rate": 0.5
+  },
+  "slowking-galar": {
+    "appearances": 5,
+    "brought": 2,
+    "led": 1,
+    "bring_rate": 0.4,
+    "lead_rate": 0.5,
+    "lead_win_rate": 1.0
+  },
+  "typhlosion-hisui": {
+    "appearances": 9,
+    "brought": 5,
+    "led": 3,
+    "bring_rate": 0.556,
+    "lead_rate": 0.6,
+    "lead_win_rate": 0.333
+  },
+  "hawlucha": {
+    "appearances": 6,
+    "brought": 3,
+    "led": 0,
+    "bring_rate": 0.5,
+    "lead_rate": 0.0,
+    "lead_win_rate": 0
+  },
+  "manectric": {
+    "appearances": 6,
+    "brought": 0,
+    "led": 0,
+    "bring_rate": 0.0,
+    "lead_rate": 0,
+    "lead_win_rate": 0
+  },
+  "glimmora": {
+    "appearances": 41,
+    "brought": 25,
+    "led": 15,
+    "bring_rate": 0.61,
+    "lead_rate": 0.6,
+    "lead_win_rate": 0.4
+  },
+  "dragonite": {
+    "appearances": 49,
+    "brought": 26,
+    "led": 14,
+    "bring_rate": 0.531,
+    "lead_rate": 0.538,
+    "lead_win_rate": 0.357
+  },
+  "toxicroak": {
+    "appearances": 8,
+    "brought": 6,
+    "led": 3,
+    "bring_rate": 0.75,
+    "lead_rate": 0.5,
+    "lead_win_rate": 0.667
+  },
+  "goodra-hisui": {
+    "appearances": 6,
+    "brought": 3,
+    "led": 2,
+    "bring_rate": 0.5,
+    "lead_rate": 0.667,
+    "lead_win_rate": 0.5
+  },
+  "sinistcha": {
+    "appearances": 118,
+    "brought": 73,
+    "led": 16,
+    "bring_rate": 0.619,
+    "lead_rate": 0.219,
+    "lead_win_rate": 0.688
+  },
+  "aerodactyl": {
+    "appearances": 62,
+    "brought": 31,
+    "led": 23,
+    "bring_rate": 0.5,
+    "lead_rate": 0.742,
+    "lead_win_rate": 0.652
+  },
+  "charizard": {
+    "appearances": 83,
+    "brought": 56,
+    "led": 24,
+    "bring_rate": 0.675,
+    "lead_rate": 0.429,
+    "lead_win_rate": 0.167
+  },
+  "incineroar": {
+    "appearances": 128,
+    "brought": 75,
+    "led": 46,
+    "bring_rate": 0.586,
+    "lead_rate": 0.613,
+    "lead_win_rate": 0.5
+  },
+  "kingambit": {
+    "appearances": 102,
+    "brought": 45,
+    "led": 28,
+    "bring_rate": 0.441,
+    "lead_rate": 0.622,
+    "lead_win_rate": 0.429
+  },
+  "gyarados": {
+    "appearances": 10,
+    "brought": 6,
+    "led": 4,
+    "bring_rate": 0.6,
+    "lead_rate": 0.667,
+    "lead_win_rate": 0.5
+  },
+  "snorlax": {
+    "appearances": 10,
+    "brought": 7,
+    "led": 3,
+    "bring_rate": 0.7,
+    "lead_rate": 0.429,
+    "lead_win_rate": 1.0
+  },
+  "slowbro": {
+    "appearances": 6,
+    "brought": 2,
+    "led": 2,
+    "bring_rate": 0.333,
+    "lead_rate": 1.0,
+    "lead_win_rate": 1.0
+  },
+  "dragapult": {
+    "appearances": 18,
+    "brought": 7,
+    "led": 5,
+    "bring_rate": 0.389,
+    "lead_rate": 0.714,
+    "lead_win_rate": 0.0
+  },
+  "volcarona": {
+    "appearances": 11,
+    "brought": 6,
+    "led": 6,
+    "bring_rate": 0.545,
+    "lead_rate": 1.0,
+    "lead_win_rate": 0.667
+  },
+  "archaludon": {
+    "appearances": 75,
+    "brought": 49,
+    "led": 25,
+    "bring_rate": 0.653,
+    "lead_rate": 0.51,
+    "lead_win_rate": 0.36
+  },
+  "torkoal": {
+    "appearances": 54,
+    "brought": 33,
+    "led": 15,
+    "bring_rate": 0.611,
+    "lead_rate": 0.455,
+    "lead_win_rate": 0.2
+  },
+  "sableye": {
+    "appearances": 55,
+    "brought": 33,
+    "led": 28,
+    "bring_rate": 0.6,
+    "lead_rate": 0.848,
+    "lead_win_rate": 0.393
+  },
+  "espathra": {
+    "appearances": 7,
+    "brought": 7,
+    "led": 7,
+    "bring_rate": 1.0,
+    "lead_rate": 1.0,
+    "lead_win_rate": 0.714
+  },
+  "scovillain": {
+    "appearances": 25,
+    "brought": 18,
+    "led": 14,
+    "bring_rate": 0.72,
+    "lead_rate": 0.778,
+    "lead_win_rate": 0.357
+  },
+  "tyranitar": {
+    "appearances": 55,
+    "brought": 37,
+    "led": 18,
+    "bring_rate": 0.673,
+    "lead_rate": 0.486,
+    "lead_win_rate": 0.5
+  },
+  "starmie": {
+    "appearances": 13,
+    "brought": 8,
+    "led": 5,
+    "bring_rate": 0.615,
+    "lead_rate": 0.625,
+    "lead_win_rate": 0.6
+  },
+  "banette": {
+    "appearances": 5,
+    "brought": 4,
+    "led": 2,
+    "bring_rate": 0.8,
+    "lead_rate": 0.5,
+    "lead_win_rate": 0.5
+  },
+  "floette-eternal": {
+    "appearances": 32,
+    "brought": 23,
+    "led": 13,
+    "bring_rate": 0.719,
+    "lead_rate": 0.565,
+    "lead_win_rate": 0.538
+  },
+  "maushold-four": {
+    "appearances": 18,
+    "brought": 10,
+    "led": 6,
+    "bring_rate": 0.556,
+    "lead_rate": 0.6,
+    "lead_win_rate": 0.333
+  },
+  "lopunny": {
+    "appearances": 23,
+    "brought": 19,
+    "led": 18,
+    "bring_rate": 0.826,
+    "lead_rate": 0.947,
+    "lead_win_rate": 0.611
+  },
+  "altaria": {
+    "appearances": 8,
+    "brought": 5,
+    "led": 3,
+    "bring_rate": 0.625,
+    "lead_rate": 0.6,
+    "lead_win_rate": 0.333
+  },
+  "excadrill": {
+    "appearances": 27,
+    "brought": 17,
+    "led": 8,
+    "bring_rate": 0.63,
+    "lead_rate": 0.471,
+    "lead_win_rate": 0.875
+  },
+  "kleavor": {
+    "appearances": 6,
+    "brought": 4,
+    "led": 4,
+    "bring_rate": 0.667,
+    "lead_rate": 1.0,
+    "lead_win_rate": 0.25
+  },
+  "primarina": {
+    "appearances": 30,
+    "brought": 18,
+    "led": 10,
+    "bring_rate": 0.6,
+    "lead_rate": 0.556,
+    "lead_win_rate": 0.4
+  },
+  "rotom-wash": {
+    "appearances": 84,
+    "brought": 54,
+    "led": 20,
+    "bring_rate": 0.643,
+    "lead_rate": 0.37,
+    "lead_win_rate": 0.2
+  },
+  "meowstic": {
+    "appearances": 7,
+    "brought": 4,
+    "led": 3,
+    "bring_rate": 0.571,
+    "lead_rate": 0.75,
+    "lead_win_rate": 0.667
+  },
+  "aggron": {
+    "appearances": 9,
+    "brought": 3,
+    "led": 2,
+    "bring_rate": 0.333,
+    "lead_rate": 0.667,
+    "lead_win_rate": 1.0
+  },
+  "corviknight": {
+    "appearances": 49,
+    "brought": 23,
+    "led": 13,
+    "bring_rate": 0.469,
+    "lead_rate": 0.565,
+    "lead_win_rate": 0.692
+  },
+  "mamoswine": {
+    "appearances": 9,
+    "brought": 3,
+    "led": 2,
+    "bring_rate": 0.333,
+    "lead_rate": 0.667,
+    "lead_win_rate": 0.0
+  },
+  "heliolisk": {
+    "appearances": 16,
+    "brought": 9,
+    "led": 7,
+    "bring_rate": 0.562,
+    "lead_rate": 0.778,
+    "lead_win_rate": 0.429
+  },
+  "zoroark-hisui": {
+    "appearances": 21,
+    "brought": 0,
+    "led": 0,
+    "bring_rate": 0.0,
+    "lead_rate": 0,
+    "lead_win_rate": 0
+  },
+  "ninetales-alola": {
+    "appearances": 28,
+    "brought": 14,
+    "led": 5,
+    "bring_rate": 0.5,
+    "lead_rate": 0.357,
+    "lead_win_rate": 0.6
+  },
+  "gengar": {
+    "appearances": 47,
+    "brought": 26,
+    "led": 23,
+    "bring_rate": 0.553,
+    "lead_rate": 0.885,
+    "lead_win_rate": 0.609
+  },
+  "basculegion": {
+    "appearances": 111,
+    "brought": 67,
+    "led": 20,
+    "bring_rate": 0.604,
+    "lead_rate": 0.299,
+    "lead_win_rate": 0.3
+  },
+  "meganium": {
+    "appearances": 13,
+    "brought": 10,
+    "led": 5,
+    "bring_rate": 0.769,
+    "lead_rate": 0.5,
+    "lead_win_rate": 0.8
+  },
+  "ceruledge": {
+    "appearances": 12,
+    "brought": 7,
+    "led": 3,
+    "bring_rate": 0.583,
+    "lead_rate": 0.429,
+    "lead_win_rate": 0.667
+  },
+  "emboar": {
+    "appearances": 6,
+    "brought": 6,
+    "led": 2,
+    "bring_rate": 1.0,
+    "lead_rate": 0.333,
+    "lead_win_rate": 0.5
+  },
+  "weavile": {
+    "appearances": 10,
+    "brought": 8,
+    "led": 4,
+    "bring_rate": 0.8,
+    "lead_rate": 0.5,
+    "lead_win_rate": 0.0
+  },
+  "klefki": {
+    "appearances": 6,
+    "brought": 5,
+    "led": 5,
+    "bring_rate": 0.833,
+    "lead_rate": 1.0,
+    "lead_win_rate": 0.2
+  },
+  "hatterene": {
+    "appearances": 23,
+    "brought": 19,
+    "led": 14,
+    "bring_rate": 0.826,
+    "lead_rate": 0.737,
+    "lead_win_rate": 0.071
+  },
+  "drampa": {
+    "appearances": 9,
+    "brought": 7,
+    "led": 2,
+    "bring_rate": 0.778,
+    "lead_rate": 0.286,
+    "lead_win_rate": 1.0
+  },
+  "talonflame": {
+    "appearances": 30,
+    "brought": 21,
+    "led": 17,
+    "bring_rate": 0.7,
+    "lead_rate": 0.81,
+    "lead_win_rate": 0.529
+  },
+  "pelipper": {
+    "appearances": 72,
+    "brought": 52,
+    "led": 15,
+    "bring_rate": 0.722,
+    "lead_rate": 0.288,
+    "lead_win_rate": 0.2
+  },
+  "aegislash": {
+    "appearances": 16,
+    "brought": 3,
+    "led": 1,
+    "bring_rate": 0.188,
+    "lead_rate": 0.333,
+    "lead_win_rate": 1.0
+  },
+  "garganacl": {
+    "appearances": 9,
+    "brought": 2,
+    "led": 1,
+    "bring_rate": 0.222,
+    "lead_rate": 0.5,
+    "lead_win_rate": 0.0
+  },
+  "tsareena": {
+    "appearances": 12,
+    "brought": 11,
+    "led": 8,
+    "bring_rate": 0.917,
+    "lead_rate": 0.727,
+    "lead_win_rate": 0.625
+  },
+  "milotic": {
+    "appearances": 41,
+    "brought": 21,
+    "led": 10,
+    "bring_rate": 0.512,
+    "lead_rate": 0.476,
+    "lead_win_rate": 0.6
+  },
+  "froslass": {
+    "appearances": 16,
+    "brought": 11,
+    "led": 6,
+    "bring_rate": 0.688,
+    "lead_rate": 0.545,
+    "lead_win_rate": 0.167
+  },
+  "blastoise": {
+    "appearances": 51,
+    "brought": 38,
+    "led": 30,
+    "bring_rate": 0.745,
+    "lead_rate": 0.789,
+    "lead_win_rate": 0.7
+  },
+  "vivillon": {
+    "appearances": 25,
+    "brought": 20,
+    "led": 19,
+    "bring_rate": 0.8,
+    "lead_rate": 0.95,
+    "lead_win_rate": 0.737
+  },
+  "basculegion-f": {
+    "appearances": 12,
+    "brought": 8,
+    "led": 6,
+    "bring_rate": 0.667,
+    "lead_rate": 0.75,
+    "lead_win_rate": 0.5
+  },
+  "beedrill": {
+    "appearances": 5,
+    "brought": 1,
+    "led": 1,
+    "bring_rate": 0.2,
+    "lead_rate": 1.0,
+    "lead_win_rate": 0.0
+  },
+  "clefable": {
+    "appearances": 16,
+    "brought": 9,
+    "led": 5,
+    "bring_rate": 0.562,
+    "lead_rate": 0.556,
+    "lead_win_rate": 0.2
+  },
+  "hydreigon": {
+    "appearances": 26,
+    "brought": 21,
+    "led": 9,
+    "bring_rate": 0.808,
+    "lead_rate": 0.429,
+    "lead_win_rate": 0.667
+  },
+  "lucario": {
+    "appearances": 21,
+    "brought": 17,
+    "led": 6,
+    "bring_rate": 0.81,
+    "lead_rate": 0.353,
+    "lead_win_rate": 0.833
+  },
+  "venusaur": {
+    "appearances": 34,
+    "brought": 19,
+    "led": 5,
+    "bring_rate": 0.559,
+    "lead_rate": 0.263,
+    "lead_win_rate": 0.6
+  },
+  "sandaconda": {
+    "appearances": 9,
+    "brought": 7,
+    "led": 5,
+    "bring_rate": 0.778,
+    "lead_rate": 0.714,
+    "lead_win_rate": 0.4
+  },
+  "alcremie": {
+    "appearances": 11,
+    "brought": 6,
+    "led": 3,
+    "bring_rate": 0.545,
+    "lead_rate": 0.5,
+    "lead_win_rate": 0.0
+  },
+  "orthworm": {
+    "appearances": 5,
+    "brought": 5,
+    "led": 4,
+    "bring_rate": 1.0,
+    "lead_rate": 0.8,
+    "lead_win_rate": 0.5
+  },
+  "gallade": {
+    "appearances": 11,
+    "brought": 10,
+    "led": 3,
+    "bring_rate": 0.909,
+    "lead_rate": 0.3,
+    "lead_win_rate": 0.333
+  },
+  "noivern": {
+    "appearances": 7,
+    "brought": 7,
+    "led": 7,
+    "bring_rate": 1.0,
+    "lead_rate": 1.0,
+    "lead_win_rate": 0.714
+  },
+  "arcanine-hisui": {
+    "appearances": 25,
+    "brought": 21,
+    "led": 10,
+    "bring_rate": 0.84,
+    "lead_rate": 0.476,
+    "lead_win_rate": 0.6
+  },
+  "oranguru": {
+    "appearances": 16,
+    "brought": 11,
+    "led": 10,
+    "bring_rate": 0.688,
+    "lead_rate": 0.909,
+    "lead_win_rate": 0.8
+  },
+  "politoed": {
+    "appearances": 16,
+    "brought": 12,
+    "led": 2,
+    "bring_rate": 0.75,
+    "lead_rate": 0.167,
+    "lead_win_rate": 1.0
+  },
+  "gardevoir": {
+    "appearances": 25,
+    "brought": 17,
+    "led": 6,
+    "bring_rate": 0.68,
+    "lead_rate": 0.353,
+    "lead_win_rate": 0.667
+  },
+  "maushold": {
+    "appearances": 12,
+    "brought": 8,
+    "led": 5,
+    "bring_rate": 0.667,
+    "lead_rate": 0.625,
+    "lead_win_rate": 0.6
+  },
+  "kommo-o": {
+    "appearances": 11,
+    "brought": 3,
+    "led": 1,
+    "bring_rate": 0.273,
+    "lead_rate": 0.333,
+    "lead_win_rate": 0.0
+  },
+  "tinkaton": {
+    "appearances": 15,
+    "brought": 10,
+    "led": 7,
+    "bring_rate": 0.667,
+    "lead_rate": 0.7,
+    "lead_win_rate": 0.571
+  },
+  "chesnaught": {
+    "appearances": 6,
+    "brought": 4,
+    "led": 2,
+    "bring_rate": 0.667,
+    "lead_rate": 0.5,
+    "lead_win_rate": 0.5
+  },
+  "gliscor": {
+    "appearances": 10,
+    "brought": 6,
+    "led": 4,
+    "bring_rate": 0.6,
+    "lead_rate": 0.667,
+    "lead_win_rate": 0.25
+  },
+  "araquanid": {
+    "appearances": 7,
+    "brought": 4,
+    "led": 1,
+    "bring_rate": 0.571,
+    "lead_rate": 0.25,
+    "lead_win_rate": 1.0
+  },
+  "scizor": {
+    "appearances": 33,
+    "brought": 15,
+    "led": 10,
+    "bring_rate": 0.455,
+    "lead_rate": 0.667,
+    "lead_win_rate": 0.8
+  },
+  "umbreon": {
+    "appearances": 5,
+    "brought": 3,
+    "led": 2,
+    "bring_rate": 0.6,
+    "lead_rate": 0.667,
+    "lead_win_rate": 0.0
+  },
+  "bellibolt": {
+    "appearances": 5,
+    "brought": 5,
+    "led": 3,
+    "bring_rate": 1.0,
+    "lead_rate": 0.6,
+    "lead_win_rate": 0.667
+  },
+  "krookodile": {
+    "appearances": 6,
+    "brought": 3,
+    "led": 1,
+    "bring_rate": 0.5,
+    "lead_rate": 0.333,
+    "lead_win_rate": 1.0
+  },
+  "rhyperior": {
+    "appearances": 7,
+    "brought": 4,
+    "led": 0,
+    "bring_rate": 0.571,
+    "lead_rate": 0.0,
+    "lead_win_rate": 0
+  },
+  "salazzle": {
+    "appearances": 6,
+    "brought": 4,
+    "led": 4,
+    "bring_rate": 0.667,
+    "lead_rate": 1.0,
+    "lead_win_rate": 0.5
+  },
+  "rotom-heat": {
+    "appearances": 10,
+    "brought": 4,
+    "led": 1,
+    "bring_rate": 0.4,
+    "lead_rate": 0.25,
+    "lead_win_rate": 1.0
+  },
+  "tauros-paldea-aqua": {
+    "appearances": 7,
+    "brought": 5,
+    "led": 2,
+    "bring_rate": 0.714,
+    "lead_rate": 0.4,
+    "lead_win_rate": 0.5
+  },
+  "rotom-frost": {
+    "appearances": 5,
+    "brought": 3,
+    "led": 3,
+    "bring_rate": 0.6,
+    "lead_rate": 1.0,
+    "lead_win_rate": 1.0
+  },
+  "greninja": {
+    "appearances": 7,
+    "brought": 4,
+    "led": 2,
+    "bring_rate": 0.571,
+    "lead_rate": 0.5,
+    "lead_win_rate": 0.5
+  },
+  "espeon": {
+    "appearances": 5,
+    "brought": 4,
+    "led": 4,
+    "bring_rate": 0.8,
+    "lead_rate": 1.0,
+    "lead_win_rate": 0.75
+  },
+  "lycanroc-dusk": {
+    "appearances": 10,
+    "brought": 7,
+    "led": 0,
+    "bring_rate": 0.7,
+    "lead_rate": 0.0,
+    "lead_win_rate": 0
+  },
+  "raichu": {
+    "appearances": 6,
+    "brought": 1,
+    "led": 1,
+    "bring_rate": 0.167,
+    "lead_rate": 1.0,
+    "lead_win_rate": 0.0
+  },
+  "mimikyu": {
+    "appearances": 11,
+    "brought": 4,
+    "led": 3,
+    "bring_rate": 0.364,
+    "lead_rate": 0.75,
+    "lead_win_rate": 0.667
+  },
+  "delphox": {
+    "appearances": 8,
+    "brought": 5,
+    "led": 2,
+    "bring_rate": 0.625,
+    "lead_rate": 0.4,
+    "lead_win_rate": 0.5
+  },
+  "alakazam": {
+    "appearances": 5,
+    "brought": 3,
+    "led": 2,
+    "bring_rate": 0.6,
+    "lead_rate": 0.667,
+    "lead_win_rate": 0.0
+  },
+  "camerupt": {
+    "appearances": 5,
+    "brought": 1,
+    "led": 1,
+    "bring_rate": 0.2,
+    "lead_rate": 1.0,
+    "lead_win_rate": 1.0
+  },
+  "rotom-mow": {
+    "appearances": 6,
+    "brought": 2,
+    "led": 1,
+    "bring_rate": 0.333,
+    "lead_rate": 0.5,
+    "lead_win_rate": 1.0
+  },
+  "tyrantrum": {
+    "appearances": 5,
+    "brought": 5,
+    "led": 5,
+    "bring_rate": 1.0,
+    "lead_rate": 1.0,
+    "lead_win_rate": 0.8
+  }
+}

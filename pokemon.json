@@ -1,0 +1,2005 @@
+{
+  "incineroar": {
+    "name": "Incineroar",
+    "dex_id": 727,
+    "types": [
+      "Fire",
+      "Dark"
+    ],
+    "pokeapi_slug": "incineroar",
+    "game8_id": 592493,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/592493",
+    "tier_doubles": "S",
+    "standard_move_types": [
+      "Fire",
+      "Dark",
+      "Normal",
+      "Fighting"
+    ],
+    "alt_move_types": [
+      "Ground",
+      "Ghost"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Water",
+      "Fighting",
+      "Ground",
+      "Rock"
+    ],
+    "resist": [
+      "Fire",
+      "Grass",
+      "Ice",
+      "Ghost",
+      "Dark",
+      "Steel"
+    ],
+    "immune": [
+      "Psychic"
+    ]
+  },
+  "kingambit": {
+    "name": "Kingambit",
+    "dex_id": 983,
+    "types": [
+      "Dark",
+      "Steel"
+    ],
+    "pokeapi_slug": "kingambit",
+    "game8_id": 594120,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/594120",
+    "tier_doubles": "A+",
+    "standard_move_types": [
+      "Dark",
+      "Steel",
+      "Dark",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Fighting",
+      "Normal"
+    ],
+    "weak4x": [
+      "Fighting"
+    ],
+    "weak2x": [
+      "Fire",
+      "Ground"
+    ],
+    "resist": [
+      "Normal",
+      "Grass",
+      "Ice",
+      "Flying",
+      "Rock",
+      "Ghost",
+      "Dragon",
+      "Dark",
+      "Steel"
+    ],
+    "immune": [
+      "Poison",
+      "Psychic"
+    ]
+  },
+  "eternal flower floette": {
+    "name": "Eternal Flower Floette",
+    "dex_id": 670,
+    "types": [
+      "Fairy"
+    ],
+    "pokeapi_slug": "floette",
+    "game8_id": 593395,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593395",
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Fairy",
+      "Psychic",
+      "Grass",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Fairy",
+      "Normal"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Poison",
+      "Steel"
+    ],
+    "resist": [
+      "Fighting",
+      "Bug",
+      "Dark"
+    ],
+    "immune": [
+      "Dragon"
+    ]
+  },
+  "delphox": {
+    "name": "Delphox",
+    "dex_id": 655,
+    "types": [
+      "Fire",
+      "Psychic"
+    ],
+    "pokeapi_slug": "delphox",
+    "game8_id": 593808,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593808",
+    "tier_doubles": "B",
+    "standard_move_types": [
+      "Fire",
+      "Psychic",
+      "Grass",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Dark",
+      "Fighting"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Water",
+      "Ground",
+      "Rock",
+      "Ghost",
+      "Dark"
+    ],
+    "resist": [
+      "Fire",
+      "Grass",
+      "Ice",
+      "Fighting",
+      "Psychic",
+      "Steel",
+      "Fairy"
+    ],
+    "immune": []
+  },
+  "sneasler": {
+    "name": "Sneasler",
+    "dex_id": 903,
+    "types": [
+      "Poison",
+      "Fighting"
+    ],
+    "pokeapi_slug": "sneasler",
+    "game8_id": 593918,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593918",
+    "tier_doubles": "S",
+    "standard_move_types": [
+      "Fighting",
+      "Poison",
+      "Dark",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Ice",
+      "Ghost"
+    ],
+    "weak4x": [
+      "Psychic"
+    ],
+    "weak2x": [
+      "Ground",
+      "Flying"
+    ],
+    "resist": [
+      "Grass",
+      "Fighting",
+      "Poison",
+      "Bug",
+      "Rock",
+      "Dark"
+    ],
+    "immune": []
+  },
+  "whimsicott": {
+    "name": "Whimsicott",
+    "dex_id": 547,
+    "types": [
+      "Grass",
+      "Fairy"
+    ],
+    "pokeapi_slug": "whimsicott",
+    "game8_id": 593176,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593176",
+    "tier_doubles": "A+",
+    "standard_move_types": [
+      "Fairy",
+      "Grass",
+      "Normal",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Psychic",
+      "Ghost"
+    ],
+    "weak4x": [
+      "Poison"
+    ],
+    "weak2x": [
+      "Fire",
+      "Ice",
+      "Flying",
+      "Steel"
+    ],
+    "resist": [
+      "Water",
+      "Electric",
+      "Grass",
+      "Fighting",
+      "Ground",
+      "Dark"
+    ],
+    "immune": [
+      "Dragon"
+    ]
+  },
+  "greninja": {
+    "name": "Greninja",
+    "dex_id": 658,
+    "types": [
+      "Water",
+      "Dark"
+    ],
+    "pokeapi_slug": "greninja",
+    "game8_id": 593885,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593885",
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Water",
+      "Dark",
+      "Ice",
+      "Fighting"
+    ],
+    "alt_move_types": [
+      "Poison",
+      "Ground"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Electric",
+      "Grass",
+      "Fighting",
+      "Bug",
+      "Fairy"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Ice",
+      "Ghost",
+      "Dark",
+      "Steel"
+    ],
+    "immune": [
+      "Psychic"
+    ]
+  },
+  "meowscarada": {
+    "name": "Meowscarada",
+    "dex_id": 908,
+    "types": [
+      "Grass",
+      "Dark"
+    ],
+    "pokeapi_slug": "meowscarada",
+    "game8_id": 594015,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/594015",
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Grass",
+      "Dark",
+      "Poison",
+      "Fighting"
+    ],
+    "alt_move_types": [
+      "Normal",
+      "Ghost"
+    ],
+    "weak4x": [
+      "Bug"
+    ],
+    "weak2x": [
+      "Fire",
+      "Ice",
+      "Fighting",
+      "Poison",
+      "Flying",
+      "Fairy"
+    ],
+    "resist": [
+      "Water",
+      "Electric",
+      "Grass",
+      "Ground",
+      "Ghost",
+      "Dark"
+    ],
+    "immune": [
+      "Psychic"
+    ]
+  },
+  "garchomp": {
+    "name": "Garchomp",
+    "dex_id": 445,
+    "types": [
+      "Dragon",
+      "Ground"
+    ],
+    "pokeapi_slug": "garchomp",
+    "game8_id": 593731,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593731",
+    "tier_doubles": "S",
+    "standard_move_types": [
+      "Dragon",
+      "Ground",
+      "Rock",
+      "Steel"
+    ],
+    "alt_move_types": [
+      "Fire",
+      "Poison"
+    ],
+    "weak4x": [
+      "Ice"
+    ],
+    "weak2x": [
+      "Dragon",
+      "Fairy"
+    ],
+    "resist": [
+      "Fire",
+      "Poison",
+      "Rock"
+    ],
+    "immune": [
+      "Electric"
+    ]
+  },
+  "sinistcha": {
+    "name": "Sinistcha",
+    "dex_id": 1004,
+    "types": [
+      "Grass",
+      "Ghost"
+    ],
+    "pokeapi_slug": "sinistcha",
+    "game8_id": 593735,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593735",
+    "tier_doubles": "A+",
+    "standard_move_types": [
+      "Grass",
+      "Ghost",
+      "Normal",
+      "Psychic"
+    ],
+    "alt_move_types": [
+      "Water",
+      "Fairy"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Fire",
+      "Ice",
+      "Flying",
+      "Ghost",
+      "Dark"
+    ],
+    "resist": [
+      "Water",
+      "Electric",
+      "Grass",
+      "Ground"
+    ],
+    "immune": [
+      "Normal",
+      "Fighting"
+    ]
+  },
+  "tyranitar": {
+    "name": "Tyranitar",
+    "dex_id": 248,
+    "types": [
+      "Rock",
+      "Dark"
+    ],
+    "pokeapi_slug": "tyranitar",
+    "game8_id": 593895,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593895",
+    "tier_doubles": "A+",
+    "standard_move_types": [
+      "Rock",
+      "Dark",
+      "Fighting",
+      "Ground"
+    ],
+    "alt_move_types": [
+      "Fire",
+      "Ice"
+    ],
+    "weak4x": [
+      "Fighting"
+    ],
+    "weak2x": [
+      "Water",
+      "Grass",
+      "Ground",
+      "Bug",
+      "Steel",
+      "Fairy"
+    ],
+    "resist": [
+      "Normal",
+      "Fire",
+      "Poison",
+      "Flying",
+      "Ghost",
+      "Dark"
+    ],
+    "immune": [
+      "Psychic"
+    ]
+  },
+  "wash rotom": {
+    "name": "Wash Rotom",
+    "dex_id": 479,
+    "types": [
+      "Electric",
+      "Water"
+    ],
+    "pokeapi_slug": "rotom-wash",
+    "game8_id": 593994,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593994",
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Electric",
+      "Water",
+      "Ghost",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Ice",
+      "Psychic"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Grass",
+      "Ground"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Ice",
+      "Flying",
+      "Steel"
+    ],
+    "immune": []
+  },
+  "frost rotom": {
+    "name": "Frost Rotom",
+    "dex_id": 479,
+    "types": [
+      "Electric",
+      "Ice"
+    ],
+    "pokeapi_slug": "rotom-frost",
+    "game8_id": 594148,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/594148",
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Electric",
+      "Ice",
+      "Ghost",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Psychic",
+      "Water"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Fire",
+      "Fighting",
+      "Ground",
+      "Rock"
+    ],
+    "resist": [
+      "Electric",
+      "Ice",
+      "Flying"
+    ],
+    "immune": []
+  },
+  "dragonite": {
+    "name": "Dragonite",
+    "dex_id": 149,
+    "types": [
+      "Dragon",
+      "Flying"
+    ],
+    "pokeapi_slug": "dragonite",
+    "game8_id": 593969,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593969",
+    "tier_doubles": "A",
+    "standard_move_types": [
+      "Dragon",
+      "Flying",
+      "Normal",
+      "Fire"
+    ],
+    "alt_move_types": [
+      "Electric",
+      "Ice"
+    ],
+    "weak4x": [
+      "Ice"
+    ],
+    "weak2x": [
+      "Rock",
+      "Dragon",
+      "Fairy"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Grass",
+      "Fighting",
+      "Bug"
+    ],
+    "immune": [
+      "Ground"
+    ]
+  },
+  "archaludon": {
+    "name": "Archaludon",
+    "dex_id": 1018,
+    "types": [
+      "Steel",
+      "Dragon"
+    ],
+    "pokeapi_slug": "archaludon",
+    "game8_id": 593940,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593940",
+    "tier_doubles": "A",
+    "standard_move_types": [
+      "Steel",
+      "Dragon",
+      "Electric",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Ice",
+      "Rock"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Fighting",
+      "Ground"
+    ],
+    "resist": [
+      "Normal",
+      "Water",
+      "Electric",
+      "Grass",
+      "Flying",
+      "Psychic",
+      "Bug",
+      "Rock",
+      "Steel"
+    ],
+    "immune": [
+      "Poison"
+    ]
+  },
+  "excadrill": {
+    "name": "Excadrill",
+    "dex_id": 530,
+    "types": [
+      "Ground",
+      "Steel"
+    ],
+    "pokeapi_slug": "excadrill",
+    "game8_id": 594060,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/594060",
+    "tier_doubles": "A",
+    "standard_move_types": [
+      "Ground",
+      "Steel",
+      "Rock",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Fighting",
+      "Electric"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Fire",
+      "Water",
+      "Fighting",
+      "Ground"
+    ],
+    "resist": [
+      "Normal",
+      "Flying",
+      "Psychic",
+      "Bug",
+      "Rock",
+      "Dragon",
+      "Steel",
+      "Fairy"
+    ],
+    "immune": [
+      "Electric",
+      "Poison"
+    ]
+  },
+  "basculegion": {
+    "name": "Basculegion",
+    "dex_id": 902,
+    "types": [
+      "Water",
+      "Ghost"
+    ],
+    "pokeapi_slug": "basculegion",
+    "game8_id": 594126,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/594126",
+    "tier_doubles": "A",
+    "standard_move_types": [
+      "Water",
+      "Ghost",
+      "Normal",
+      "Fighting"
+    ],
+    "alt_move_types": [
+      "Ice",
+      "Dark"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Electric",
+      "Grass",
+      "Ghost",
+      "Dark"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Ice",
+      "Poison",
+      "Bug",
+      "Steel"
+    ],
+    "immune": [
+      "Normal",
+      "Fighting"
+    ]
+  },
+  "hawlucha": {
+    "name": "Hawlucha",
+    "dex_id": 701,
+    "types": [
+      "Fighting",
+      "Flying"
+    ],
+    "pokeapi_slug": "hawlucha",
+    "game8_id": 593736,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593736",
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Fighting",
+      "Flying",
+      "Normal",
+      "Ground"
+    ],
+    "alt_move_types": [
+      "Rock",
+      "Electric"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Electric",
+      "Ice",
+      "Flying",
+      "Psychic",
+      "Fairy"
+    ],
+    "resist": [
+      "Grass",
+      "Fighting",
+      "Bug",
+      "Dark"
+    ],
+    "immune": [
+      "Ground"
+    ]
+  },
+  "dragapult": {
+    "name": "Dragapult",
+    "dex_id": 887,
+    "types": [
+      "Dragon",
+      "Ghost"
+    ],
+    "pokeapi_slug": "dragapult",
+    "game8_id": 594062,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/594062",
+    "tier_doubles": "C",
+    "standard_move_types": [
+      "Dragon",
+      "Ghost",
+      "Fire",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Electric",
+      "Ice"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Ice",
+      "Ghost",
+      "Dragon",
+      "Dark",
+      "Fairy"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Electric",
+      "Grass",
+      "Poison",
+      "Bug"
+    ],
+    "immune": [
+      "Normal",
+      "Fighting"
+    ]
+  },
+  "charizard": {
+    "name": "Charizard",
+    "dex_id": 6,
+    "types": [
+      "Fire",
+      "Flying"
+    ],
+    "pokeapi_slug": "charizard",
+    "game8_id": 593744,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593744",
+    "tier_doubles": "A+",
+    "standard_move_types": [
+      "Fire",
+      "Flying",
+      "Dragon",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Steel",
+      "Ground"
+    ],
+    "weak4x": [
+      "Rock"
+    ],
+    "weak2x": [
+      "Water",
+      "Electric"
+    ],
+    "resist": [
+      "Fire",
+      "Grass",
+      "Fighting",
+      "Bug",
+      "Steel",
+      "Fairy"
+    ],
+    "immune": [
+      "Ground"
+    ]
+  },
+  "gengar": {
+    "name": "Gengar",
+    "dex_id": 94,
+    "types": [
+      "Ghost",
+      "Poison"
+    ],
+    "pokeapi_slug": "gengar",
+    "game8_id": 593811,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593811",
+    "tier_doubles": "A+",
+    "standard_move_types": [
+      "Ghost",
+      "Poison",
+      "Psychic",
+      "Dark"
+    ],
+    "alt_move_types": [
+      "Fighting",
+      "Fire"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Ground",
+      "Psychic",
+      "Ghost",
+      "Dark"
+    ],
+    "resist": [
+      "Grass",
+      "Poison",
+      "Bug",
+      "Fairy"
+    ],
+    "immune": [
+      "Normal",
+      "Fighting"
+    ]
+  },
+  "pelipper": {
+    "name": "Pelipper",
+    "dex_id": 279,
+    "types": [
+      "Water",
+      "Flying"
+    ],
+    "pokeapi_slug": "pelipper",
+    "game8_id": 593930,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593930",
+    "tier_doubles": "A",
+    "standard_move_types": [
+      "Water",
+      "Flying",
+      "Ice",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Grass",
+      "Bug"
+    ],
+    "weak4x": [
+      "Electric"
+    ],
+    "weak2x": [
+      "Rock"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Fighting",
+      "Bug",
+      "Steel"
+    ],
+    "immune": [
+      "Ground"
+    ]
+  },
+  "hatterene": {
+    "name": "Hatterene",
+    "dex_id": 858,
+    "types": [
+      "Psychic",
+      "Fairy"
+    ],
+    "pokeapi_slug": "hatterene",
+    "game8_id": 593899,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593899",
+    "tier_doubles": "B",
+    "standard_move_types": [
+      "Psychic",
+      "Fairy",
+      "Grass",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Ghost",
+      "Fire"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Poison",
+      "Ghost",
+      "Steel"
+    ],
+    "resist": [
+      "Fighting",
+      "Psychic"
+    ],
+    "immune": [
+      "Dragon"
+    ]
+  },
+  "primarina": {
+    "name": "Primarina",
+    "dex_id": 730,
+    "types": [
+      "Water",
+      "Fairy"
+    ],
+    "pokeapi_slug": "primarina",
+    "game8_id": 594011,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/594011",
+    "tier_doubles": "A",
+    "standard_move_types": [
+      "Water",
+      "Fairy",
+      "Ice",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Psychic",
+      "Grass"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Electric",
+      "Grass",
+      "Poison"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Ice",
+      "Fighting",
+      "Bug",
+      "Dark"
+    ],
+    "immune": [
+      "Dragon"
+    ]
+  },
+  "palafin": {
+    "name": "Palafin",
+    "dex_id": 964,
+    "types": [
+      "Water"
+    ],
+    "pokeapi_slug": "palafin",
+    "game8_id": 594132,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/594132",
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Water",
+      "Fighting",
+      "Ice",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Ground",
+      "Rock"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Electric",
+      "Grass"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Ice",
+      "Steel"
+    ],
+    "immune": []
+  },
+  "weavile": {
+    "name": "Weavile",
+    "dex_id": 461,
+    "types": [
+      "Dark",
+      "Ice"
+    ],
+    "pokeapi_slug": "weavile",
+    "game8_id": 594142,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/594142",
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Dark",
+      "Ice",
+      "Fighting",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Poison",
+      "Ground"
+    ],
+    "weak4x": [
+      "Fighting"
+    ],
+    "weak2x": [
+      "Fire",
+      "Bug",
+      "Rock",
+      "Steel",
+      "Fairy"
+    ],
+    "resist": [
+      "Ice",
+      "Ghost",
+      "Dark"
+    ],
+    "immune": [
+      "Psychic"
+    ]
+  },
+  "hippowdon": {
+    "name": "Hippowdon",
+    "dex_id": 450,
+    "types": [
+      "Ground"
+    ],
+    "pokeapi_slug": "hippowdon",
+    "game8_id": 594071,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/594071",
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Ground",
+      "Rock",
+      "Ice",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Fighting",
+      "Fire"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Water",
+      "Grass",
+      "Ice"
+    ],
+    "resist": [
+      "Poison",
+      "Rock"
+    ],
+    "immune": [
+      "Electric"
+    ]
+  },
+  "glimmora": {
+    "name": "Glimmora",
+    "dex_id": 970,
+    "types": [
+      "Rock",
+      "Poison"
+    ],
+    "pokeapi_slug": "glimmora",
+    "game8_id": 594130,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/594130",
+    "tier_doubles": "C",
+    "standard_move_types": [
+      "Rock",
+      "Poison",
+      "Ground",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Grass",
+      "Steel"
+    ],
+    "weak4x": [
+      "Ground"
+    ],
+    "weak2x": [
+      "Water",
+      "Psychic",
+      "Steel"
+    ],
+    "resist": [
+      "Normal",
+      "Fire",
+      "Poison",
+      "Flying",
+      "Bug",
+      "Fairy"
+    ],
+    "immune": []
+  },
+  "froslass": {
+    "name": "Froslass",
+    "dex_id": 478,
+    "types": [
+      "Ice",
+      "Ghost"
+    ],
+    "pokeapi_slug": "froslass",
+    "game8_id": 593896,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593896",
+    "tier_doubles": "A",
+    "standard_move_types": [
+      "Ice",
+      "Ghost",
+      "Normal",
+      "Electric"
+    ],
+    "alt_move_types": [
+      "Dark",
+      "Psychic"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Fire",
+      "Rock",
+      "Ghost",
+      "Dark",
+      "Steel"
+    ],
+    "resist": [
+      "Ice",
+      "Poison",
+      "Bug"
+    ],
+    "immune": [
+      "Normal",
+      "Fighting"
+    ]
+  },
+  "venusaur": {
+    "name": "Venusaur",
+    "dex_id": 3,
+    "types": [
+      "Grass",
+      "Poison"
+    ],
+    "pokeapi_slug": "venusaur",
+    "game8_id": 594153,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/594153",
+    "tier_doubles": "B",
+    "standard_move_types": [
+      "Grass",
+      "Poison",
+      "Ground",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Fighting",
+      "Rock"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Fire",
+      "Ice",
+      "Flying",
+      "Psychic"
+    ],
+    "resist": [
+      "Water",
+      "Electric",
+      "Grass",
+      "Fighting",
+      "Fairy"
+    ],
+    "immune": []
+  },
+  "starmie": {
+    "name": "Starmie",
+    "dex_id": 121,
+    "types": [
+      "Water",
+      "Psychic"
+    ],
+    "pokeapi_slug": "starmie",
+    "game8_id": 593819,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593819",
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Water",
+      "Psychic",
+      "Ice",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Electric",
+      "Grass"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Electric",
+      "Grass",
+      "Bug",
+      "Ghost",
+      "Dark"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Ice",
+      "Fighting",
+      "Psychic",
+      "Steel"
+    ],
+    "immune": []
+  },
+  "meganium": {
+    "name": "Meganium",
+    "dex_id": 154,
+    "types": [
+      "Grass"
+    ],
+    "pokeapi_slug": "meganium",
+    "game8_id": 593932,
+    "game8_url": "https://game8.co/games/Pokemon-Champions/archives/593932",
+    "tier_doubles": "C",
+    "standard_move_types": [
+      "Grass",
+      "Normal",
+      "Rock",
+      "Ground"
+    ],
+    "alt_move_types": [
+      "Poison",
+      "Fighting"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Fire",
+      "Ice",
+      "Poison",
+      "Flying",
+      "Bug"
+    ],
+    "resist": [
+      "Water",
+      "Electric",
+      "Grass",
+      "Ground"
+    ],
+    "immune": []
+  },
+  "lucario": {
+    "name": "Lucario",
+    "dex_id": 448,
+    "types": [
+      "Fighting",
+      "Steel"
+    ],
+    "pokeapi_slug": "lucario",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Fighting",
+      "Steel",
+      "Dark",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Ground",
+      "Ice"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Fire",
+      "Fighting",
+      "Ground"
+    ],
+    "resist": [
+      "Normal",
+      "Grass",
+      "Ice",
+      "Bug",
+      "Rock",
+      "Dragon",
+      "Dark",
+      "Steel"
+    ],
+    "immune": [
+      "Poison"
+    ]
+  },
+  "pikachu": {
+    "name": "Pikachu",
+    "dex_id": 25,
+    "types": [
+      "Electric"
+    ],
+    "pokeapi_slug": "pikachu",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Electric",
+      "Normal",
+      "Steel",
+      "Fighting"
+    ],
+    "alt_move_types": [
+      "Ground",
+      "Grass"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Ground"
+    ],
+    "resist": [
+      "Electric",
+      "Flying",
+      "Steel"
+    ],
+    "immune": []
+  },
+  "gardevoir": {
+    "name": "Gardevoir",
+    "dex_id": 282,
+    "types": [
+      "Psychic",
+      "Fairy"
+    ],
+    "pokeapi_slug": "gardevoir",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": "B",
+    "standard_move_types": [
+      "Psychic",
+      "Fairy",
+      "Ghost",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Fire",
+      "Fighting"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Poison",
+      "Ghost",
+      "Steel"
+    ],
+    "resist": [
+      "Fighting",
+      "Psychic"
+    ],
+    "immune": [
+      "Dragon"
+    ]
+  },
+  "scizor": {
+    "name": "Scizor",
+    "dex_id": 212,
+    "types": [
+      "Bug",
+      "Steel"
+    ],
+    "pokeapi_slug": "scizor",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Bug",
+      "Steel",
+      "Dark",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Fighting",
+      "Ground"
+    ],
+    "weak4x": [
+      "Fire"
+    ],
+    "weak2x": [],
+    "resist": [
+      "Normal",
+      "Grass",
+      "Ice",
+      "Psychic",
+      "Bug",
+      "Dragon",
+      "Steel",
+      "Fairy"
+    ],
+    "immune": [
+      "Poison"
+    ]
+  },
+  "hydreigon": {
+    "name": "Hydreigon",
+    "dex_id": 635,
+    "types": [
+      "Dark",
+      "Dragon"
+    ],
+    "pokeapi_slug": "hydreigon",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Dark",
+      "Dragon",
+      "Fire",
+      "Flying"
+    ],
+    "alt_move_types": [
+      "Steel",
+      "Ghost"
+    ],
+    "weak4x": [
+      "Fairy"
+    ],
+    "weak2x": [
+      "Ice",
+      "Fighting",
+      "Bug",
+      "Dragon"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Electric",
+      "Grass",
+      "Ghost",
+      "Dark"
+    ],
+    "immune": [
+      "Psychic"
+    ]
+  },
+  "milotic": {
+    "name": "Milotic",
+    "dex_id": 350,
+    "types": [
+      "Water"
+    ],
+    "pokeapi_slug": "milotic",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": "B",
+    "standard_move_types": [
+      "Water",
+      "Ice",
+      "Fairy",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Psychic",
+      "Dragon"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Electric",
+      "Grass"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Ice",
+      "Steel"
+    ],
+    "immune": []
+  },
+  "ursaluna": {
+    "name": "Ursaluna",
+    "dex_id": 901,
+    "types": [
+      "Ground",
+      "Normal"
+    ],
+    "pokeapi_slug": "ursaluna",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Ground",
+      "Normal",
+      "Fighting",
+      "Rock"
+    ],
+    "alt_move_types": [
+      "Ice",
+      "Fire"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Water",
+      "Grass",
+      "Ice",
+      "Fighting"
+    ],
+    "resist": [
+      "Poison",
+      "Rock"
+    ],
+    "immune": [
+      "Electric",
+      "Ghost"
+    ]
+  },
+  "hydrapple": {
+    "name": "Hydrapple",
+    "dex_id": 1019,
+    "types": [
+      "Grass",
+      "Dragon"
+    ],
+    "pokeapi_slug": "hydrapple",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Grass",
+      "Dragon",
+      "Ground",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Ice",
+      "Poison"
+    ],
+    "weak4x": [
+      "Ice"
+    ],
+    "weak2x": [
+      "Poison",
+      "Flying",
+      "Bug",
+      "Dragon",
+      "Fairy"
+    ],
+    "resist": [
+      "Water",
+      "Electric",
+      "Grass",
+      "Ground"
+    ],
+    "immune": []
+  },
+  "talonflame": {
+    "name": "Talonflame",
+    "dex_id": 663,
+    "types": [
+      "Fire",
+      "Flying"
+    ],
+    "pokeapi_slug": "talonflame",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": "B",
+    "standard_move_types": [
+      "Fire",
+      "Flying",
+      "Normal",
+      "Ground"
+    ],
+    "alt_move_types": [
+      "Steel",
+      "Rock"
+    ],
+    "weak4x": [
+      "Rock"
+    ],
+    "weak2x": [
+      "Water",
+      "Electric"
+    ],
+    "resist": [
+      "Fire",
+      "Grass",
+      "Fighting",
+      "Bug",
+      "Steel",
+      "Fairy"
+    ],
+    "immune": [
+      "Ground"
+    ]
+  },
+  "serperior": {
+    "name": "Serperior",
+    "dex_id": 497,
+    "types": [
+      "Grass"
+    ],
+    "pokeapi_slug": "serperior",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Grass",
+      "Dragon",
+      "Normal",
+      "Poison"
+    ],
+    "alt_move_types": [
+      "Fighting",
+      "Ground"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Fire",
+      "Ice",
+      "Poison",
+      "Flying",
+      "Bug"
+    ],
+    "resist": [
+      "Water",
+      "Electric",
+      "Grass",
+      "Ground"
+    ],
+    "immune": []
+  },
+  "feraligatr": {
+    "name": "Feraligatr",
+    "dex_id": 160,
+    "types": [
+      "Water"
+    ],
+    "pokeapi_slug": "feraligatr",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Water",
+      "Ice",
+      "Normal",
+      "Fighting"
+    ],
+    "alt_move_types": [
+      "Ground",
+      "Dragon"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Electric",
+      "Grass"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Ice",
+      "Steel"
+    ],
+    "immune": []
+  },
+  "kommo-o": {
+    "name": "Kommo-o",
+    "dex_id": 784,
+    "types": [
+      "Dragon",
+      "Fighting"
+    ],
+    "pokeapi_slug": "kommo-o",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": "C",
+    "standard_move_types": [
+      "Dragon",
+      "Fighting",
+      "Steel",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Poison",
+      "Ground"
+    ],
+    "weak4x": [
+      "Fairy"
+    ],
+    "weak2x": [
+      "Ice",
+      "Flying",
+      "Psychic",
+      "Dragon"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Electric",
+      "Grass",
+      "Bug",
+      "Rock",
+      "Dark"
+    ],
+    "immune": []
+  },
+  "metagross": {
+    "name": "Metagross",
+    "dex_id": 376,
+    "types": [
+      "Steel",
+      "Psychic"
+    ],
+    "pokeapi_slug": "metagross",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Steel",
+      "Psychic",
+      "Ground",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Ice",
+      "Rock"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Fire",
+      "Ground",
+      "Ghost",
+      "Dark"
+    ],
+    "resist": [
+      "Normal",
+      "Grass",
+      "Ice",
+      "Flying",
+      "Psychic",
+      "Rock",
+      "Dragon",
+      "Steel",
+      "Fairy"
+    ],
+    "immune": [
+      "Poison"
+    ]
+  },
+  "empoleon": {
+    "name": "Empoleon",
+    "dex_id": 395,
+    "types": [
+      "Water",
+      "Steel"
+    ],
+    "pokeapi_slug": "empoleon",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Water",
+      "Steel",
+      "Ice",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Ground",
+      "Dark"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Electric",
+      "Fighting",
+      "Ground"
+    ],
+    "resist": [
+      "Normal",
+      "Water",
+      "Ice",
+      "Flying",
+      "Psychic",
+      "Bug",
+      "Rock",
+      "Dragon",
+      "Steel",
+      "Fairy"
+    ],
+    "immune": [
+      "Poison"
+    ]
+  },
+  "leafeon": {
+    "name": "Leafeon",
+    "dex_id": 470,
+    "types": [
+      "Grass"
+    ],
+    "pokeapi_slug": "leafeon",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Grass",
+      "Normal",
+      "Ground",
+      "Fighting"
+    ],
+    "alt_move_types": [
+      "Rock",
+      "Bug"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Fire",
+      "Ice",
+      "Poison",
+      "Flying",
+      "Bug"
+    ],
+    "resist": [
+      "Water",
+      "Electric",
+      "Grass",
+      "Ground"
+    ],
+    "immune": []
+  },
+  "sylveon": {
+    "name": "Sylveon",
+    "dex_id": 700,
+    "types": [
+      "Fairy"
+    ],
+    "pokeapi_slug": "sylveon",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": "B",
+    "standard_move_types": [
+      "Fairy",
+      "Normal",
+      "Psychic",
+      "Fighting"
+    ],
+    "alt_move_types": [
+      "Ground",
+      "Grass"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Poison",
+      "Steel"
+    ],
+    "resist": [
+      "Fighting",
+      "Bug",
+      "Dark"
+    ],
+    "immune": [
+      "Dragon"
+    ]
+  },
+  "dondozo": {
+    "name": "Dondozo",
+    "dex_id": 982,
+    "types": [
+      "Water"
+    ],
+    "pokeapi_slug": "dondozo",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Water",
+      "Normal",
+      "Ground",
+      "Ice"
+    ],
+    "alt_move_types": [
+      "Rock",
+      "Fighting"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Electric",
+      "Grass"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Ice",
+      "Steel"
+    ],
+    "immune": []
+  },
+  "oranguru": {
+    "name": "Oranguru",
+    "dex_id": 765,
+    "types": [
+      "Normal",
+      "Psychic"
+    ],
+    "pokeapi_slug": "oranguru",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Psychic",
+      "Normal",
+      "Dark",
+      "Fairy"
+    ],
+    "alt_move_types": [
+      "Ice",
+      "Grass"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Bug",
+      "Dark"
+    ],
+    "resist": [
+      "Psychic"
+    ],
+    "immune": [
+      "Ghost"
+    ]
+  },
+  "aegislash": {
+    "name": "Aegislash",
+    "dex_id": 681,
+    "types": [
+      "Steel",
+      "Ghost"
+    ],
+    "pokeapi_slug": "aegislash-shield",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": "C",
+    "standard_move_types": [
+      "Steel",
+      "Ghost",
+      "Normal",
+      "Fighting"
+    ],
+    "alt_move_types": [
+      "Dark",
+      "Ground"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Fire",
+      "Ground",
+      "Ghost",
+      "Dark"
+    ],
+    "resist": [
+      "Grass",
+      "Ice",
+      "Flying",
+      "Psychic",
+      "Bug",
+      "Rock",
+      "Dragon",
+      "Steel",
+      "Fairy"
+    ],
+    "immune": [
+      "Normal",
+      "Fighting",
+      "Poison"
+    ]
+  },
+  "hisuian samurott": {
+    "name": "Hisuian Samurott",
+    "dex_id": 503,
+    "types": [
+      "Water",
+      "Dark"
+    ],
+    "pokeapi_slug": "samurott-hisui",
+    "game8_id": null,
+    "game8_url": null,
+    "tier_doubles": null,
+    "standard_move_types": [
+      "Water",
+      "Dark",
+      "Fighting",
+      "Normal"
+    ],
+    "alt_move_types": [
+      "Ice",
+      "Poison"
+    ],
+    "weak4x": [],
+    "weak2x": [
+      "Electric",
+      "Grass",
+      "Fighting",
+      "Bug",
+      "Fairy"
+    ],
+    "resist": [
+      "Fire",
+      "Water",
+      "Ice",
+      "Ghost",
+      "Dark",
+      "Steel"
+    ],
+    "immune": [
+      "Psychic"
+    ]
+  }
+}
