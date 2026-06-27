@@ -16,11 +16,11 @@ import re
 import sqlite3
 from pathlib import Path
 
-SCRAPER_DIR = Path("C:/Users/Admin/PhpStormProjects/untitled/scraper")
+SCRAPER_DIR  = Path(__file__).parent
 POKEMON_JSON = SCRAPER_DIR / "pokemon_champions.json"
 SCRAPER_DB   = SCRAPER_DIR / "pokebase_champions.db"
-CURATED_JSON = Path("pokemon_db.json")
-APP_DB       = Path("pokemon_app.db")
+CURATED_JSON = SCRAPER_DIR.parent / "website" / "data" / "pokemon_db.json"
+APP_DB       = SCRAPER_DIR / "pokemon_app.db"
 
 FRAC_TO_FLOAT = {"0": 0.0, "1/4": 0.25, "1/2": 0.5, "1": 1.0, "2": 2.0, "4": 4.0}
 

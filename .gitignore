@@ -2,10 +2,10 @@ __pycache__/
 *.pyc
 *.pyo
 
-# SQLite
-*.db
+# SQLite — track source DBs, ignore build output
 *.db-shm
 *.db-wal
+pokemon_app.db
 
 # Scraped data — regenerate by running scrapers
 showdown_replays.json
