@@ -5,8 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="121039a7-34c7-440b-b5d3-60d4bd118594" name="Changes" comment="Worked on calc (short for calculator btw)">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pokemon/scraper/pokebase_champions.db" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon/scraper/pokebase_champions.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pokemon/website/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/pokemon/website/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +110,9 @@
       <workItem from="1779227408280" duration="101000" />
       <workItem from="1779891589668" duration="463000" />
       <workItem from="1781734800823" duration="659000" />
+      <workItem from="1782580777248" duration="856000" />
+      <workItem from="1782734841356" duration="432000" />
+      <workItem from="1782936987063" duration="1667000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
