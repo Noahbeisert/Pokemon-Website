@@ -1,0 +1,1127 @@
+{
+  "accelerock": [
+    "contact"
+  ],
+  "acid-spray": [
+    "bullet"
+  ],
+  "acrobatics": [
+    "contact"
+  ],
+  "aerial-ace": [
+    "contact",
+    "slicing"
+  ],
+  "air-cutter": [
+    "slicing"
+  ],
+  "air-slash": [
+    "slicing"
+  ],
+  "alluring-voice": [
+    "sound"
+  ],
+  "anchor-shot": [
+    "contact"
+  ],
+  "aqua-cutter": [
+    "slicing"
+  ],
+  "aqua-jet": [
+    "contact"
+  ],
+  "aqua-step": [
+    "contact",
+    "dance"
+  ],
+  "aqua-tail": [
+    "contact"
+  ],
+  "arm-thrust": [
+    "contact"
+  ],
+  "assurance": [
+    "contact"
+  ],
+  "astonish": [
+    "contact"
+  ],
+  "aura-sphere": [
+    "bullet"
+  ],
+  "avalanche": [
+    "contact"
+  ],
+  "axe-kick": [
+    "contact"
+  ],
+  "barrage": [
+    "bullet"
+  ],
+  "beak-blast": [
+    "bullet"
+  ],
+  "behemoth-bash": [
+    "contact"
+  ],
+  "behemoth-blade": [
+    "contact",
+    "slicing"
+  ],
+  "bide": [
+    "contact"
+  ],
+  "bind": [
+    "contact"
+  ],
+  "bite": [
+    "contact"
+  ],
+  "bitter-blade": [
+    "contact",
+    "slicing"
+  ],
+  "blaze-kick": [
+    "contact"
+  ],
+  "body-press": [
+    "contact"
+  ],
+  "body-slam": [
+    "contact"
+  ],
+  "bolt-beak": [
+    "contact"
+  ],
+  "bolt-strike": [
+    "contact"
+  ],
+  "boomburst": [
+    "sound"
+  ],
+  "bounce": [
+    "contact"
+  ],
+  "branch-poke": [
+    "contact"
+  ],
+  "brave-bird": [
+    "contact"
+  ],
+  "breaking-swipe": [
+    "contact"
+  ],
+  "brick-break": [
+    "contact"
+  ],
+  "brutal-swing": [
+    "contact"
+  ],
+  "bug-bite": [
+    "contact"
+  ],
+  "bug-buzz": [
+    "sound"
+  ],
+  "bullet-punch": [
+    "contact",
+    "punch"
+  ],
+  "bullet-seed": [
+    "bullet"
+  ],
+  "catastropika": [
+    "contact"
+  ],
+  "ceaseless-edge": [
+    "contact",
+    "slicing"
+  ],
+  "chatter": [
+    "sound"
+  ],
+  "chip-away": [
+    "contact"
+  ],
+  "circle-throw": [
+    "contact"
+  ],
+  "clamp": [
+    "contact"
+  ],
+  "clanging-scales": [
+    "sound"
+  ],
+  "clangorous-soul": [
+    "dance",
+    "sound"
+  ],
+  "clangorous-soulblaze": [
+    "sound"
+  ],
+  "close-combat": [
+    "contact"
+  ],
+  "collision-course": [
+    "contact"
+  ],
+  "comet-punch": [
+    "contact",
+    "punch"
+  ],
+  "comeuppance": [
+    "contact"
+  ],
+  "confide": [
+    "sound"
+  ],
+  "constrict": [
+    "contact"
+  ],
+  "cotton-spore": [
+    "powder"
+  ],
+  "counter": [
+    "contact"
+  ],
+  "covet": [
+    "contact"
+  ],
+  "crabhammer": [
+    "contact"
+  ],
+  "cross-chop": [
+    "contact"
+  ],
+  "cross-poison": [
+    "contact",
+    "slicing"
+  ],
+  "crunch": [
+    "contact"
+  ],
+  "crush-claw": [
+    "contact"
+  ],
+  "crush-grip": [
+    "contact"
+  ],
+  "cut": [
+    "contact",
+    "slicing"
+  ],
+  "darkest-lariat": [
+    "contact"
+  ],
+  "dig": [
+    "contact"
+  ],
+  "dire-claw": [
+    "contact"
+  ],
+  "disarming-voice": [
+    "sound"
+  ],
+  "dive": [
+    "contact"
+  ],
+  "dizzy-punch": [
+    "contact",
+    "punch"
+  ],
+  "double-edge": [
+    "contact"
+  ],
+  "double-hit": [
+    "contact"
+  ],
+  "double-iron-bash": [
+    "contact",
+    "punch"
+  ],
+  "double-kick": [
+    "contact"
+  ],
+  "double-shock": [
+    "contact"
+  ],
+  "double-slap": [
+    "contact"
+  ],
+  "dragon-ascent": [
+    "contact"
+  ],
+  "dragon-claw": [
+    "contact"
+  ],
+  "dragon-dance": [
+    "dance"
+  ],
+  "dragon-hammer": [
+    "contact"
+  ],
+  "dragon-rush": [
+    "contact"
+  ],
+  "dragon-tail": [
+    "contact"
+  ],
+  "drain-punch": [
+    "contact",
+    "punch"
+  ],
+  "draining-kiss": [
+    "contact"
+  ],
+  "drill-peck": [
+    "contact"
+  ],
+  "drill-run": [
+    "contact"
+  ],
+  "dual-chop": [
+    "contact"
+  ],
+  "dual-wingbeat": [
+    "contact"
+  ],
+  "dynamic-punch": [
+    "contact",
+    "punch"
+  ],
+  "echoed-voice": [
+    "sound"
+  ],
+  "eerie-spell": [
+    "sound"
+  ],
+  "egg-bomb": [
+    "bullet"
+  ],
+  "electro-ball": [
+    "bullet"
+  ],
+  "electro-drift": [
+    "contact"
+  ],
+  "endeavor": [
+    "contact"
+  ],
+  "energy-ball": [
+    "bullet"
+  ],
+  "extreme-speed": [
+    "contact"
+  ],
+  "facade": [
+    "contact"
+  ],
+  "fake-out": [
+    "contact"
+  ],
+  "false-surrender": [
+    "contact"
+  ],
+  "false-swipe": [
+    "contact"
+  ],
+  "feather-dance": [
+    "dance"
+  ],
+  "feint-attack": [
+    "contact"
+  ],
+  "fell-stinger": [
+    "contact"
+  ],
+  "fiery-dance": [
+    "dance"
+  ],
+  "fire-fang": [
+    "contact"
+  ],
+  "fire-lash": [
+    "contact"
+  ],
+  "fire-punch": [
+    "contact",
+    "punch"
+  ],
+  "first-impression": [
+    "contact"
+  ],
+  "fishious-rend": [
+    "contact"
+  ],
+  "flail": [
+    "contact"
+  ],
+  "flame-charge": [
+    "contact"
+  ],
+  "flame-wheel": [
+    "contact"
+  ],
+  "flare-blitz": [
+    "contact"
+  ],
+  "flip-turn": [
+    "contact"
+  ],
+  "floaty-fall": [
+    "contact"
+  ],
+  "fly": [
+    "contact"
+  ],
+  "flying-press": [
+    "contact"
+  ],
+  "focus-blast": [
+    "bullet"
+  ],
+  "focus-punch": [
+    "contact",
+    "punch"
+  ],
+  "force-palm": [
+    "contact"
+  ],
+  "foul-play": [
+    "contact"
+  ],
+  "frustration": [
+    "contact"
+  ],
+  "fury-attack": [
+    "contact"
+  ],
+  "fury-cutter": [
+    "contact",
+    "slicing"
+  ],
+  "fury-swipes": [
+    "contact"
+  ],
+  "gear-grind": [
+    "contact"
+  ],
+  "giga-impact": [
+    "contact"
+  ],
+  "glaive-rush": [
+    "contact"
+  ],
+  "grass-knot": [
+    "contact"
+  ],
+  "grass-whistle": [
+    "sound"
+  ],
+  "grassy-glide": [
+    "contact"
+  ],
+  "growl": [
+    "sound"
+  ],
+  "guillotine": [
+    "contact"
+  ],
+  "gyro-ball": [
+    "bullet",
+    "contact"
+  ],
+  "hammer-arm": [
+    "contact",
+    "punch"
+  ],
+  "hard-press": [
+    "contact"
+  ],
+  "head-charge": [
+    "contact"
+  ],
+  "head-smash": [
+    "contact"
+  ],
+  "headbutt": [
+    "contact"
+  ],
+  "headlong-rush": [
+    "contact",
+    "punch"
+  ],
+  "heal-bell": [
+    "sound"
+  ],
+  "heart-stamp": [
+    "contact"
+  ],
+  "heat-crash": [
+    "contact"
+  ],
+  "heavy-slam": [
+    "contact"
+  ],
+  "high-horsepower": [
+    "contact"
+  ],
+  "high-jump-kick": [
+    "contact"
+  ],
+  "hold-back": [
+    "contact"
+  ],
+  "horn-attack": [
+    "contact"
+  ],
+  "horn-drill": [
+    "contact"
+  ],
+  "horn-leech": [
+    "contact"
+  ],
+  "howl": [
+    "sound"
+  ],
+  "hyper-drill": [
+    "contact"
+  ],
+  "hyper-fang": [
+    "contact"
+  ],
+  "hyper-voice": [
+    "sound"
+  ],
+  "ice-ball": [
+    "bullet",
+    "contact"
+  ],
+  "ice-fang": [
+    "contact"
+  ],
+  "ice-hammer": [
+    "contact",
+    "punch"
+  ],
+  "ice-punch": [
+    "contact",
+    "punch"
+  ],
+  "ice-spinner": [
+    "contact"
+  ],
+  "infestation": [
+    "contact"
+  ],
+  "iron-head": [
+    "contact"
+  ],
+  "iron-tail": [
+    "contact"
+  ],
+  "jaw-lock": [
+    "contact"
+  ],
+  "jet-punch": [
+    "contact",
+    "punch"
+  ],
+  "jump-kick": [
+    "contact"
+  ],
+  "karate-chop": [
+    "contact"
+  ],
+  "knock-off": [
+    "contact"
+  ],
+  "kowtow-cleave": [
+    "contact",
+    "slicing"
+  ],
+  "lash-out": [
+    "contact"
+  ],
+  "last-resort": [
+    "contact"
+  ],
+  "leaf-blade": [
+    "contact",
+    "slicing"
+  ],
+  "leech-life": [
+    "contact"
+  ],
+  "lets-snuggle-forever": [
+    "contact"
+  ],
+  "lick": [
+    "contact"
+  ],
+  "liquidation": [
+    "contact"
+  ],
+  "low-kick": [
+    "contact"
+  ],
+  "low-sweep": [
+    "contact"
+  ],
+  "lunar-dance": [
+    "dance"
+  ],
+  "lunge": [
+    "contact"
+  ],
+  "mach-punch": [
+    "contact",
+    "punch"
+  ],
+  "magic-powder": [
+    "powder"
+  ],
+  "magnet-bomb": [
+    "bullet"
+  ],
+  "malicious-moonsault": [
+    "contact"
+  ],
+  "mega-kick": [
+    "contact"
+  ],
+  "mega-punch": [
+    "contact",
+    "punch"
+  ],
+  "megahorn": [
+    "contact"
+  ],
+  "metal-claw": [
+    "contact"
+  ],
+  "metal-sound": [
+    "sound"
+  ],
+  "meteor-mash": [
+    "contact",
+    "punch"
+  ],
+  "mighty-cleave": [
+    "contact",
+    "slicing"
+  ],
+  "mist-ball": [
+    "bullet"
+  ],
+  "mortal-spin": [
+    "contact"
+  ],
+  "mud-bomb": [
+    "bullet"
+  ],
+  "multi-attack": [
+    "contact"
+  ],
+  "needle-arm": [
+    "contact"
+  ],
+  "night-slash": [
+    "contact",
+    "slicing"
+  ],
+  "noble-roar": [
+    "sound"
+  ],
+  "nuzzle": [
+    "contact"
+  ],
+  "octazooka": [
+    "bullet"
+  ],
+  "outrage": [
+    "contact"
+  ],
+  "overdrive": [
+    "sound"
+  ],
+  "parting-shot": [
+    "sound"
+  ],
+  "payback": [
+    "contact"
+  ],
+  "peck": [
+    "contact"
+  ],
+  "perish-song": [
+    "sound"
+  ],
+  "petal-dance": [
+    "contact",
+    "dance"
+  ],
+  "phantom-force": [
+    "contact"
+  ],
+  "plasma-fists": [
+    "contact",
+    "punch"
+  ],
+  "play-rough": [
+    "contact"
+  ],
+  "pluck": [
+    "contact"
+  ],
+  "poison-fang": [
+    "contact"
+  ],
+  "poison-jab": [
+    "contact"
+  ],
+  "poison-powder": [
+    "powder"
+  ],
+  "poison-tail": [
+    "contact"
+  ],
+  "pollen-puff": [
+    "bullet"
+  ],
+  "population-bomb": [
+    "contact",
+    "slicing"
+  ],
+  "pounce": [
+    "contact"
+  ],
+  "pound": [
+    "contact"
+  ],
+  "powder": [
+    "powder"
+  ],
+  "power-trip": [
+    "contact"
+  ],
+  "power-up-punch": [
+    "contact",
+    "punch"
+  ],
+  "power-whip": [
+    "contact"
+  ],
+  "psyblade": [
+    "contact",
+    "slicing"
+  ],
+  "psychic-fangs": [
+    "contact"
+  ],
+  "psychic-noise": [
+    "sound"
+  ],
+  "psycho-cut": [
+    "slicing"
+  ],
+  "psyshield-bash": [
+    "contact"
+  ],
+  "pulverizing-pancake": [
+    "contact"
+  ],
+  "punishment": [
+    "contact"
+  ],
+  "pursuit": [
+    "contact"
+  ],
+  "pyro-ball": [
+    "bullet"
+  ],
+  "quick-attack": [
+    "contact"
+  ],
+  "quiver-dance": [
+    "dance"
+  ],
+  "rage": [
+    "contact"
+  ],
+  "rage-fist": [
+    "contact",
+    "punch"
+  ],
+  "rage-powder": [
+    "powder"
+  ],
+  "raging-bull": [
+    "contact"
+  ],
+  "rapid-spin": [
+    "contact"
+  ],
+  "razor-leaf": [
+    "slicing"
+  ],
+  "razor-shell": [
+    "contact",
+    "slicing"
+  ],
+  "relic-song": [
+    "sound"
+  ],
+  "retaliate": [
+    "contact"
+  ],
+  "return": [
+    "contact"
+  ],
+  "revelation-dance": [
+    "dance"
+  ],
+  "revenge": [
+    "contact"
+  ],
+  "reversal": [
+    "contact"
+  ],
+  "roar": [
+    "sound"
+  ],
+  "rock-blast": [
+    "bullet"
+  ],
+  "rock-climb": [
+    "contact"
+  ],
+  "rock-smash": [
+    "contact"
+  ],
+  "rock-wrecker": [
+    "bullet"
+  ],
+  "rolling-kick": [
+    "contact"
+  ],
+  "rollout": [
+    "contact"
+  ],
+  "round": [
+    "sound"
+  ],
+  "sacred-sword": [
+    "contact",
+    "slicing"
+  ],
+  "scratch": [
+    "contact"
+  ],
+  "screech": [
+    "sound"
+  ],
+  "searing-shot": [
+    "bullet"
+  ],
+  "searing-sunraze-smash": [
+    "contact"
+  ],
+  "secret-sword": [
+    "slicing"
+  ],
+  "seed-bomb": [
+    "bullet"
+  ],
+  "seismic-toss": [
+    "contact"
+  ],
+  "shadow-ball": [
+    "bullet"
+  ],
+  "shadow-claw": [
+    "contact"
+  ],
+  "shadow-force": [
+    "contact"
+  ],
+  "shadow-punch": [
+    "contact",
+    "punch"
+  ],
+  "shadow-sneak": [
+    "contact"
+  ],
+  "shadow-strike": [
+    "contact"
+  ],
+  "sing": [
+    "sound"
+  ],
+  "sizzly-slide": [
+    "contact"
+  ],
+  "skitter-smack": [
+    "contact"
+  ],
+  "skull-bash": [
+    "contact"
+  ],
+  "sky-drop": [
+    "contact"
+  ],
+  "sky-uppercut": [
+    "contact",
+    "punch"
+  ],
+  "slam": [
+    "contact"
+  ],
+  "slash": [
+    "contact",
+    "slicing"
+  ],
+  "sleep-powder": [
+    "powder"
+  ],
+  "sludge-bomb": [
+    "bullet"
+  ],
+  "smart-strike": [
+    "contact"
+  ],
+  "smelling-salts": [
+    "contact"
+  ],
+  "snap-trap": [
+    "contact"
+  ],
+  "snarl": [
+    "sound"
+  ],
+  "snore": [
+    "sound"
+  ],
+  "solar-blade": [
+    "contact",
+    "slicing"
+  ],
+  "soul-stealing-7-star-strike": [
+    "contact"
+  ],
+  "spark": [
+    "contact"
+  ],
+  "sparkling-aria": [
+    "sound"
+  ],
+  "spectral-thief": [
+    "contact"
+  ],
+  "spin-out": [
+    "contact"
+  ],
+  "spirit-break": [
+    "contact"
+  ],
+  "spore": [
+    "powder"
+  ],
+  "steamroller": [
+    "contact"
+  ],
+  "steel-roller": [
+    "contact"
+  ],
+  "steel-wing": [
+    "contact"
+  ],
+  "stomp": [
+    "contact"
+  ],
+  "stomping-tantrum": [
+    "contact"
+  ],
+  "stone-axe": [
+    "contact",
+    "slicing"
+  ],
+  "storm-throw": [
+    "contact"
+  ],
+  "strength": [
+    "contact"
+  ],
+  "struggle": [
+    "contact"
+  ],
+  "stun-spore": [
+    "powder"
+  ],
+  "submission": [
+    "contact"
+  ],
+  "sucker-punch": [
+    "contact"
+  ],
+  "sunsteel-strike": [
+    "contact"
+  ],
+  "super-fang": [
+    "contact"
+  ],
+  "supercell-slam": [
+    "contact"
+  ],
+  "superpower": [
+    "contact"
+  ],
+  "supersonic": [
+    "sound"
+  ],
+  "surging-strikes": [
+    "contact",
+    "punch"
+  ],
+  "swords-dance": [
+    "dance"
+  ],
+  "syrup-bomb": [
+    "bullet"
+  ],
+  "tachyon-cutter": [
+    "slicing"
+  ],
+  "tackle": [
+    "contact"
+  ],
+  "tail-slap": [
+    "contact"
+  ],
+  "take-down": [
+    "contact"
+  ],
+  "teeter-dance": [
+    "dance"
+  ],
+  "temper-flare": [
+    "contact"
+  ],
+  "thief": [
+    "contact"
+  ],
+  "thrash": [
+    "contact"
+  ],
+  "throat-chop": [
+    "contact"
+  ],
+  "thunder-fang": [
+    "contact"
+  ],
+  "thunder-punch": [
+    "contact",
+    "punch"
+  ],
+  "thunderous-kick": [
+    "contact"
+  ],
+  "torch-song": [
+    "sound"
+  ],
+  "trailblaze": [
+    "contact"
+  ],
+  "triple-axel": [
+    "contact"
+  ],
+  "triple-dive": [
+    "contact"
+  ],
+  "triple-kick": [
+    "contact"
+  ],
+  "trop-kick": [
+    "contact"
+  ],
+  "trump-card": [
+    "contact"
+  ],
+  "u-turn": [
+    "contact"
+  ],
+  "upper-hand": [
+    "contact"
+  ],
+  "uproar": [
+    "sound"
+  ],
+  "v-create": [
+    "contact"
+  ],
+  "veevee-volley": [
+    "contact"
+  ],
+  "victory-dance": [
+    "dance"
+  ],
+  "vine-whip": [
+    "contact"
+  ],
+  "vise-grip": [
+    "contact"
+  ],
+  "vital-throw": [
+    "contact"
+  ],
+  "volt-tackle": [
+    "contact"
+  ],
+  "wake-up-slap": [
+    "contact"
+  ],
+  "waterfall": [
+    "contact"
+  ],
+  "wave-crash": [
+    "contact"
+  ],
+  "weather-ball": [
+    "bullet"
+  ],
+  "wicked-blow": [
+    "contact",
+    "punch"
+  ],
+  "wild-charge": [
+    "contact"
+  ],
+  "wing-attack": [
+    "contact"
+  ],
+  "wood-hammer": [
+    "contact"
+  ],
+  "wrap": [
+    "contact"
+  ],
+  "wring-out": [
+    "contact"
+  ],
+  "x-scissor": [
+    "contact",
+    "slicing"
+  ],
+  "zap-cannon": [
+    "bullet"
+  ],
+  "zen-headbutt": [
+    "contact"
+  ],
+  "zing-zap": [
+    "contact"
+  ],
+  "zippy-zap": [
+    "contact"
+  ]
+}

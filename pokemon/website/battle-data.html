@@ -69,6 +69,23 @@ body {
 .slot:hover .slot-x { opacity: 1; }
 .slot-x:hover { color: #f87171; }
 
+/* ── EXPORT ── */
+.export-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.export-btn {
+  background: var(--accent-dim); border: 1px solid rgba(124,106,247,0.4);
+  color: var(--accent); border-radius: 6px; padding: 7px 14px; font-size: 0.75rem;
+  font-weight: 600; font-family: 'Inter', sans-serif; cursor: pointer;
+  transition: background 0.12s;
+}
+.export-btn:hover { background: rgba(124,106,247,0.22); }
+.export-copied { font-size: 0.72rem; color: #4ade80; }
+.export-output {
+  display: block; width: 100%; box-sizing: border-box; margin-bottom: 14px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  color: var(--text); font-family: 'Consolas', monospace; font-size: 0.78rem;
+  padding: 12px 14px; min-height: 160px; resize: vertical;
+}
+
 /* ── PICKER / SEARCH ── */
 .picker { display: none; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
 .picker.open { display: block; }
@@ -127,16 +144,19 @@ body {
 .bar-pct { font-size: 0.68rem; color: var(--muted); text-align: right; }
 .bar-row.nat .bar-pct { margin-top: 5px; }
 
-/* ev spreads */
-.ev-list { display: flex; flex-direction: column; gap: 10px; }
-.ev-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
-.ev-usage { font-size: 0.68rem; color: var(--muted); margin-bottom: 8px; }
-.ev-stats { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
-.ev-stat { display: flex; flex-direction: column; align-items: center; gap: 3px; }
-.ev-stat-lbl { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; }
-.ev-bar-wrap { width: 100%; height: 30px; background: rgba(255,255,255,0.04); border-radius: 3px; overflow: hidden; display: flex; align-items: flex-end; }
-.ev-bar-fill { width: 100%; border-radius: 2px 2px 0 0; }
-.ev-stat-val { font-size: 0.66rem; font-weight: 600; }
+/* stat alignment builds */
+.build-list { display: flex; flex-direction: column; gap: 8px; }
+.build-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
+.build-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+.build-name { font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px; color: var(--text); }
+.build-pct { font-size: 0.72rem; color: var(--accent); font-weight: 600; }
+.build-track { height: 2px; background: rgba(255,255,255,0.06); border-radius: 2px; margin-bottom: 9px; }
+.build-fill { height: 100%; background: var(--accent); border-radius: 2px; opacity: 0.6; }
+.build-spread { display: flex; gap: 10px; flex-wrap: wrap; }
+.build-sval { font-size: 0.67rem; font-weight: 600; }
+.build-actual { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.05); }
+.build-aval { font-size: 0.67rem; font-weight: 400; opacity: 0.85; }
+.build-aval b { font-weight: 700; }
 
 /* teammates */
 .mate-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
@@ -192,9 +212,94 @@ body {
 .tier-gap.tight::before, .tier-gap.tight::after { border-color: rgba(251,146,60,0.25); border-style: dashed; }
 .tier-row.scarf-row .tier-spe { color: #fb923c; }
 .speed-chip.chip-scarf { border-color: rgba(251,146,60,0.4); background: rgba(251,146,60,0.08); }
+.speed-chip.chip-manual { border-color: rgba(74,222,128,0.5); background: rgba(74,222,128,0.07); color: #4ade80; font-weight: 600; }
 .speed-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 3px; }
 .speed-range { font-size: 0.66rem; color: var(--text); font-weight: 500; }
 .speed-note { font-size: 0.6rem; color: var(--muted); }
+.tier-row.manual-row .tier-spe { color: #4ade80; }
+
+/* ── MANUAL SPEED INPUT ── */
+.manual-section { padding-bottom: 14px; margin-bottom: 6px; border-bottom: 1px solid var(--border); }
+.manual-section .sec-title { margin-bottom: 8px; }
+.manual-chips { display: flex; gap: 5px; flex-wrap: wrap; margin-bottom: 8px; }
+.manual-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface2); border: 1px solid rgba(74,222,128,0.3);
+  border-radius: 5px; padding: 3px 9px; font-size: 0.74rem; color: #4ade80;
+}
+.manual-chip-x { color: var(--muted); cursor: pointer; font-size: 0.9rem; line-height: 1; }
+.manual-chip-x:hover { color: #f87171; }
+.manual-form { display: flex; gap: 6px; }
+.manual-input {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 6px;
+  color: var(--text); font-family: 'Inter', sans-serif; font-size: 0.8rem;
+  padding: 6px 9px; outline: none; transition: border-color 0.15s;
+}
+.manual-input:focus { border-color: #4ade80; }
+.manual-input::placeholder { color: var(--muted); }
+.manual-add-btn {
+  background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.3);
+  color: #4ade80; border-radius: 6px; padding: 6px 12px; font-size: 0.75rem;
+  font-weight: 600; font-family: 'Inter', sans-serif; cursor: pointer;
+  transition: background 0.12s; white-space: nowrap;
+}
+.manual-add-btn:hover { background: rgba(74,222,128,0.15); }
+.manual-dropdown { margin-top: 4px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+.manual-drop-item { padding: 6px 10px; font-size: 0.8rem; color: var(--text); cursor: pointer; border-bottom: 1px solid var(--border); transition: background 0.1s; }
+.manual-drop-item:last-child { border-bottom: none; }
+.manual-drop-item:hover { background: var(--accent-dim); color: var(--accent); }
+
+/* ── MEGA EVOLUTION ── */
+.mega-btn {
+  margin-top: 5px; background: transparent;
+  border: 1px solid rgba(251,146,60,0.5); color: #fb923c;
+  border-radius: 4px; padding: 2px 7px;
+  font-size: 0.52rem; letter-spacing: 0.8px; font-weight: 700;
+  text-transform: uppercase; cursor: pointer;
+  font-family: 'Inter', sans-serif; transition: background 0.12s;
+}
+.mega-btn:hover { background: rgba(251,146,60,0.15); }
+.mega-btn.is-mega { background: rgba(251,146,60,0.18); border-color: #fb923c; color: #fff; }
+.form-tabs { display: flex; gap: 5px; margin-top: 8px; flex-wrap: wrap; }
+.form-tab {
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--muted); border-radius: 5px; padding: 3px 10px;
+  font-size: 0.62rem; letter-spacing: 0.5px; font-weight: 600;
+  cursor: pointer; font-family: 'Rajdhani', sans-serif; transition: all 0.12s;
+}
+.form-tab:hover { border-color: #fb923c; color: #fb923c; }
+.form-tab.active { border-color: #fb923c; background: rgba(251,146,60,0.15); color: #fb923c; }
+.mega-ability { font-size: 0.68rem; color: #fb923c; margin-top: 5px; font-weight: 500; }
+.forme-select {
+  margin-top: 8px; background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text); border-radius: 5px; padding: 3px 8px;
+  font-size: 0.7rem; font-weight: 600; cursor: pointer;
+  font-family: 'Rajdhani', sans-serif;
+}
+.tt-ability { cursor: help; border-bottom: 1px dotted #fb923c; }
+.mega-types { display: flex; gap: 4px; margin-top: 5px; }
+.type-pip {
+  font-size: 0.56rem; font-weight: 700; letter-spacing: 0.8px;
+  text-transform: uppercase; padding: 2px 7px; border-radius: 3px;
+  opacity: 0.9;
+}
+
+/* info tooltips */
+#tt {
+  position: fixed; z-index: 9999; pointer-events: none; display: none;
+  background: var(--surface); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px; padding: 10px 14px;
+  width: max-content; max-width: 280px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.6); font-family: 'Inter', sans-serif;
+}
+.tt-head { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 5px; }
+.tt-name { font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px; color: var(--text); }
+.tt-cat { font-size: 0.52rem; font-weight: 700; letter-spacing: 0.8px; padding: 2px 7px; border-radius: 3px; color: #111; text-transform: uppercase; flex-shrink: 0; white-space: nowrap; }
+.tt-meta { font-size: 0.65rem; color: var(--muted); margin-bottom: 5px; }
+.tt-desc { font-size: 0.72rem; color: var(--text); line-height: 1.5; opacity: 0.82; }
+.tt-flags { display: flex; gap: 4px; flex-wrap: wrap; margin-top: 6px; }
+.tt-flag { font-size: 0.52rem; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; border: 1px solid; }
+.bar-row[data-tt] { cursor: help; }
 </style>
 </head>
 <body>
@@ -206,6 +311,11 @@ body {
 <div class="page-sub">Usage Stats · Champions Format · 235 Pokémon</div>
 
 <div class="team-row" id="team-row"></div>
+<div class="export-row" id="export-row" style="display:none">
+  <button class="export-btn" id="export-btn">Export Team (Showdown)</button>
+  <span class="export-copied" id="export-copied" style="display:none">Copied!</span>
+</div>
+<textarea class="export-output" id="export-output" style="display:none" readonly spellcheck="false"></textarea>
 <div class="picker" id="picker"></div>
 <div class="panel" id="panel"></div>
 
@@ -214,12 +324,22 @@ body {
     <div class="sec-title" style="margin:0">Speed Tiers</div>
     <span class="speed-toggle-btn" id="speed-toggle-btn">▼ Show</span>
   </div>
-  <div class="speed-body" id="speed-body" style="display:none"></div>
+  <div class="speed-body" id="speed-body" style="display:none">
+    <div id="speed-manual"></div>
+    <div id="speed-tiers"></div>
+  </div>
 </div>
 
 <script>
 const STAT_COLORS = { hp:'#f87171', atk:'#fb923c', def:'#facc15', spa:'#60a5fa', spd:'#4ade80', spe:'#f472b6' };
 const STAT_LABELS = { hp:'HP', atk:'Atk', def:'Def', spa:'SpA', spd:'SpD', spe:'Spe' };
+const TYPE_COLORS = {
+  normal:'#9099a1', fire:'#ff7c24', water:'#4d90d5', electric:'#f5c945',
+  grass:'#5fbc51', ice:'#73cec0', fighting:'#ce3f6a', poison:'#ab6ac8',
+  ground:'#d97845', flying:'#8fa8dd', psychic:'#f97176', bug:'#90c12c',
+  rock:'#c7b78b', ghost:'#5269ac', dragon:'#0b6dc3', dark:'#5a5465',
+  steel:'#5a8ea1', fairy:'#ef70ef'
+};
 
 let DB = {};    // { "Garchomp": { name, types, doubles, ... } }
 let ALL = [];   // names sorted by usage_rank
@@ -228,14 +348,196 @@ let team = Array(6).fill(null);
 let pinnedIdx = null;
 let pickerIdx = null;
 let hoverPanel = null;
+const megaState = {}; // { slotIdx: megaFormIdx } — undefined = base form
+const aegislashBlade = {}; // { slotIdx: true } — Blade Forme stat preview only, never exported
+
+// ── TOOLTIP SYSTEM ────────────────────────────────────────────────────────────
+let MOVES_DATA = {};
+function moveSlug(name) { return name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''); }
+const ttCache = {};
+let ttTimer = null;
+let ttCurrentRow = null;
+
+// PS target names (moves_data.json) + PokeAPI names (ability/item fallback)
+const TT_TARGET = {
+  normal:            'Single target',
+  allAdjacentFoes:   'Both foes (spread)',
+  allAdjacent:       'All adjacent',
+  self:              'Self',
+  adjacentAlly:      'Adjacent ally',
+  adjacentFoe:       'Adjacent foe',
+  any:               'Any',
+  randomNormal:      'Random foe',
+  foeSide:           "Foe's side",
+  allySide:          "User's side",
+  allyTeam:          "User's team",
+  scripted:          'Specific',
+  'selected-pokemon':  'Single target',
+  'all-opponents':     'Both foes (spread)',
+  'user':              'Self',
+  'users-field':       "User's side",
+  'opponents-field':   "Foe's side",
+  'random-opponent':   'Random foe',
+};
+
+function ttEl() {
+  let el = document.getElementById('tt');
+  if (!el) { el = document.createElement('div'); el.id = 'tt'; document.body.appendChild(el); }
+  return el;
+}
+
+function hideTooltip() {
+  clearTimeout(ttTimer);
+  ttCurrentRow = null;
+  const el = document.getElementById('tt');
+  if (el) el.style.display = 'none';
+}
+
+function positionTooltip(anchor) {
+  const el = ttEl();
+  // Reset to origin before measuring so viewport clamping doesn't corrupt dimensions
+  el.style.top  = '0';
+  el.style.left = '0';
+  el.style.display = 'block';
+  const tw  = el.offsetWidth;
+  const th  = el.offsetHeight;
+  const r   = anchor.getBoundingClientRect();
+  const vw  = window.innerWidth;
+  const vh  = window.innerHeight;
+  const PAD = 8;
+
+  let top = r.top - th - PAD;
+  if (top < PAD) top = r.bottom + PAD;       // flip below if not enough space above
+  if (top + th > vh - PAD) top = vh - th - PAD; // clamp bottom
+  if (top < PAD) top = PAD;                   // clamp top
+
+  let left = r.left;
+  if (left + tw > vw - PAD) left = vw - tw - PAD;
+  if (left < PAD) left = PAD;
+
+  el.style.top  = top  + 'px';
+  el.style.left = left + 'px';
+}
+
+const TT_FLAG_STYLE = {
+  contact: { label: 'Contact', color: '#9ca3af' },
+  bullet:  { label: 'Bullet',  color: '#cbd5e1' },
+  sound:   { label: 'Sound',   color: '#67e8f9' },
+  punch:   { label: 'Punch',   color: '#fb923c' },
+  slicing: { label: 'Slicing', color: '#4ade80' },
+  dance:   { label: 'Dance',   color: '#c084fc' },
+  powder:  { label: 'Powder',  color: '#fde68a' },
+};
+
+function flagChipsHtml(flags) {
+  return (flags || []).map(f => {
+    const s = TT_FLAG_STYLE[f];
+    return s ? `<span class="tt-flag" style="color:${s.color};border-color:${s.color}40">${s.label}</span>` : '';
+  }).join('');
+}
+
+function ttMoveHtmlLocal(d) {
+  const cat      = (d.category || 'Status').toLowerCase();
+  const catColor = { physical: '#fb923c', special: '#60a5fa', status: '#9099a1' }[cat] || '#9099a1';
+  const typeColor = TYPE_COLORS[(d.type || '').toLowerCase()] || '#888';
+
+  const headBadges = [
+    `<span class="tt-cat" style="background:${catColor}">${cat}</span>`,
+    d.type ? `<span class="tt-cat" style="background:${typeColor};color:#fff">${d.type}</span>` : '',
+  ];
+  if (d.priority) {
+    const sign = d.priority > 0 ? '+' : '';
+    headBadges.push(`<span class="tt-cat" style="background:#f59e0b;color:#000">${sign}${d.priority} priority</span>`);
+  }
+
+  const meta = [];
+  if (d.power)    meta.push(`Power ${d.power}`);
+  if (d.accuracy) meta.push(`Acc ${d.accuracy}%`);
+  const tgt = TT_TARGET[d.target];
+  if (tgt) meta.push(tgt);
+  if (d.multihit) meta.push(`Hits ${d.multihit}x`);
+
+  const chips = flagChipsHtml(d.flags);
+  return `<div class="tt-head">
+    <span class="tt-name">${d.name}</span>
+    ${headBadges.filter(Boolean).join('')}
+  </div>
+  ${meta.length  ? `<div class="tt-meta">${meta.join(' · ')}</div>` : ''}
+  ${d.desc       ? `<div class="tt-desc">${d.desc}</div>` : ''}
+  ${chips        ? `<div class="tt-flags">${chips}</div>` : ''}`;
+}
+
+function ttSimpleHtml(d) {
+  const desc = (d.effect_entries || []).find(e => e.language.name === 'en')?.short_effect || 'No description available.';
+  return `<div class="tt-head"><span class="tt-name">${d.name.replace(/-/g, ' ')}</span></div>
+  <div class="tt-desc">${desc}</div>`;
+}
+
+async function fetchTT(type, name) {
+  const apiSlug = name.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  const key = `${type}/${apiSlug}`;
+  if (key in ttCache) return ttCache[key];
+  ttCache[key] = null;
+  try {
+    const r = await fetch(`https://pokeapi.co/api/v2/${type}/${apiSlug}/`);
+    if (r.ok) ttCache[key] = await r.json();
+  } catch {}
+  return ttCache[key];
+}
+
+function attachTooltips(container) {
+  container.querySelectorAll('[data-tt]').forEach(row => {
+    row.addEventListener('mouseenter', () => {
+      const [type, name] = row.dataset.tt.split('|');
+      ttCurrentRow = row;
+
+      if (type === 'move') {
+        const slug = moveSlug(name);
+        const local = MOVES_DATA[slug];
+        if (local) {
+          ttTimer = setTimeout(async () => {
+            if (ttCurrentRow !== row) return;
+            const el = ttEl();
+            el.innerHTML = ttMoveHtmlLocal(local);
+            positionTooltip(row);
+            const data = await fetchTT('move', name);
+            if (ttCurrentRow !== row) return;
+            const entry = (data?.effect_entries || []).find(e => e.language.name === 'en');
+            if (entry) {
+              let desc = entry.short_effect;
+              if (data.effect_chance) desc = desc.replace('a chance', `a ${data.effect_chance}% chance`);
+              el.innerHTML = ttMoveHtmlLocal({ ...local, desc });
+              positionTooltip(row);
+            }
+          }, 150);
+          return;
+        }
+      }
+
+      // Ability / item — PokeAPI async path
+      ttTimer = setTimeout(async () => {
+        const el = ttEl();
+        el.innerHTML = '<div class="tt-desc" style="opacity:.35">Loading…</div>';
+        positionTooltip(row);
+        const data = await fetchTT(type, name);
+        if (ttCurrentRow !== row) return;
+        if (!data) { hideTooltip(); return; }
+        el.innerHTML = ttSimpleHtml(data);
+        positionTooltip(row);
+      }, 250);
+    });
+    row.addEventListener('mouseleave', hideTooltip);
+  });
+}
 
 function slug(name) {
   let s = name;
-  // Regional forms: prefix → suffix (must run before form stripping)
+  // Regional/special forms: prefix → suffix (must run before form stripping)
   s = s.replace(/^Alolan (.+)$/, '$1-Alola');
   s = s.replace(/^Hisuian (.+)$/, '$1-Hisui');
   s = s.replace(/^Galarian (.+)$/, '$1-Galar');
   s = s.replace(/^Paldean (.+)$/, '$1-Paldea');
+  s = s.replace(/^Eternal Flower (.+)$/, '$1-Eternal');
   // Strip all form qualifiers — use base sprite rather than break
   s = s.replace(/ (Male|Female)$/, '');
   s = s.replace(/ \w+ Forme?$/, '');   // "Shield Form", "Attack Forme", etc.
@@ -246,6 +548,75 @@ function spriteUrl(name) {
   return `https://play.pokemonshowdown.com/sprites/gen5/${slug(name)}.png`;
 }
 
+function classifyBuild(ev) {
+  const isFast = ev.spe >= 24;
+  const isPhys = ev.atk >= 16 && ev.spa < 16;
+  const isSpec = ev.spa >= 16 && ev.atk < 16;
+  const isMix  = ev.atk >= 16 && ev.spa >= 16;
+  const isBulk = ev.hp >= 16 || ev.def >= 20 || ev.spd >= 20;
+  if (isFast && isPhys)         return 'Fast Physical';
+  if (isFast && isSpec)         return 'Fast Special';
+  if (isFast && isMix)          return 'Fast Mixed';
+  if (isFast && isBulk)         return 'Fast Bulky';
+  if (isFast)                   return 'Utility';
+  if (isPhys && isBulk)         return 'Bulky Physical';
+  if (isSpec && isBulk)         return 'Bulky Special';
+  if (isMix  && isBulk)         return 'Bulky Mixed';
+  if (isPhys)                   return 'Physical';
+  if (isSpec)                   return 'Special';
+  if (isBulk)                   return 'Bulky';
+  return 'Utility';
+}
+
+// ── MEGA HELPERS ─────────────────────────────────────────────────────────────
+
+function getMegaForms(name) {
+  return (DB[name]?.forms || []).filter(f => f.kind.toLowerCase().includes('mega'));
+}
+
+function getActiveMegaForm(name, slotIdx) {
+  const megas = getMegaForms(name);
+  const idx = megaState[slotIdx];
+  return (idx !== undefined && megas[idx]) ? megas[idx] : null;
+}
+
+function setMegaForm(slotIdx, idx) {
+  if (idx === undefined || idx === null) delete megaState[slotIdx];
+  else megaState[slotIdx] = idx;
+}
+
+function cycleMega(slotIdx) {
+  const name = team[slotIdx];
+  if (!name) return;
+  const megas = getMegaForms(name);
+  if (!megas.length) return;
+  const cur = megaState[slotIdx];
+  if (cur === undefined) megaState[slotIdx] = 0;
+  else if (cur < megas.length - 1) megaState[slotIdx] = cur + 1;
+  else delete megaState[slotIdx];
+  render();
+}
+
+function megaSlug(formName) {
+  // "Mega Charizard X" → "charizard-mega-x", "Mega Garchomp" → "garchomp-mega"
+  const m = formName.match(/^Mega (.+?)( [XY])?$/i);
+  if (!m) return slug(formName);
+  const base = m[1].toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  const suffix = m[2] ? '-' + m[2].trim().toLowerCase() : '';
+  return `${base}-mega${suffix}`;
+}
+
+function megaSpriteUrl(formName) {
+  return `https://play.pokemonshowdown.com/sprites/gen6/${megaSlug(formName)}.png`;
+}
+
+function typePips(types) {
+  return (types || []).map(t => {
+    const c = TYPE_COLORS[t.toLowerCase()] || '#888';
+    return `<span class="type-pip" style="background:${c}">${t}</span>`;
+  }).join('');
+}
+
 // ── RENDER ───────────────────────────────────────────────────────────────────
 
 function render() {
@@ -253,7 +624,119 @@ function render() {
   renderPicker();
   syncPanel();
   renderSpeedTiers();
+  renderExportButton();
 }
+
+// ── SHOWDOWN EXPORT ──────────────────────────────────────────────────────────
+// Target calculator has a Champions mode using the same 0-32-per-stat SP
+// scale as the game, so SP values are passed through as-is (no EV conversion).
+function buildEvLine(spread) {
+  const order = [['hp', 'HP'], ['atk', 'Atk'], ['def', 'Def'], ['spa', 'SpA'], ['spd', 'SpD'], ['spe', 'Spe']];
+  const parts = order.filter(([k]) => spread[k] > 0).map(([k, label]) => `${spread[k]} ${label}`);
+  return parts.length ? `EVs: ${parts.join(' / ')}` : null;
+}
+
+// Mega usage stats aren't tracked separately from the base species, so
+// items/abilities need to be reconstructed from the active mega form rather
+// than read off the base Pokemon's doubles data.
+function megaShowdownName(baseName, activeMega) {
+  const letter = activeMega.kind.split(' ')[1]; // "Mega X" -> "X", "Mega" -> undefined
+  return letter ? `${baseName}-Mega-${letter}` : `${baseName}-Mega`;
+}
+
+function megaStoneItem(items, activeMega) {
+  const stoneEntry = (items || []).find(it => /ite( [XY])?$/i.test(it.name));
+  if (!stoneEntry) return null;
+  const letter = activeMega.kind.split(' ')[1];
+  return (letter && !stoneEntry.name.endsWith(letter)) ? `${stoneEntry.name} ${letter}` : stoneEntry.name;
+}
+
+// A few DB keys carry a form suffix that isn't a real distinct roster slot
+// (Aegislash always starts Shield Forme; Basculegion's gender is cosmetic —
+// nobody runs Female) — collapse those back to the plain species name.
+function baseDisplayName(name) {
+  return name
+    .replace(/^Aegislash Shield Forme$/, 'Aegislash')
+    .replace(/^Basculegion (Male|Female)$/, 'Basculegion');
+}
+
+function buildShowdownSet(name, slotIdx) {
+  const p = DB[name];
+  if (!p) return null;
+  const activeMega = getActiveMegaForm(name, slotIdx);
+  const isEternalFlower = name.startsWith('Eternal Flower');
+
+  // Floette's homebrew Mega isn't a real Showdown species — it exports as
+  // "Floette-Mega" with a hand-picked doubles set, not the ranked default.
+  if (isEternalFlower && activeMega) {
+    return [
+      'Floette-Mega @ Floettite',
+      'Ability: Flower Veil',
+      'Level: 50',
+      'EVs: 2 HP / 32 SpA / 32 Spe',
+      'Timid Nature',
+      '- Moonblast',
+      '- Dazzling Gleam',
+      '- Light of Ruin',
+      '- Protect',
+    ].join('\n');
+  }
+
+  const d = p.doubles || {};
+  // The export always calls it "Floette-Mega", even outside the toggled state above.
+  const species = isEternalFlower
+    ? 'Floette-Mega'
+    : baseDisplayName(activeMega ? megaShowdownName(name, activeMega) : name);
+  const item    = activeMega ? megaStoneItem(d.held_items, activeMega) : d.held_items?.[0]?.name;
+  const ability = activeMega ? activeMega.abilities?.[0] : d.abilities?.[0]?.name;
+  const nature  = d.natures?.[0]?.name;
+  const spread  = d.ev_spreads?.[0];
+  const moves   = (d.moves || [])
+    .filter(m => MOVES_DATA[moveSlug(m.name)]?.category !== 'Status')
+    .slice(0, 4)
+    .map(m => m.name);
+
+  const lines = [item ? `${species} @ ${item}` : species];
+  if (ability) lines.push(`Ability: ${ability}`);
+  lines.push('Level: 50');
+  const evLine = spread ? buildEvLine(spread) : null;
+  if (evLine) lines.push(evLine);
+  if (nature) lines.push(`${nature} Nature`);
+  moves.forEach(m => lines.push(`- ${m}`));
+  return lines.join('\n');
+}
+
+function buildShowdownExport() {
+  return team
+    .map((name, i) => name ? buildShowdownSet(name, i) : null)
+    .filter(Boolean)
+    .join('\n\n');
+}
+
+function renderExportButton() {
+  const row = document.getElementById('export-row');
+  const hasTeam = team.some(n => n !== null);
+  row.style.display = hasTeam ? '' : 'none';
+  if (!hasTeam) {
+    document.getElementById('export-output').style.display = 'none';
+    document.getElementById('export-output').value = '';
+  }
+}
+
+document.getElementById('export-btn').addEventListener('click', () => {
+  const text = buildShowdownExport();
+  const output = document.getElementById('export-output');
+  output.value = text;
+  output.style.display = '';
+  output.focus();
+  output.select();
+
+  const copiedEl = document.getElementById('export-copied');
+  navigator.clipboard?.writeText(text).then(() => {
+    copiedEl.style.display = '';
+    setTimeout(() => { copiedEl.style.display = 'none'; }, 1500);
+  }).catch(() => {});
+});
 
 function renderTeam() {
   const row = document.getElementById('team-row');
@@ -262,14 +745,30 @@ function renderTeam() {
     const slot = document.createElement('div');
     slot.className = 'slot' + (pinnedIdx === i ? ' pinned' : '');
     if (name) {
+      const megas = getMegaForms(name);
+      const activeMega = getActiveMegaForm(name, i);
+      const dispName  = activeMega ? activeMega.name : baseDisplayName(name);
+      const activeSrc = activeMega ? megaSpriteUrl(activeMega.name) : spriteUrl(name);
+      const fallSrc   = spriteUrl(name);
+      let megaBtnHtml = '';
+      if (megas.length) {
+        const label = activeMega ? activeMega.kind : '⚡ Mega';
+        megaBtnHtml = `<button class="mega-btn${activeMega ? ' is-mega' : ''}" data-slot="${i}">${label}</button>`;
+      }
       slot.innerHTML = `
         <span class="slot-x" title="Remove">×</span>
-        <img class="slot-sprite" src="${spriteUrl(name)}" alt="${name}" onerror="this.style.opacity='0.2'">
-        <div class="slot-name">${name}</div>
+        <img class="slot-sprite" src="${activeSrc}" alt="${dispName}"
+             onerror="this.src='${fallSrc}';this.onerror=null;">
+        <div class="slot-name">${dispName}</div>
+        ${megaBtnHtml}
       `;
+      const megaBtnEl = slot.querySelector('.mega-btn');
+      if (megaBtnEl) megaBtnEl.addEventListener('click', e => { e.stopPropagation(); cycleMega(i); });
       slot.querySelector('.slot-x').addEventListener('click', e => {
         e.stopPropagation();
         team[i] = null;
+        delete megaState[i];
+        delete aegislashBlade[i];
         if (pinnedIdx === i) pinnedIdx = null;
         render();
       });
@@ -367,23 +866,74 @@ function showPanel(name) {
   const panel = document.getElementById('panel');
   const p = entry.doubles;
 
+  // Mega context
+  const slotIdx = team.indexOf(name);
+  const megas    = getMegaForms(name);
+  const activeMegaIdx = slotIdx !== -1 ? megaState[slotIdx] : undefined;
+  const activeMega    = activeMegaIdx !== undefined ? megas[activeMegaIdx] : null;
+
+  // Aegislash's Blade Forme is a stat-preview toggle only — the export always
+  // just says "Aegislash", so this state never touches buildShowdownSet.
+  const isAegislash = name === 'Aegislash Shield Forme';
+  const bladeForm   = isAegislash ? entry.forms.find(f => f.kind === 'Blade Forme') : null;
+  const bladeActive = isAegislash && slotIdx !== -1 && !!aegislashBlade[slotIdx];
+
+  const dispName  = activeMega ? activeMega.name : baseDisplayName(name);
+  const dispTypes = activeMega ? activeMega.types : (bladeActive ? bladeForm.types : entry.types);
+  const activeSrc = activeMega ? megaSpriteUrl(activeMega.name)
+    : bladeActive ? 'https://play.pokemonshowdown.com/sprites/gen5/aegislash-blade.png'
+    : spriteUrl(name);
+  const fallSrc   = spriteUrl(name);
+
+  // Form tabs (only if Pokemon is in a team slot)
+  let formTabsHtml = '';
+  if (megas.length > 0 && slotIdx !== -1) {
+    const tabs = [{ label: 'Base', idx: null }, ...megas.map((f, i) => ({ label: f.kind, idx: i }))];
+    formTabsHtml = `<div class="form-tabs" id="form-tabs">${tabs.map(t => {
+      const active = t.idx === null ? activeMegaIdx === undefined : t.idx === activeMegaIdx;
+      return `<button class="form-tab${active ? ' active' : ''}" data-mega-idx="${t.idx ?? ''}">${t.label}</button>`;
+    }).join('')}</div>`;
+  } else if (isAegislash && slotIdx !== -1) {
+    formTabsHtml = `<select class="forme-select" id="aegislash-forme-select">
+      <option value="shield"${bladeActive ? '' : ' selected'}>Shield Forme</option>
+      <option value="blade"${bladeActive ? ' selected' : ''}>Blade Forme</option>
+    </select>`;
+  }
+
+  // Mega ability + type display
+  const megaAbilityHtml = activeMega?.abilities?.length
+    ? `<div class="mega-ability">Ability: ${activeMega.abilities.map(a =>
+        `<span class="tt-ability" data-tt="ability|${a}">${a}</span>`
+      ).join(' / ')}</div>` : '';
+  const typeHtml = dispTypes?.length
+    ? `<div class="mega-types">${typePips(dispTypes)}</div>` : '';
+
   if (!p) {
     panel.className = 'panel visible';
     panel.innerHTML = `
       <div class="panel-head">
-        <img class="panel-sprite" src="${spriteUrl(name)}" alt="${name}" onerror="this.style.opacity='0.2'">
+        <img class="panel-sprite" src="${activeSrc}" alt="${dispName}"
+             onerror="this.src='${fallSrc}';this.onerror=null;">
         <div>
-          <div class="panel-pname">${name.toUpperCase()}</div>
+          <div class="panel-pname">${dispName.toUpperCase()}</div>
+          ${typeHtml}${formTabsHtml}${megaAbilityHtml}
           <div style="color:var(--muted);font-size:.8rem;margin-top:8px">No doubles data available for this Pokémon.</div>
         </div>
       </div>`;
+    panel.querySelectorAll('.form-tab').forEach(btn => btn.addEventListener('click', () => {
+      const raw = btn.dataset.megaIdx;
+      setMegaForm(slotIdx, raw === '' ? undefined : parseInt(raw));
+      showPanel(name); renderTeam(); renderSpeedTiers();
+    }));
+    attachTooltips(panel);
     return;
   }
 
-  function barRows(items) {
+  function barRows(items, type) {
     return (items || []).map(it => {
       const pct = Math.min(it.percentage, 100);
-      return `<div class="bar-row">
+      const ttAttr = type ? ` data-tt="${type}|${it.name}"` : '';
+      return `<div class="bar-row"${ttAttr}>
         <div class="bar-label">${it.name}</div>
         <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
         <div class="bar-pct">${it.percentage}%</div>
@@ -403,22 +953,38 @@ function showPanel(name) {
     }).join('');
   }
 
-  function evCards() {
-    return (p.ev_spreads || []).slice(0, 5).map(sp => {
-      const bars = ['hp','atk','def','spa','spd','spe'].map(s => {
-        const v = sp[s] || 0;
-        const pct = Math.round((v / 32) * 100);
-        return `<div class="ev-stat">
-          <div class="ev-stat-lbl" style="color:${STAT_COLORS[s]}">${STAT_LABELS[s]}</div>
-          <div class="ev-bar-wrap">
-            <div class="ev-bar-fill" style="height:${pct}%;background:${STAT_COLORS[s]}"></div>
-          </div>
-          <div class="ev-stat-val">${v}</div>
-        </div>`;
+  function buildCards() {
+    const spreads = p.ev_spreads || [];
+    const groups = {};
+    for (const sp of spreads) {
+      const key = classifyBuild(sp);
+      if (!groups[key]) groups[key] = { label: key, pct: 0, rep: sp };
+      groups[key].pct += sp.percentage;
+      if (sp.percentage > groups[key].rep.percentage) groups[key].rep = sp;
+    }
+    const sorted = Object.values(groups).sort((a, b) => b.pct - a.pct).filter(g => g.pct >= 2);
+    const topPct = sorted[0]?.pct || 1;
+    return sorted.map(g => {
+      const pct = Math.round(g.pct * 10) / 10;
+      const barW = Math.round((pct / topPct) * 100);
+      const statVals = ['hp','atk','def','spa','spd','spe'].map(s => {
+        const v = g.rep[s] || 0;
+        const opacity = v === 0 ? 0.18 : v >= 16 ? 1 : 0.5;
+        return `<span class="build-sval" style="color:${STAT_COLORS[s]};opacity:${opacity}">${STAT_LABELS[s]}:${v}</span>`;
       }).join('');
-      return `<div class="ev-card">
-        <div class="ev-usage">Usage: ${sp.percentage}%</div>
-        <div class="ev-stats">${bars}</div>
+      const formBase = activeMega?.base_stats ?? (bladeActive ? bladeForm.base_stats : null) ?? entry.base_stats;
+      const actualVals = ['hp','atk','def','spa','spd','spe'].map(s => {
+        const stat = (formBase?.[s] ?? 0) + (g.rep[s] || 0);
+        return `<span class="build-aval" style="color:${STAT_COLORS[s]}">${STAT_LABELS[s]}:<b>${stat}</b></span>`;
+      }).join('');
+      return `<div class="build-card">
+        <div class="build-row">
+          <span class="build-name">${g.label}</span>
+          <span class="build-pct">${pct}%</span>
+        </div>
+        <div class="build-track"><div class="build-fill" style="width:${barW}%"></div></div>
+        <div class="build-spread">${statVals}</div>
+        <div class="build-actual">${actualVals}</div>
       </div>`;
     }).join('');
   }
@@ -444,32 +1010,34 @@ function showPanel(name) {
   panel.className = 'panel visible';
   panel.innerHTML = `
     <div class="panel-head">
-      <img class="panel-sprite" src="${spriteUrl(name)}" alt="${name}" onerror="this.style.opacity='0.2'">
+      <img class="panel-sprite" src="${activeSrc}" alt="${dispName}"
+           onerror="this.src='${fallSrc}';this.onerror=null;">
       <div>
-        <div class="panel-pname">${name.toUpperCase()}</div>
+        <div class="panel-pname">${dispName.toUpperCase()}</div>
         <div class="panel-rank">Rank #${p.usage_rank ?? '—'} · Champions Format</div>
+        ${typeHtml}${formTabsHtml}${megaAbilityHtml}
       </div>
     </div>
     <div class="sections">
       <div>
         <div class="sec-title">Moves</div>
-        <div class="bar-list">${barRows(p.moves)}</div>
+        <div class="bar-list">${barRows(p.moves, 'move')}</div>
       </div>
       <div>
         <div class="sec-title">Items</div>
-        <div class="bar-list">${barRows(p.held_items)}</div>
+        <div class="bar-list">${barRows(p.held_items, 'item')}</div>
       </div>
       <div>
         <div class="sec-title">Abilities</div>
-        <div class="bar-list">${barRows(p.abilities)}</div>
+        <div class="bar-list">${barRows(p.abilities, 'ability')}</div>
       </div>
       <div>
         <div class="sec-title">Natures</div>
         <div class="bar-list">${natureRows()}</div>
       </div>
       <div class="full">
-        <div class="sec-title">EV Spreads <span style="font-weight:400;opacity:.5;font-size:.62rem;letter-spacing:0">(max 32 per stat)</span></div>
-        <div class="ev-list">${evCards()}</div>
+        <div class="sec-title">Stat Alignment <span style="font-size:0.6rem;font-weight:500;opacity:0.45;letter-spacing:0;text-transform:none">· neutral ×nature${activeMega ? ` · ${activeMega.name}` : bladeActive ? ' · Aegislash [Blade Forme]' : ''}</span></div>
+        <div class="build-list">${buildCards()}</div>
       </div>
       <div class="full">
         <div class="sec-title">Top Teammates</div>
@@ -488,26 +1056,140 @@ function showPanel(name) {
       render();
     });
   });
+
+  // Form tab listeners (only present when Pokemon is in team with mega forms)
+  panel.querySelectorAll('.form-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const raw = btn.dataset.megaIdx;
+      setMegaForm(slotIdx, raw === '' ? undefined : parseInt(raw));
+      showPanel(name);
+      renderTeam();
+      renderSpeedTiers();
+    });
+  });
+
+  const aegiSelect = panel.querySelector('#aegislash-forme-select');
+  if (aegiSelect) {
+    aegiSelect.addEventListener('change', () => {
+      aegislashBlade[slotIdx] = aegiSelect.value === 'blade';
+      showPanel(name);
+    });
+  }
+
+  attachTooltips(panel);
 }
 
 // ── SPEED TIERS ──────────────────────────────────────────────────────────────
 
 let speedOpen = false;
+let manualEntries = []; // [{name, spe}]
 
-// Gen 9 Lv50 stat formula — Champions EVs are 0-32 used directly as standard EVs
-// floor(32/4) = 8 stat contribution, which fits observed stats (Sneasler Jolly 32EVs = 180)
-function calcSpe(base, ev, nature) {
-  const step = Math.floor((2 * base + 31 + Math.floor(ev / 4)) / 2 + 5);
-  return Math.floor(step * nature);
+function renderManualSection() {
+  const el = document.getElementById('speed-manual');
+  if (!el) return;
+
+  const chipsHtml = manualEntries.map((e, i) =>
+    `<span class="manual-chip">
+      ${e.name} <b>${e.spe}</b>
+      <span class="manual-chip-x" data-idx="${i}">×</span>
+    </span>`
+  ).join('');
+
+  const canAdd = manualEntries.length < 6;
+  el.innerHTML = `<div class="manual-section">
+    <div class="sec-title">Your Pokémon</div>
+    ${chipsHtml ? `<div class="manual-chips">${chipsHtml}</div>` : ''}
+    ${canAdd
+      ? `<div class="manual-form">
+           <input class="manual-input" id="m-name" placeholder="Name" style="flex:1" autocomplete="off" spellcheck="false">
+           <input class="manual-input" id="m-spe" type="number" placeholder="Speed" value="130" style="width:72px" min="1" max="999">
+           <button class="manual-add-btn" id="m-add">Add</button>
+         </div>
+         <div id="m-dropdown" class="manual-dropdown" style="display:none"></div>`
+      : `<div style="font-size:.72rem;color:var(--muted)">Max 6 reached</div>`
+    }
+  </div>`;
+
+  el.querySelectorAll('.manual-chip-x').forEach(x => {
+    x.addEventListener('click', () => {
+      manualEntries.splice(parseInt(x.dataset.idx), 1);
+      renderManualSection();
+      renderSpeedTiers();
+    });
+  });
+
+  const addBtn = el.querySelector('#m-add');
+  const nameEl = el.querySelector('#m-name');
+  const speEl  = el.querySelector('#m-spe');
+  const dropEl = el.querySelector('#m-dropdown');
+  if (!addBtn) return;
+
+  function selectPokemon(name) {
+    nameEl.value = name;
+    dropEl.style.display = 'none';
+    dropEl.innerHTML = '';
+    const p = DB[name];
+    if (p?.base_stats?.spe != null) {
+      speEl.value = calcSpe(p.base_stats.spe, 0, 1.0);
+    }
+    speEl.focus();
+    speEl.select();
+  }
+
+  nameEl.addEventListener('input', () => {
+    const q = nameEl.value.trim().toLowerCase();
+    if (!q) { dropEl.style.display = 'none'; dropEl.innerHTML = ''; return; }
+    const starts = ALL.filter(n => n.toLowerCase().startsWith(q));
+    const rest   = ALL.filter(n => !n.toLowerCase().startsWith(q) && n.toLowerCase().includes(q));
+    const matches = [...starts, ...rest].slice(0, 8);
+    if (!matches.length) { dropEl.style.display = 'none'; dropEl.innerHTML = ''; return; }
+    dropEl.innerHTML = matches.map(n =>
+      `<div class="manual-drop-item" data-name="${n}">${n}</div>`
+    ).join('');
+    dropEl.style.display = '';
+    dropEl.querySelectorAll('.manual-drop-item').forEach(item => {
+      item.addEventListener('mousedown', e => {
+        e.preventDefault();
+        selectPokemon(item.dataset.name);
+      });
+    });
+  });
+
+  nameEl.addEventListener('blur', () => {
+    setTimeout(() => { dropEl.style.display = 'none'; dropEl.innerHTML = ''; }, 150);
+  });
+
+  const doAdd = () => {
+    const name = nameEl.value.trim();
+    const spe  = parseInt(speEl.value);
+    if (!name || isNaN(spe) || spe < 1) return;
+    manualEntries.push({ name, spe });
+    nameEl.value = '';
+    speEl.value  = '';
+    nameEl.focus();
+    renderManualSection();
+    renderSpeedTiers();
+  };
+
+  addBtn.addEventListener('click', doAdd);
+  speEl.addEventListener('keydown',  e => { if (e.key === 'Enter') doAdd(); });
+  nameEl.addEventListener('keydown', e => { if (e.key === 'Enter') speEl.focus(); });
+}
+
+// Champions stat formula: stat = floor((base_json + SP) * nature)
+// base_json in the JSON already stores the Lv50 neutral stat (31 IVs baked in, 0 SP).
+// Each SP (0–32) adds +1 directly BEFORE nature is applied.
+function calcSpe(baseJson, sp, nature) {
+  return Math.floor((baseJson + sp) * nature);
 }
 
 function renderSpeedTiers() {
-  const body = document.getElementById('speed-body');
-  if (!body || !speedOpen) return;
+  const tiers = document.getElementById('speed-tiers');
+  if (!tiers || !speedOpen) return;
 
   const members = team.filter(n => n !== null);
-  if (members.length === 0) {
-    body.innerHTML = '<div style="color:var(--muted);font-size:.78rem;padding:6px 0">Add Pokémon to your team to see speed tiers.</div>';
+  if (members.length === 0 && manualEntries.length === 0) {
+    tiers.innerHTML = '<div style="color:var(--muted);font-size:.78rem;padding:6px 0">Add Pokémon to your team or enter yours below to see speed tiers.</div>';
     return;
   }
 
@@ -518,7 +1200,10 @@ function renderSpeedTiers() {
   for (const name of members) {
     const p = DB[name];
     if (!p) continue;
-    const base = p.base_stats?.spe ?? 0;
+    const slotIdx   = team.indexOf(name);
+    const activeMega = getActiveMegaForm(name, slotIdx);
+    const base = activeMega ? activeMega.base_stats.spe : (p.base_stats?.spe ?? 0);
+    const dispName   = activeMega ? activeMega.name : name;
     const spreads = p.doubles?.ev_spreads || [];
     const natures = p.doubles?.natures || [];
     const items   = p.doubles?.held_items || [];
@@ -534,20 +1219,26 @@ function renderSpeedTiers() {
     const plusNatPct = Math.round(plusNat.reduce((s, n) => s + n.percentage, 0));
     const topPlusNat = plusNat[0]?.name ?? null;
 
-    entries.push({ name, base, minStat, maxStat, maxEvPct, plusNatPct, topPlusNat, isScarf: false, sortKey: base });
+    entries.push({ name: dispName, base, minStat, maxStat, maxEvPct, plusNatPct, topPlusNat, isScarf: false, sortKey: maxStat });
 
-    // Scarf entry — check all held_items (top 10 included)
-    const scarfItem = items.find(x => x.name === 'Choice Scarf');
+    // Scarf entry — skipped when mega is active (Mega Pokemon can't hold items)
+    const scarfItem = !activeMega && items.find(x => x.name === 'Choice Scarf');
     if (scarfItem) {
+      const scarfMax = Math.floor(maxStat * 1.5);
       entries.push({
-        name, base,
+        name: dispName, base,
         minStat: Math.floor(minStat * 1.5),
-        maxStat: Math.floor(maxStat * 1.5),
+        maxStat: scarfMax,
         scarfPct: scarfItem.percentage,
         isScarf: true,
-        sortKey: Math.floor(base * 1.5)
+        sortKey: scarfMax
       });
     }
+  }
+
+  // Manual entries — sort by actual stat entered
+  for (const e of manualEntries) {
+    entries.push({ name: e.name, spe: e.spe, isManual: true, sortKey: e.spe });
   }
 
   entries.sort((a, b) => b.sortKey - a.sortKey);
@@ -562,7 +1253,15 @@ function renderSpeedTiers() {
       html += `<div class="tier-gap${tight ? ' tight' : ''}">${tight ? `↕ TIGHT +${diff}` : `+${diff}`}</div>`;
     }
 
-    if (e.isScarf) {
+    if (e.isManual) {
+      html += `
+        <div class="tier-row manual-row">
+          <div class="tier-spe">${e.spe}</div>
+          <div class="tier-chips">
+            <span class="speed-chip chip-manual">${e.name}</span>
+          </div>
+        </div>`;
+    } else if (e.isScarf) {
       html += `
         <div class="tier-row scarf-row">
           <div class="tier-spe">${e.sortKey}</div>
@@ -580,7 +1279,7 @@ function renderSpeedTiers() {
       const notes   = [evNote, natNote].filter(Boolean).join(' · ');
       html += `
         <div class="tier-row">
-          <div class="tier-spe">${e.base}</div>
+          <div class="tier-spe">${e.maxStat}</div>
           <div class="tier-chips">
             <span class="speed-chip chip-team">${e.name}</span>
             <div class="speed-meta">
@@ -591,7 +1290,7 @@ function renderSpeedTiers() {
         </div>`;
     }
   }
-  body.innerHTML = html;
+  tiers.innerHTML = html;
 }
 
 // ── INIT ─────────────────────────────────────────────────────────────────────
@@ -600,12 +1299,14 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && pickerIdx !== null) { pickerIdx = null; render(); }
 });
 
+fetch('../../moves_data.json').then(r => r.json()).then(d => { MOVES_DATA = d; }).catch(() => {});
+
 fetch('../../pokemon_data.json')
   .then(r => r.json())
   .then(arr => {
     arr.forEach(p => { DB[p.name] = p; });
     ALL = arr
-      .slice()
+      .filter(p => p.doubles)
       .sort((a, b) => (a.doubles?.usage_rank ?? 9999) - (b.doubles?.usage_rank ?? 9999))
       .map(p => p.name);
 
@@ -615,10 +1316,12 @@ fetch('../../pokemon_data.json')
     const body    = document.getElementById('speed-body');
     const btn     = document.getElementById('speed-toggle-btn');
     section.style.display = '';
+    let manualReady = false;
     header.addEventListener('click', () => {
       speedOpen = !speedOpen;
       body.style.display = speedOpen ? '' : 'none';
       btn.textContent = speedOpen ? '▲ Hide' : '▼ Show';
+      if (speedOpen && !manualReady) { renderManualSection(); manualReady = true; }
       renderSpeedTiers();
     });
 
