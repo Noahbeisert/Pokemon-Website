@@ -110,14 +110,26 @@ ROLE_SIGNALS = {
     "redirect":      ["Rage Powder", "Follow Me"],
     "speed_control": ["Icy Wind", "Thunder Wave", "Electroweb", "Bulldoze", "Rock Tomb"],
     "setup":         ["Swords Dance", "Nasty Plot", "Quiver Dance", "Dragon Dance",
-                      "Calm Mind", "Coil", "Shell Smash", "Shift Gear"],
+                      "Calm Mind", "Shell Smash", "Shift Gear"],
+    # Separate from "setup": Coil boosts Defense (and accuracy), so it makes the
+    # user tankier and more reliable immediately — unlike pure power/speed setup
+    # moves, it doesn't need a safe backline turn to pay off.
+    "bulk_setup":    ["Coil"],
     "screen":        ["Aurora Veil", "Light Screen", "Reflect"],
     "weather":       ["Sunny Day", "Rain Dance", "Sandstorm", "Snowscape", "Hail"],
     "healing":       ["Life Dew", "Heal Pulse", "Recover", "Roost", "Slack Off"],
     "helping_hand":  ["Helping Hand"],
     "wide_guard":    ["Wide Guard"],
-    "protect":       ["Protect", "Detect", "King's Shield", "Baneful Bunker",
-                      "Spiky Shield", "Obstruct"],
+}
+
+# Every doubles mon runs one of these — they don't differentiate a role
+PROTECT_MOVES = {"Protect", "Detect", "King's Shield", "Baneful Bunker",
+                  "Spiky Shield", "Obstruct"}
+
+# Role tags that mean "does something for the team" rather than "hits things"
+SUPPORT_FLAVOR_ROLES = {
+    "fake_out", "tailwind", "trick_room", "redirect", "speed_control",
+    "screen", "weather", "healing", "helping_hand", "wide_guard",
 }
 
 
@@ -194,15 +206,46 @@ def defensive_weakness(defender, attacker_types):
 # Role detection
 # ---------------------------------------------------------------------------
 
+# A move used by fewer than this % of recorded teams is a tech pick, not a real set.
+# Position-based cutoffs (e.g. "top 6") are wrong when a mon has 2+ common builds —
+# a move can be a real, common set and still rank 8th because it competes with moves
+# from a *different* build (see Milotic: Coil/Hypnosis sit at 25%/24.4%, rank 8-9,
+# right behind moves from its separate Scald/Ice Beam damage set).
+ROLE_MIN_USAGE = 20.0
+
 def detect_roles(pokemon):
     roles = []
     if not pokemon.get("doubles"):
         return roles
-    top_moves = {m["name"] for m in pokemon["doubles"]["moves"][:6]}
+    top_moves = {m["name"] for m in pokemon["doubles"]["moves"] if m["percentage"] >= ROLE_MIN_USAGE}
     for role, signals in ROLE_SIGNALS.items():
         if any(s in top_moves for s in signals):
             roles.append(role)
     return roles
+
+
+_MOVE_CATEGORIES = None
+
+def load_move_categories(path="moves_data.json"):
+    global _MOVE_CATEGORIES
+    with open(path, encoding="utf-8") as f:
+        data = json.load(f)
+    _MOVE_CATEGORIES = {m["name"]: m["category"] for m in data.values()}
+    return _MOVE_CATEGORIES
+
+
+def archetype(pokemon):
+    """Broad Support / Damage / Hybrid tag from role flavor + how many top moves hit."""
+    if not pokemon.get("doubles"):
+        return "damage"
+    cats = _MOVE_CATEGORIES or load_move_categories()
+    support_flavor = bool(set(detect_roles(pokemon)) & SUPPORT_FLAVOR_ROLES)
+    if not support_flavor:
+        return "damage"
+    top_moves = [m["name"] for m in pokemon["doubles"]["moves"]
+                 if m["percentage"] >= ROLE_MIN_USAGE and m["name"] not in PROTECT_MOVES]
+    dmg_count = sum(1 for name in top_moves if cats.get(name) in ("Physical", "Special"))
+    return "hybrid" if dmg_count >= 2 else "support"
 
 
 def effective_speed(pokemon):
@@ -225,6 +268,11 @@ def effective_speed(pokemon):
 # Scoring functions
 # ---------------------------------------------------------------------------
 
+# Abilities whose value is only realized after the ally has taken damage —
+# leading wastes the trigger since both sides start turn 1 at full HP.
+_WASTED_LEAD_ABILITIES = {"Hospitality": -2.5}
+
+
 def lead_affinity(pokemon):
     """How likely this Pokemon is to lead (0–10 scale)."""
     roles = detect_roles(pokemon)
@@ -243,6 +291,11 @@ def lead_affinity(pokemon):
         score += 1
     if "setup" in roles:
         score -= 1  # setup mons often go in back
+    if "bulk_setup" in roles:
+        score += 1  # boosts survivability/accuracy right away — a fine lead trait
+    if pokemon.get("doubles") and pokemon["doubles"]["abilities"]:
+        top_ability = pokemon["doubles"]["abilities"][0]["name"]
+        score += _WASTED_LEAD_ABILITIES.get(top_ability, 0)
     # Speed: very fast mons are more often leads
     spe = effective_speed(pokemon)
     if spe >= 110:
@@ -386,7 +439,10 @@ def bring_scores(opp_6, my_6):
 def lead_pair_score(p1, p2, vs_team):
     """Score a lead pair: lead affinity + synergy + threat to vs_team + weather denial."""
     s = lead_affinity(p1) + lead_affinity(p2)
-    s += synergy_bonus(p1, p2) * 1.5
+    # Low weight: this is teammate co-occurrence (who gets built together),
+    # not lead-order data — bring_scores/bring_weight already use it for team
+    # selection, so lead_affinity should dominate here, not this.
+    s += synergy_bonus(p1, p2) * 0.2
     s += threat_to_team(p1, vs_team) + threat_to_team(p2, vs_team)
     # If either lead can immediately flip the opponent's weather, that's high value
     s += max(weather_counter_bonus(p, vs_team) for p in (p1, p2))
@@ -617,6 +673,7 @@ def solve_preview(my_names, opp_names):
                                 for s, op1, op2, back in opp_lead_opts],
         "counter_leads":       counter_leads,
         "roles":               {p["name"]: detect_roles(p) for p in opp_team},
+        "archetypes":          {p["name"]: archetype(p) for p in opp_team},
         "speed_tiers":         {p["name"]: round(effective_speed(p), 1) for p in opp_team},
         "opp_weather_setters":  opp_weather_setters,
         "my_weather_counters":  my_weather_counters,
@@ -675,9 +732,10 @@ def print_analysis(my_names, opp_names):
     print(f"\n--- OPPONENT ROLES & SPEED ---")
     for name in opp_names:
         roles    = r["roles"].get(name, [])
+        arch     = r["archetypes"].get(name, "damage")
         spe      = r["speed_tiers"].get(name, "?")
-        role_str = ", ".join(roles) if roles else "attacker"
-        print(f"  {name:<24} spe {str(spe):<7} [{role_str}]")
+        role_str = ", ".join(roles) if roles else "-"
+        print(f"  {name:<24} spe {str(spe):<7} {arch.upper():<8} [{role_str}]")
 
     # Threats
     print(f"\n--- OPPONENT THREATS TO YOUR TEAM ---")
@@ -725,6 +783,6 @@ def print_analysis(my_names, opp_names):
 # Test
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
-    MY_TEAM  = ["Charizard", "Basculegion Male", "Kingambit", "Whimsicott", "Garchomp", "Floette"]
-    OPP_TEAM = ["Swampert", "Pelipper", "Archaludon", "Sableye", "Whimsicott", "Sinistcha"]
+    MY_TEAM  = ["Charizard", "Basculegion Male", "Kingambit", "Aerodactyl", "Garchomp", "Sylveon"]
+    OPP_TEAM = ["Raichu", "Milotic", "Ceruledge", "Incineroar", "Floette", "Sinistcha"]
     print_analysis(MY_TEAM, OPP_TEAM)
