@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="121039a7-34c7-440b-b5d3-60d4bd118594" name="Changes" comment="Worked on calc (short for calculator btw)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pokemon/scraper/team_preview.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/team_preview.py" beforeDir="false" afterPath="$PROJECT_DIR$/team_preview.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +110,8 @@
       <workItem from="1782734841356" duration="432000" />
       <workItem from="1782936987063" duration="2450000" />
       <workItem from="1783023978201" duration="1492000" />
-      <workItem from="1783037242113" duration="2746000" />
+      <workItem from="1783037242113" duration="3069000" />
+      <workItem from="1783347648319" duration="1241000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
