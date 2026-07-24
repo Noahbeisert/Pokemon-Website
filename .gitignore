@@ -17,3 +17,7 @@ scraper_log.txt
 
 # IDE
 .idea/
+idea/
+
+# learning
+learning/

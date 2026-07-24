@@ -137,26 +137,44 @@ body {
 .bar-row { display: grid; grid-template-columns: 140px 1fr 42px; align-items: center; gap: 8px; }
 .bar-label { font-size: 0.77rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .nature-sub { display: block; font-size: 0.58rem; color: var(--muted); margin-top: 1px; letter-spacing: 0.3px; }
-.bar-row.nat { align-items: flex-start; padding-top: 1px; }
+.bar-row.nat { align-items: flex-start; padding-top: 1px; cursor: pointer; border-radius: 5px; transition: background 0.12s; }
+.bar-row.nat:hover { background: rgba(255,255,255,0.03); }
+.bar-row.nat.active .bar-label { color: #fb923c; }
+.bar-row.nat.active .bar-fill { background: #fb923c; }
 .bar-track { height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
 .bar-row.nat .bar-track { margin-top: 6px; }
 .bar-fill { height: 100%; background: var(--accent); border-radius: 2px; }
 .bar-pct { font-size: 0.68rem; color: var(--muted); text-align: right; }
 .bar-row.nat .bar-pct { margin-top: 5px; }
 
-/* stat alignment builds */
-.build-list { display: flex; flex-direction: column; gap: 8px; }
-.build-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
-.build-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
-.build-name { font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px; color: var(--text); }
-.build-pct { font-size: 0.72rem; color: var(--accent); font-weight: 600; }
-.build-track { height: 2px; background: rgba(255,255,255,0.06); border-radius: 2px; margin-bottom: 9px; }
-.build-fill { height: 100%; background: var(--accent); border-radius: 2px; opacity: 0.6; }
-.build-spread { display: flex; gap: 10px; flex-wrap: wrap; }
-.build-sval { font-size: 0.67rem; font-weight: 600; }
-.build-actual { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.05); }
-.build-aval { font-size: 0.67rem; font-weight: 400; opacity: 0.85; }
-.build-aval b { font-weight: 700; }
+/* abilities column + stat box */
+.abilities-col { display: flex; flex-direction: column; gap: 14px; }
+.stat-box { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
+.stat-box-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+.stat-build-name { font-family: 'Rajdhani', sans-serif; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.5px; color: var(--text); }
+.stat-build-pct { font-size: 0.72rem; color: var(--accent); font-weight: 600; margin-left: 6px; }
+.stat-state { font-size: 0.6rem; color: var(--muted); margin-bottom: 6px; }
+.stat-nav { display: flex; align-items: center; gap: 6px; }
+.stat-nav-btn {
+  background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+  border-radius: 5px; width: 20px; height: 20px; line-height: 1; cursor: pointer;
+  font-size: 0.75rem; display: flex; align-items: center; justify-content: center;
+  transition: all 0.12s;
+}
+.stat-nav-btn:hover { border-color: var(--accent); color: var(--accent); }
+.stat-page-dots { font-size: 0.6rem; color: var(--muted); min-width: 26px; text-align: center; }
+.stat-track { height: 2px; background: rgba(255,255,255,0.06); border-radius: 2px; margin-bottom: 9px; }
+.stat-fill { height: 100%; background: var(--accent); border-radius: 2px; opacity: 0.6; }
+.stat-spread { display: flex; gap: 10px; flex-wrap: wrap; }
+.stat-sval { font-size: 0.67rem; font-weight: 600; }
+.stat-actual { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.05); }
+.stat-aval { font-size: 0.67rem; font-weight: 400; opacity: 0.85; }
+.stat-aval b { font-weight: 700; }
+.stat-delta { font-size: 0.62rem; font-weight: 700; margin-left: 2px; }
+.stat-delta.up { color: #4ade80; }
+.stat-delta.down { color: #f87171; }
+.stat-mega-toggle { margin-top: 9px; padding-top: 9px; border-top: 1px solid rgba(255,255,255,0.05); }
+.stat-mega-toggle .mega-btn { margin-top: 0; }
 
 /* teammates */
 .mate-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
@@ -260,22 +278,7 @@ body {
 }
 .mega-btn:hover { background: rgba(251,146,60,0.15); }
 .mega-btn.is-mega { background: rgba(251,146,60,0.18); border-color: #fb923c; color: #fff; }
-.form-tabs { display: flex; gap: 5px; margin-top: 8px; flex-wrap: wrap; }
-.form-tab {
-  background: var(--surface2); border: 1px solid var(--border);
-  color: var(--muted); border-radius: 5px; padding: 3px 10px;
-  font-size: 0.62rem; letter-spacing: 0.5px; font-weight: 600;
-  cursor: pointer; font-family: 'Rajdhani', sans-serif; transition: all 0.12s;
-}
-.form-tab:hover { border-color: #fb923c; color: #fb923c; }
-.form-tab.active { border-color: #fb923c; background: rgba(251,146,60,0.15); color: #fb923c; }
 .mega-ability { font-size: 0.68rem; color: #fb923c; margin-top: 5px; font-weight: 500; }
-.forme-select {
-  margin-top: 8px; background: var(--surface2); border: 1px solid var(--border);
-  color: var(--text); border-radius: 5px; padding: 3px 8px;
-  font-size: 0.7rem; font-weight: 600; cursor: pointer;
-  font-family: 'Rajdhani', sans-serif;
-}
 .tt-ability { cursor: help; border-bottom: 1px dotted #fb923c; }
 .mega-types { display: flex; gap: 4px; margin-top: 5px; }
 .type-pip {
@@ -333,6 +336,13 @@ body {
 <script>
 const STAT_COLORS = { hp:'#f87171', atk:'#fb923c', def:'#facc15', spa:'#60a5fa', spd:'#4ade80', spe:'#f472b6' };
 const STAT_LABELS = { hp:'HP', atk:'Atk', def:'Def', spa:'SpA', spd:'SpD', spe:'Spe' };
+const NATURE_STAT_KEY = { 'Attack':'atk', 'Defense':'def', 'Sp. Atk':'spa', 'Sp. Def':'spd', 'Speed':'spe' };
+
+// Source data leaves a handful of rows with a blank percentage (scrape gaps,
+// not zeros) — show them as "—" instead of the raw null.
+function pctLabel(v) {
+  return v == null ? '—' : `${v}%`;
+}
 const TYPE_COLORS = {
   normal:'#9099a1', fire:'#ff7c24', water:'#4d90d5', electric:'#f5c945',
   grass:'#5fbc51', ice:'#73cec0', fighting:'#ce3f6a', poison:'#ab6ac8',
@@ -349,6 +359,8 @@ let pinnedIdx = null;
 let pickerIdx = null;
 let hoverPanel = null;
 const megaState = {}; // { slotIdx: megaFormIdx } — undefined = base form
+const panelBuildIdx = {}; // { name: idx } — which build page the stat box shows
+const panelNature = {};   // { name: natureName|null } — nature previewed in the stat box
 const aegislashBlade = {}; // { slotIdx: true } — Blade Forme stat preview only, never exported
 
 // ── TOOLTIP SYSTEM ────────────────────────────────────────────────────────────
@@ -885,28 +897,19 @@ function showPanel(name) {
     : spriteUrl(name);
   const fallSrc   = spriteUrl(name);
 
-  // Form tabs (only if Pokemon is in a team slot)
-  let formTabsHtml = '';
-  if (megas.length > 0 && slotIdx !== -1) {
-    const tabs = [{ label: 'Base', idx: null }, ...megas.map((f, i) => ({ label: f.kind, idx: i }))];
-    formTabsHtml = `<div class="form-tabs" id="form-tabs">${tabs.map(t => {
-      const active = t.idx === null ? activeMegaIdx === undefined : t.idx === activeMegaIdx;
-      return `<button class="form-tab${active ? ' active' : ''}" data-mega-idx="${t.idx ?? ''}">${t.label}</button>`;
-    }).join('')}</div>`;
-  } else if (isAegislash && slotIdx !== -1) {
-    formTabsHtml = `<select class="forme-select" id="aegislash-forme-select">
-      <option value="shield"${bladeActive ? '' : ' selected'}>Shield Forme</option>
-      <option value="blade"${bladeActive ? ' selected' : ''}>Blade Forme</option>
-    </select>`;
-  }
-
-  // Mega ability + type display
-  const megaAbilityHtml = activeMega?.abilities?.length
-    ? `<div class="mega-ability">Ability: ${activeMega.abilities.map(a =>
-        `<span class="tt-ability" data-tt="ability|${a}">${a}</span>`
-      ).join(' / ')}</div>` : '';
   const typeHtml = dispTypes?.length
     ? `<div class="mega-types">${typePips(dispTypes)}</div>` : '';
+
+  // Always-visible info row: what ability you get if you hold the mega stone,
+  // independent of whether the mega toggle is currently active.
+  function megaAbilityRows() {
+    return megas.map(m => {
+      const abilities = (m.abilities || []).map(a =>
+        `<span class="tt-ability" data-tt="ability|${a}">${a}</span>`
+      ).join(' / ');
+      return `<div class="mega-ability">${m.kind}: ${abilities}</div>`;
+    }).join('');
+  }
 
   if (!p) {
     panel.className = 'panel visible';
@@ -916,77 +919,113 @@ function showPanel(name) {
              onerror="this.src='${fallSrc}';this.onerror=null;">
         <div>
           <div class="panel-pname">${dispName.toUpperCase()}</div>
-          ${typeHtml}${formTabsHtml}${megaAbilityHtml}
+          ${typeHtml}${megaAbilityRows()}
           <div style="color:var(--muted);font-size:.8rem;margin-top:8px">No doubles data available for this Pokémon.</div>
         </div>
       </div>`;
-    panel.querySelectorAll('.form-tab').forEach(btn => btn.addEventListener('click', () => {
-      const raw = btn.dataset.megaIdx;
-      setMegaForm(slotIdx, raw === '' ? undefined : parseInt(raw));
-      showPanel(name); renderTeam(); renderSpeedTiers();
-    }));
     attachTooltips(panel);
     return;
   }
 
   function barRows(items, type) {
     return (items || []).map(it => {
-      const pct = Math.min(it.percentage, 100);
+      const pct = Math.min(it.percentage ?? 0, 100);
       const ttAttr = type ? ` data-tt="${type}|${it.name}"` : '';
       return `<div class="bar-row"${ttAttr}>
         <div class="bar-label">${it.name}</div>
         <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
-        <div class="bar-pct">${it.percentage}%</div>
+        <div class="bar-pct">${pctLabel(it.percentage)}</div>
       </div>`;
     }).join('');
   }
 
   function natureRows() {
     return (p.natures || []).map(it => {
-      const pct = Math.min(it.percentage, 100);
+      const pct = Math.min(it.percentage ?? 0, 100);
       const sub = it.stat_up ? `↑${it.stat_up} / ↓${it.stat_down}` : '';
-      return `<div class="bar-row nat">
+      const active = panelNature[name] === it.name ? ' active' : '';
+      return `<div class="bar-row nat${active}" data-nature="${it.name}">
         <div class="bar-label">${it.name}<span class="nature-sub">${sub}</span></div>
         <div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>
-        <div class="bar-pct">${it.percentage}%</div>
+        <div class="bar-pct">${pctLabel(it.percentage)}</div>
       </div>`;
     }).join('');
   }
 
-  function buildCards() {
+  // Groups usage EV spreads into named builds (classifyBuild), then shows one
+  // build at a time — paged with prev/next — with the previewed nature and
+  // mega toggle applied live to the "actual" stat row.
+  function statBoxHtml() {
     const spreads = p.ev_spreads || [];
     const groups = {};
     for (const sp of spreads) {
       const key = classifyBuild(sp);
       if (!groups[key]) groups[key] = { label: key, pct: 0, rep: sp };
-      groups[key].pct += sp.percentage;
-      if (sp.percentage > groups[key].rep.percentage) groups[key].rep = sp;
+      groups[key].pct += sp.percentage ?? 0;
+      if ((sp.percentage ?? 0) > (groups[key].rep.percentage ?? 0)) groups[key].rep = sp;
     }
     const sorted = Object.values(groups).sort((a, b) => b.pct - a.pct).filter(g => g.pct >= 2);
-    const topPct = sorted[0]?.pct || 1;
-    return sorted.map(g => {
-      const pct = Math.round(g.pct * 10) / 10;
-      const barW = Math.round((pct / topPct) * 100);
-      const statVals = ['hp','atk','def','spa','spd','spe'].map(s => {
-        const v = g.rep[s] || 0;
-        const opacity = v === 0 ? 0.18 : v >= 16 ? 1 : 0.5;
-        return `<span class="build-sval" style="color:${STAT_COLORS[s]};opacity:${opacity}">${STAT_LABELS[s]}:${v}</span>`;
-      }).join('');
-      const formBase = activeMega?.base_stats ?? (bladeActive ? bladeForm.base_stats : null) ?? entry.base_stats;
-      const actualVals = ['hp','atk','def','spa','spd','spe'].map(s => {
-        const stat = (formBase?.[s] ?? 0) + (g.rep[s] || 0);
-        return `<span class="build-aval" style="color:${STAT_COLORS[s]}">${STAT_LABELS[s]}:<b>${stat}</b></span>`;
-      }).join('');
-      return `<div class="build-card">
-        <div class="build-row">
-          <span class="build-name">${g.label}</span>
-          <span class="build-pct">${pct}%</span>
-        </div>
-        <div class="build-track"><div class="build-fill" style="width:${barW}%"></div></div>
-        <div class="build-spread">${statVals}</div>
-        <div class="build-actual">${actualVals}</div>
-      </div>`;
+    if (!sorted.length) return '';
+
+    const rawIdx = panelBuildIdx[name] ?? 0;
+    const idx = ((rawIdx % sorted.length) + sorted.length) % sorted.length;
+    panelBuildIdx[name] = idx;
+    const g = sorted[idx];
+    const pct = Math.round(g.pct * 10) / 10;
+    const topPct = sorted[0].pct || 1;
+
+    const nature = (p.natures || []).find(n => n.name === panelNature[name]) || null;
+    const upKey = nature ? NATURE_STAT_KEY[nature.stat_up] : null;
+    const downKey = nature ? NATURE_STAT_KEY[nature.stat_down] : null;
+
+    const statVals = ['hp','atk','def','spa','spd','spe'].map(s => {
+      const v = g.rep[s] || 0;
+      const opacity = v === 0 ? 0.18 : v >= 16 ? 1 : 0.5;
+      return `<span class="stat-sval" style="color:${STAT_COLORS[s]};opacity:${opacity}">${STAT_LABELS[s]}:${v}</span>`;
     }).join('');
+
+    const formBase = activeMega?.base_stats ?? (bladeActive ? bladeForm.base_stats : null) ?? entry.base_stats;
+    const actualVals = ['hp','atk','def','spa','spd','spe'].map(s => {
+      const base = (formBase?.[s] ?? 0) + (g.rep[s] || 0);
+      let val = base, deltaHtml = '';
+      if (s === upKey) {
+        val = Math.round(base * 1.1);
+        deltaHtml = `<span class="stat-delta up">+${val - base}</span>`;
+      } else if (s === downKey) {
+        val = Math.round(base * 0.9);
+        deltaHtml = `<span class="stat-delta down">${val - base}</span>`;
+      }
+      return `<span class="stat-aval" style="color:${STAT_COLORS[s]}">${STAT_LABELS[s]}:<b>${val}</b>${deltaHtml}</span>`;
+    }).join('');
+
+    const canToggleMega = slotIdx !== -1 && megas.length > 0;
+    const canToggleBlade = isAegislash && slotIdx !== -1;
+    const formToggleHtml = canToggleMega
+      ? `<div class="stat-mega-toggle"><button class="mega-btn${activeMega ? ' is-mega' : ''}" id="stat-mega-toggle">${activeMega ? activeMega.kind : '⚡ Mega'}</button></div>`
+      : canToggleBlade
+      ? `<div class="stat-mega-toggle"><button class="mega-btn${bladeActive ? ' is-mega' : ''}" id="stat-blade-toggle">${bladeActive ? 'Blade Forme' : 'Shield Forme'}</button></div>`
+      : '';
+    const stateLabel = [nature ? nature.name : 'Neutral', activeMega ? activeMega.name : (bladeActive ? 'Blade Forme' : null)]
+      .filter(Boolean).join(' · ');
+
+    return `<div class="stat-box">
+      <div class="stat-box-head">
+        <div>
+          <span class="stat-build-name">${g.label}</span>
+          <span class="stat-build-pct">${pct}%</span>
+        </div>
+        <div class="stat-nav">
+          <button class="stat-nav-btn" id="stat-prev">‹</button>
+          <span class="stat-page-dots">${idx + 1}/${sorted.length}</span>
+          <button class="stat-nav-btn" id="stat-next">›</button>
+        </div>
+      </div>
+      <div class="stat-state">${stateLabel}</div>
+      <div class="stat-track"><div class="stat-fill" style="width:${Math.round((pct / topPct) * 100)}%"></div></div>
+      <div class="stat-spread">${statVals}</div>
+      <div class="stat-actual">${actualVals}</div>
+      ${formToggleHtml}
+    </div>`;
   }
 
   function mateCards() {
@@ -1015,7 +1054,7 @@ function showPanel(name) {
       <div>
         <div class="panel-pname">${dispName.toUpperCase()}</div>
         <div class="panel-rank">Rank #${p.usage_rank ?? '—'} · Champions Format</div>
-        ${typeHtml}${formTabsHtml}${megaAbilityHtml}
+        ${typeHtml}
       </div>
     </div>
     <div class="sections">
@@ -1027,17 +1066,17 @@ function showPanel(name) {
         <div class="sec-title">Items</div>
         <div class="bar-list">${barRows(p.held_items, 'item')}</div>
       </div>
-      <div>
-        <div class="sec-title">Abilities</div>
-        <div class="bar-list">${barRows(p.abilities, 'ability')}</div>
+      <div class="abilities-col">
+        <div>
+          <div class="sec-title">Abilities</div>
+          <div class="bar-list">${barRows(p.abilities, 'ability')}</div>
+          ${megaAbilityRows()}
+        </div>
+        ${statBoxHtml()}
       </div>
       <div>
         <div class="sec-title">Natures</div>
         <div class="bar-list">${natureRows()}</div>
-      </div>
-      <div class="full">
-        <div class="sec-title">Stat Alignment <span style="font-size:0.6rem;font-weight:500;opacity:0.45;letter-spacing:0;text-transform:none">· neutral ×nature${activeMega ? ` · ${activeMega.name}` : bladeActive ? ' · Aegislash [Blade Forme]' : ''}</span></div>
-        <div class="build-list">${buildCards()}</div>
       </div>
       <div class="full">
         <div class="sec-title">Top Teammates</div>
@@ -1057,21 +1096,32 @@ function showPanel(name) {
     });
   });
 
-  // Form tab listeners (only present when Pokemon is in team with mega forms)
-  panel.querySelectorAll('.form-tab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const raw = btn.dataset.megaIdx;
-      setMegaForm(slotIdx, raw === '' ? undefined : parseInt(raw));
+  // Nature rows double as a toggle: click applies that nature's ±10% to the
+  // stat box, click again to go back to neutral.
+  panel.querySelectorAll('.bar-row.nat').forEach(el => {
+    el.addEventListener('click', () => {
+      const natName = el.dataset.nature;
+      panelNature[name] = panelNature[name] === natName ? null : natName;
       showPanel(name);
-      renderTeam();
-      renderSpeedTiers();
     });
   });
 
-  const aegiSelect = panel.querySelector('#aegislash-forme-select');
-  if (aegiSelect) {
-    aegiSelect.addEventListener('change', () => {
-      aegislashBlade[slotIdx] = aegiSelect.value === 'blade';
+  const statPrevBtn = panel.querySelector('#stat-prev');
+  const statNextBtn = panel.querySelector('#stat-next');
+  if (statPrevBtn) statPrevBtn.addEventListener('click', () => { panelBuildIdx[name] = (panelBuildIdx[name] ?? 0) - 1; showPanel(name); });
+  if (statNextBtn) statNextBtn.addEventListener('click', () => { panelBuildIdx[name] = (panelBuildIdx[name] ?? 0) + 1; showPanel(name); });
+
+  // Mega toggle in the stat box reuses cycleMega, same as the roster's ⚡
+  // Mega badge — it flips megaState and does a full render (header included).
+  const statMegaBtn = panel.querySelector('#stat-mega-toggle');
+  if (statMegaBtn) statMegaBtn.addEventListener('click', () => cycleMega(slotIdx));
+
+  // Blade Forme toggle — stat preview only (see aegislashBlade declaration),
+  // so a local showPanel re-render is enough; no need for a full render().
+  const statBladeBtn = panel.querySelector('#stat-blade-toggle');
+  if (statBladeBtn) {
+    statBladeBtn.addEventListener('click', () => {
+      aegislashBlade[slotIdx] = !aegislashBlade[slotIdx];
       showPanel(name);
     });
   }
