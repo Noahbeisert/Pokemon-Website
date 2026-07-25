@@ -7,6 +7,10 @@ __pycache__/
 *.db-wal
 pokemon_app.db
 
+# Too large for git (171MB+, exceeds GitHub's 100MB hard limit) — regenerate
+# via scrape_limitless.py / scrape_vgcpastes.py, or share out-of-band
+pokemon/scraper/pokebase_champions.db
+
 # Scraped data — regenerate by running scrapers
 showdown_replays.json
 
