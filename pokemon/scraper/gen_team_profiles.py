@@ -18,100 +18,16 @@ Per-pokemon output:
 """
 
 import sqlite3, json
-from collections import defaultdict
+from collections import Counter, defaultdict
+
+from gen_common import (
+    ROLE_MOVES, SPREAD_MOVES, ABILITY_TYPE_OVERRIDES, SPEED_ABILITIES,
+    AUTO_WEATHER_ABILITIES, derive_roles, item_to_stone_slug, build_megastone_map,
+)
 
 DB = "pokebase_champions.db"
 OUT = "../website/data/TeamProfiles.json"
 MIN_TEAMS = 10
-
-ROLE_MOVES = {
-    "trick-room":      "tr-setter",
-    "tailwind":        "tailwind-setter",
-    "icy-wind":        "speed-drop",
-    "electroweb":      "speed-drop",
-    "scary-face":      "speed-drop",
-    "fake-out":        "fake-out",
-    "extreme-speed":   "priority",
-    "sucker-punch":    "priority",
-    "bullet-punch":    "priority",
-    "mach-punch":      "priority",
-    "water-shuriken":  "priority",
-    "aqua-jet":        "priority",
-    "ice-shard":       "priority",
-    "shadow-sneak":    "priority",
-    "quick-attack":    "priority",
-    "dragon-dance":    "setup",
-    "quiver-dance":    "setup",
-    "swords-dance":    "setup",
-    "nasty-plot":      "setup",
-    "calm-mind":       "setup",
-    "shell-smash":     "setup",
-    "geomancy":        "setup",
-    "coil":            "setup",
-    "bulk-up":         "setup",
-    "follow-me":       "redirector",
-    "rage-powder":     "redirector",
-    "helping-hand":    "support",
-    "heal-pulse":      "support",
-    "wide-guard":      "support",
-    "quick-guard":     "support",
-    "coaching":        "support",
-    "light-screen":    "screen-setter",
-    "reflect":         "screen-setter",
-    "aurora-veil":     "screen-setter",
-    "parting-shot":    "pivot",
-    "u-turn":          "pivot",
-    "volt-switch":     "pivot",
-    "misty-terrain":   "terrain-setter",
-    "electric-terrain":"terrain-setter",
-    "grassy-terrain":  "terrain-setter",
-    "psychic-terrain": "terrain-setter",
-    "rain-dance":      "weather-setter",
-    "sunny-day":       "weather-setter",
-    "sandstorm":       "weather-setter",
-    "snowscape":       "weather-setter",
-}
-
-# Abilities that override type-chart multipliers (type chart is types-only)
-ABILITY_TYPE_OVERRIDES = {
-    "levitate":      {"Ground": 0},
-    "lightning rod": {"Electric": 0},
-    "volt absorb":   {"Electric": 0},
-    "motor drive":   {"Electric": 0},
-    "storm drain":   {"Water": 0},
-    "water absorb":  {"Water": 0},
-    "flash fire":    {"Fire": 0},
-    "sap sipper":    {"Grass": 0},
-    "earth eater":   {"Ground": 0},
-    "dry skin":      {"Water": 0},
-    "thick fat":     {"Ice": 0.5, "Fire": 0.5},
-    "heatproof":     {"Fire": 0.5},
-    "wonder guard":  {},   # handled separately if needed
-}
-
-SPREAD_MOVES = {
-    "heat-wave", "discharge", "earthquake", "hyper-voice", "muddy-water",
-    "blizzard", "surf", "glacial-lance", "rock-slide", "sludge-wave",
-    "dazzling-gleam", "petal-blizzard", "clanging-scales", "boomburst",
-    "breaking-swipe", "icy-wind", "electroweb",
-}
-
-# Abilities that double speed under a specific condition (weather / terrain)
-SPEED_ABILITIES = {
-    "chlorophyll": "weather-speed",   # doubles in Sun
-    "swift swim":  "weather-speed",   # doubles in Rain
-    "slush rush":  "weather-speed",   # doubles in Snow/Hail
-    "sand rush":   "weather-speed",   # doubles in Sandstorm
-    "surge surfer":"weather-speed",   # doubles in Electric Terrain
-}
-
-# Abilities that auto-set weather — flag the setter role even without the move
-AUTO_WEATHER_ABILITIES = {
-    "drizzle":     "weather-setter",  # Pelipper, Politoed
-    "drought":     "weather-setter",  # Ninetales, Torkoal
-    "sand stream": "weather-setter",  # Tyranitar, Hippowdon
-    "snow warning":"weather-setter",  # Abomasnow
-}
 
 # Only flag a role if the move appears in at least this many team entries
 ROLE_MIN_COUNT = 5
@@ -130,17 +46,6 @@ def classify_attack_stats(atk, spa):
     diff = atk - spa
     if diff >= 20:  return "physical"
     if diff <= -20: return "special"
-    return "mixed"
-
-
-def classify_attack_moves(moves):
-    phys = sum(c for _, dc, c in moves if dc == "physical")
-    spec = sum(c for _, dc, c in moves if dc == "special")
-    total = phys + spec
-    if total == 0: return None
-    r = phys / total
-    if r >= 0.65: return "physical"
-    if r <= 0.35: return "special"
     return "mixed"
 
 
@@ -219,17 +124,73 @@ team_counts = {r["pokemon_slug"]: r["cnt"] for r in conn.execute("""
     FROM team_pokemon GROUP BY pokemon_slug
 """).fetchall()}
 
-# ── Move usage (from actual tournament teams) ──────────────────────────────────
-pokemon_moves = defaultdict(list)
-for r in conn.execute("""
-    SELECT tp.pokemon_slug, tm.move_slug, m.damage_class, COUNT(*) AS cnt
-    FROM team_move tm
-    JOIN team_pokemon tp ON tm.team_id = tp.team_id AND tm.position = tp.position
-    JOIN moves m ON m.slug = tm.move_slug
-    GROUP BY tp.pokemon_slug, tm.move_slug
-    ORDER BY tp.pokemon_slug, cnt DESC
-""").fetchall():
-    pokemon_moves[r["pokemon_slug"]].append((r["move_slug"], r["damage_class"], r["cnt"]))
+# ── Build clustering — group by the EXACT 4-move signature each real team ran ──
+# Tallying moves independently (old approach) blends mutually-exclusive builds
+# together (e.g. Milotic's Scald-offense set and Coil-support set), producing
+# a "top moves" list no real team ever runs as a single set. Clustering by the
+# actual per-team signature keeps each build internally coherent.
+move_class = {r["slug"]: r["damage_class"] for r in conn.execute("SELECT slug, damage_class FROM moves")}
+
+team_moves_by_slot = defaultdict(list)
+for r in conn.execute("SELECT team_id, position, move_slug FROM team_move").fetchall():
+    team_moves_by_slot[(r["team_id"], r["position"])].append(r["move_slug"])
+
+# slug -> {moveset_tuple: {"count": int, "items": Counter, "abilities": Counter}}
+pokemon_clusters = defaultdict(dict)
+for r in conn.execute("SELECT team_id, position, pokemon_slug, item, ability FROM team_pokemon").fetchall():
+    moves = team_moves_by_slot.get((r["team_id"], r["position"]))
+    if not moves:
+        continue
+    sig = tuple(sorted(moves))
+    bucket = pokemon_clusters[r["pokemon_slug"]].setdefault(
+        sig, {"count": 0, "items": Counter(), "abilities": Counter()}
+    )
+    bucket["count"] += 1
+    if r["item"]:
+        bucket["items"][r["item"]] += 1
+    if r["ability"]:
+        bucket["abilities"][r["ability"]] += 1
+
+# Alt sets must be a real, recurring build — not tech-pick noise.
+ALT_SET_MIN_COUNT = ROLE_MIN_COUNT
+ALT_SET_MIN_PCT = 10.0
+MAX_SETS = 3
+
+
+def build_set(moves_sig, bucket, total_tc):
+    """Derive item/ability/roles/attack_axis from one real per-team moveset cluster."""
+    top_item = bucket["items"].most_common(1)
+    top_ability = bucket["abilities"].most_common(1)
+    item = top_item[0][0] if top_item else None
+    ability = top_ability[0][0] if top_ability else None
+
+    phys = sum(1 for m in moves_sig if move_class.get(m) == "physical")
+    spec = sum(1 for m in moves_sig if move_class.get(m) == "special")
+    move_axis = None
+    if phys + spec:
+        r = phys / (phys + spec)
+        move_axis = "physical" if r >= 0.65 else "special" if r <= 0.35 else "mixed"
+
+    roles = {role for ms, role in ROLE_MOVES.items() if ms in moves_sig}
+    if set(moves_sig) & SPREAD_MOVES:
+        roles.add("spread-attacker")
+    ability_lower = (ability or "").lower()
+    if ability_lower in SPEED_ABILITIES:
+        roles.add(SPEED_ABILITIES[ability_lower])
+    if ability_lower in AUTO_WEATHER_ABILITIES:
+        roles.add(AUTO_WEATHER_ABILITIES[ability_lower])
+    if item == "Choice Scarf":
+        roles.add("scarf-user")
+
+    return {
+        "moves":       [{"slug": m, "class": move_class.get(m, "status")} for m in moves_sig],
+        "item":        item,
+        "ability":     ability,
+        "move_axis":   move_axis,
+        "roles":       sorted(roles),
+        "count":       bucket["count"],
+        "pct":         round(100 * bucket["count"] / total_tc, 1) if total_tc else 0,
+    }
 
 # ── Items — prefer tournament_usage %, else raw counts ────────────────────────
 pokemon_top_item = {}
@@ -266,14 +227,12 @@ for r in conn.execute("""
     if r["pokemon_slug"] not in pokemon_top_ability:
         pokemon_top_ability[r["pokemon_slug"]] = r["ability"]
 
-# ── Mega stones ────────────────────────────────────────────────────────────────
-mega_stones = {r["slug"]: {"name": r["name"], "base": r["mega_pokemon_slug"]}
-               for r in conn.execute(
-                   "SELECT slug, name, mega_pokemon_slug FROM items WHERE is_megastone=1 AND mega_pokemon_slug IS NOT NULL"
-               ).fetchall()}
-
-def item_to_stone_slug(name):
-    return name.lower().replace(" ", "-")
+# ── Mega stones — items table repaired by name inference (see gen_common) ─────
+stone_names = {r["slug"]: r["name"] for r in conn.execute("SELECT slug, name FROM items").fetchall()}
+mega_stones = {
+    slug: {"name": stone_names.get(slug) or slug.replace("-", " ").title(), "base": base}
+    for slug, base in build_megastone_map(conn).items()
+}
 
 # base_pokemon_slug → [{stone_name, mega_form_slug, usage_count}]
 base_to_megas = defaultdict(list)
@@ -282,6 +241,8 @@ for r in conn.execute("""
     SELECT pokemon_slug, item, COUNT(*) AS cnt
     FROM team_pokemon GROUP BY pokemon_slug, item ORDER BY cnt DESC
 """).fetchall():
+    if not r["item"]:
+        continue
     stone_slug = item_to_stone_slug(r["item"])
     if stone_slug not in mega_stones:
         continue
@@ -295,12 +256,17 @@ for r in conn.execute("""
         continue
     mega_form = find_mega_form(stone_slug, ms["base"], all_slugs)
     if mega_form and mega_form != base_slug:
-        base_to_megas[base_slug].append({
-            "stone_slug":    stone_slug,
-            "stone_name":    ms["name"],
-            "mega_form_slug": mega_form,
-            "usage_count":   r["cnt"],
-        })
+        # Item-name case variants ('raichunite y') map to the same form — merge counts
+        existing = next((e for e in base_to_megas[base_slug] if e["mega_form_slug"] == mega_form), None)
+        if existing:
+            existing["usage_count"] += r["cnt"]
+        else:
+            base_to_megas[base_slug].append({
+                "stone_slug":    stone_slug,
+                "stone_name":    ms["name"],
+                "mega_form_slug": mega_form,
+                "usage_count":   r["cnt"],
+            })
 
 # ── Mega form abilities (stored against mega slug in team_pokemon) ────────────
 # Top 2 abilities per mega form — needed to detect weather abilities like Drought
@@ -314,8 +280,12 @@ for r in conn.execute("""
     if len(mega_form_abilities[r["pokemon_slug"]]) < 2:
         mega_form_abilities[r["pokemon_slug"]].append((r["ability"], r["cnt"]))
 
-# ── Choice Scarf usage per pokemon ───────────────────────────────────────────
+# ── Choice Scarf + megastone usage per pokemon ────────────────────────────────
+# stone_pct drives the "flex mega" logic client-side: a species that often runs
+# non-stone items (Venusaur 44% stone, Aerodactyl 44%) has a battle-worthy base
+# form, while a stone-locked one (Floette 99%) is dead weight without its mega.
 scarf_counts = defaultdict(int)
+stone_held_counts = defaultdict(int)
 total_item_counts = defaultdict(int)
 for r in conn.execute("""
     SELECT pokemon_slug, item, COUNT(*) AS cnt
@@ -325,6 +295,9 @@ for r in conn.execute("""
     total_item_counts[r["pokemon_slug"]] += r["cnt"]
     if r["item"].lower() == "choice scarf":
         scarf_counts[r["pokemon_slug"]] += r["cnt"]
+    ms = mega_stones.get(item_to_stone_slug(r["item"]))
+    if ms and base_matches_stone(r["pokemon_slug"], ms["base"]):
+        stone_held_counts[r["pokemon_slug"]] += r["cnt"]
 
 # ── Type chart ────────────────────────────────────────────────────────────────
 type_chart = defaultdict(dict)
@@ -348,34 +321,34 @@ for slug, p in all_pokemon.items():
         p["hp"], p["attack"], p["defense"], p["sp_attack"], p["sp_defense"], p["speed"]
     )
 
-    moves = pokemon_moves.get(slug, [])
-    top_moves = [{"slug": m, "class": dc} for m, dc, _ in moves[:6]]
-
-    stat_axis  = classify_attack_stats(atk, spa)
-    move_axis  = classify_attack_moves(moves)
-    attack_axis = move_axis if move_axis else stat_axis
-
+    stat_axis = classify_attack_stats(atk, spa)
     bulk_axis = classify_bulk(hp, df, spd)
     tier = speed_tier(spe)
 
-    # Only scan top moves that clear the minimum count threshold
-    top_role_moves = {m for m, _, cnt in moves[:ROLE_SCAN_DEPTH] if cnt >= ROLE_MIN_COUNT}
-    roles = set()
-    for ms, role in ROLE_MOVES.items():
-        if ms in top_role_moves:
-            roles.add(role)
-    if top_role_moves & SPREAD_MOVES:
-        roles.add("spread-attacker")
-    roles.add(attack_axis + "-attacker")
+    # Build clusters, largest first — sets[0] is the primary (most common) build.
+    clusters = pokemon_clusters.get(slug, {})
+    built_sets = sorted(
+        (build_set(sig, bucket, tc) for sig, bucket in clusters.items()),
+        key=lambda s: -s["count"],
+    )
+    primary = built_sets[0] if built_sets else None
+    alt_sets = [
+        s for s in built_sets[1:] if s["count"] >= ALT_SET_MIN_COUNT and s["pct"] >= ALT_SET_MIN_PCT
+    ][:MAX_SETS - 1]
+    sets_out = [primary] + alt_sets if primary else []
 
-    # Ability-based speed control (Chlorophyll, Swift Swim, Drizzle, Drought, etc.)
-    ability_lower = (pokemon_top_ability.get(slug) or "").lower()
-    if ability_lower in SPEED_ABILITIES:
-        roles.add(SPEED_ABILITIES[ability_lower])
-    if ability_lower in AUTO_WEATHER_ABILITIES:
-        roles.add(AUTO_WEATHER_ABILITIES[ability_lower])
+    if primary:
+        top_moves = primary["moves"]
+        attack_axis = primary["move_axis"] or stat_axis
+        roles = set(primary["roles"])
+        roles.add(attack_axis + "-attacker")
+    else:
+        # No per-team moveset data (e.g. mega-only entry) — fall back to stats alone.
+        top_moves = []
+        attack_axis = stat_axis
+        roles = {attack_axis + "-attacker"}
 
-    # Choice Scarf — flag if ≥10% of entries carry it
+    # Choice Scarf — flag if ≥10% of entries carry it (species-wide, independent of set)
     total_items = total_item_counts.get(slug, 0)
     scarf_pct   = round(scarf_counts.get(slug, 0) / total_items * 100, 1) if total_items else 0.0
     if scarf_pct >= 10:
@@ -441,12 +414,14 @@ for slug, p in all_pokemon.items():
         "top_moves":   top_moves,
         "top_item":    pokemon_top_item.get(slug),
         "top_ability": pokemon_top_ability.get(slug),
+        "sets":        sets_out,
         "mega":        mega_info,
         "defensive":   defensive_profile(tc_data),
         "stab_types":  types,
         "image_url":   p.get("image_url") or "",
         "team_count":  tc,
         "scarf_pct":   scarf_pct,
+        "stone_pct":   round(stone_held_counts.get(slug, 0) / total_items * 100, 1) if total_items else 0.0,
     }
 
 conn.close()

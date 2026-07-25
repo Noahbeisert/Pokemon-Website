@@ -7,12 +7,14 @@ Usage:
     python scrape_limitless.py --format M-A  # Current regulation only
     python scrape_limitless.py --dry-run     # Count only, no DB writes
     python scrape_limitless.py --refetch     # Re-fetch even if already in DB
+    python scrape_limitless.py --workers 6   # Fetch N tournaments concurrently
 """
 import argparse
 import re
 import sqlite3
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import requests
 
@@ -99,6 +101,30 @@ def fetch_standings(tid: str) -> list[dict]:
     return api_get(f"/tournaments/{tid}/standings")
 
 
+def fetch_tournament_data(t: dict) -> dict:
+    """Network-only fetch for one tournament — no DB access, safe to run in a thread."""
+    tid, name, date = t["id"], t["name"], t["date"][:10]
+    time.sleep(DELAY)
+    try:
+        details = fetch_details(tid)
+    except requests.HTTPError as e:
+        return {"tid": tid, "name": name, "date": date, "error": f"details failed ({e})"}
+
+    if not details.get("decklists"):
+        return {"tid": tid, "name": name, "date": date, "no_lists": True}
+
+    time.sleep(DELAY)
+    try:
+        standings = fetch_standings(tid)
+    except requests.HTTPError as e:
+        return {"tid": tid, "name": name, "date": date, "error": f"standings failed ({e})"}
+
+    return {
+        "tid": tid, "name": name, "date": date, "players": t["players"],
+        "details": details, "standings": standings,
+    }
+
+
 # ── DB writes ─────────────────────────────────────────────────────────────────
 
 def already_scraped(conn: sqlite3.Connection, tid: str) -> bool:
@@ -150,6 +176,7 @@ def main() -> None:
     parser.add_argument("--format",   help="Regulation filter (e.g. M-A, SVG, SVF). Omit for all.")
     parser.add_argument("--dry-run",  action="store_true", help="List tournaments only, no DB writes")
     parser.add_argument("--refetch",  action="store_true", help="Re-import even if already in DB")
+    parser.add_argument("--workers",  type=int, default=1, help="Concurrent tournament fetches (default 1 = serial)")
     args = parser.parse_args()
 
     conn = None if args.dry_run else sqlite3.connect(DB_PATH)
@@ -161,6 +188,7 @@ def main() -> None:
 
     page = 1
     n_found = n_imported = n_skipped = n_no_lists = 0
+    to_fetch = []
 
     while True:
         if page > 1:
@@ -174,57 +202,51 @@ def main() -> None:
             break
 
         for t in batch:
-            tid     = t["id"]
-            name    = t["name"]
-            date    = t["date"][:10]
-            players = t["players"]
             n_found += 1
-
-            print(f"[{date}] {name} ({players}p)", end="")
+            name = t["name"]
 
             if not is_doubles(name):
-                print(" — skipped (singles)")
                 continue
-
             if args.dry_run:
-                print()
+                print(f"[{t['date'][:10]}] {name} ({t['players']}p)")
                 continue
-
-            if not args.refetch and already_scraped(conn, tid):
-                print(" — skip (already in DB)")
+            if not args.refetch and already_scraped(conn, t["id"]):
                 n_skipped += 1
                 continue
 
-            time.sleep(DELAY)
-            try:
-                details = fetch_details(tid)
-            except requests.HTTPError as e:
-                print(f" — details failed ({e}), skipping")
-                continue
+            to_fetch.append(t)
 
-            if not details.get("decklists"):
+        page += 1
+
+    if args.dry_run:
+        print(f"\nDone.  Found: {n_found}")
+        return
+
+    print(f"Found {n_found} tournaments, {len(to_fetch)} to fetch ({n_skipped} already in DB)."
+          f"  Using {args.workers} worker(s)...\n")
+
+    with ThreadPoolExecutor(max_workers=args.workers) as pool:
+        futures = [pool.submit(fetch_tournament_data, t) for t in to_fetch]
+        for future in as_completed(futures):
+            r = future.result()
+            print(f"[{r['date']}] {r['name']}", end="")
+
+            if r.get("error"):
+                print(f" — {r['error']}, skipping")
+                continue
+            if r.get("no_lists"):
                 print(" — no public decklists")
                 n_no_lists += 1
                 continue
 
-            time.sleep(DELAY)
-            try:
-                standings = fetch_standings(tid)
-            except requests.HTTPError as e:
-                print(f" — standings failed ({e}), skipping")
-                continue
-
             with conn:
-                save_tournament(conn, details, players)
-                save_standings(conn, tid, standings)
+                save_tournament(conn, r["details"], r["players"])
+                save_standings(conn, r["tid"], r["standings"])
 
             n_imported += 1
-            print(f" — {len(standings)} teams saved")
+            print(f" — {len(r['standings'])} teams saved")
 
-        page += 1
-
-    if conn:
-        conn.close()
+    conn.close()
 
     print(f"\nDone.  Found: {n_found}  |  Imported: {n_imported}  |  Skipped (in DB): {n_skipped}  |  No decklists: {n_no_lists}")
 

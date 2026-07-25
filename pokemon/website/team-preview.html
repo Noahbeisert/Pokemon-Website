@@ -81,8 +81,15 @@ header p{color:var(--muted);font-size:.8rem;letter-spacing:1.5px;text-transform:
 .section-hdr{
   font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;
   letter-spacing:2px;text-transform:uppercase;color:var(--muted);
-  padding:24px 0 12px;border-bottom:1px solid var(--border);margin-bottom:16px
+  padding:24px 0 12px;border-bottom:1px solid var(--border);margin-bottom:16px;
+  display:flex;align-items:baseline;gap:12px
 }
+.match-badge{
+  font-size:.68rem;font-weight:600;letter-spacing:.5px;padding:2px 8px;
+  border-radius:4px;background:rgba(34,197,94,.12);color:#4ade80;
+  border:1px solid rgba(34,197,94,.3);text-transform:none
+}
+.match-badge.weak{background:rgba(234,179,8,.1);color:#facc15;border-color:rgba(234,179,8,.25)}
 
 /* ── Profile cards ─────────────────────────────── */
 .profiles-row{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:6px}
@@ -113,6 +120,10 @@ header p{color:var(--muted);font-size:.8rem;letter-spacing:1.5px;text-transform:
   font-size:.62rem;color:#d97706;text-align:center;
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%
 }
+.prof-moves{
+  font-size:.58rem;color:var(--muted);text-align:center;line-height:1.5;width:100%
+}
+.prof-moves .mv-tr{color:#e9d5ff;font-weight:600}
 .prof-roles{display:flex;flex-wrap:wrap;gap:3px;justify-content:center}
 .role-chip{
   font-size:.58rem;font-weight:600;padding:2px 5px;border-radius:3px;
@@ -121,6 +132,11 @@ header p{color:var(--muted);font-size:.8rem;letter-spacing:1.5px;text-transform:
 .prof-mega{
   font-size:.6rem;color:var(--accent2);text-align:center;
   font-style:italic;width:100%;text-align:center
+}
+.pred-badge{
+  position:absolute;top:6px;right:6px;font-size:.56rem;font-weight:600;
+  padding:2px 5px;border-radius:3px;background:rgba(234,179,8,.15);color:#facc15;
+  border:1px solid rgba(234,179,8,.3);text-transform:uppercase;letter-spacing:.4px
 }
 .speed-badge{
   font-size:.6rem;padding:2px 6px;border-radius:3px;font-weight:600;
@@ -210,6 +226,14 @@ header p{color:var(--muted);font-size:.8rem;letter-spacing:1.5px;text-transform:
 .tag-back{font-size:.58rem;font-weight:600;padding:1px 5px;border-radius:3px;background:rgba(107,114,128,.15);color:var(--muted);text-transform:uppercase;letter-spacing:.4px;flex-shrink:0}
 .scenario-synergy{margin-top:8px;font-size:.64rem;color:var(--accent2);background:rgba(124,106,247,.1);padding:3px 7px;border-radius:4px;text-align:center}
 .scenarios-sub-hdr{font-family:'Rajdhani',sans-serif;font-size:.88rem;font-weight:600;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin:16px 0 10px}
+
+.plan-card{background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:14px 16px;margin-bottom:12px}
+.plan-title{font-family:'Rajdhani',sans-serif;font-size:.88rem;font-weight:600;letter-spacing:1px;color:var(--accent2);text-transform:uppercase;margin-bottom:8px}
+.plan-mons{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:.82rem;color:var(--text)}
+.plan-vs{color:var(--muted);font-size:.72rem;margin:0 4px}
+.counter-lead-row{display:flex;align-items:center;gap:10px;padding:6px 0;border-top:1px solid var(--border);font-size:.8rem}
+.counter-lead-row:first-of-type{border-top:none}
+.counter-arrow{color:var(--muted)}
 </style>
 </head>
 <body>
@@ -241,14 +265,17 @@ header p{color:var(--muted);font-size:.8rem;letter-spacing:1.5px;text-transform:
 </div>
 
 <section id="results" hidden>
-  <div class="section-hdr">Opponent's Team</div>
+  <div class="section-hdr">Opponent's Team <span class="match-badge" id="opp-match-badge"></span></div>
   <div class="profiles-row" id="opp-profiles"></div>
 
-  <div class="section-hdr" style="margin-top:8px">My Team</div>
+  <div class="section-hdr" style="margin-top:8px">My Team <span class="match-badge" id="my-match-badge"></span></div>
   <div class="profiles-row" id="my-profiles"></div>
 
   <div class="section-hdr">Opponent Bring Prediction</div>
   <div id="bring-prediction"></div>
+
+  <div class="section-hdr">Your Battle Plan</div>
+  <div id="battle-plan"></div>
 
   <div class="section-hdr">Type Coverage</div>
   <div class="cov-tables-row">
@@ -278,6 +305,7 @@ header p{color:var(--muted);font-size:.8rem;letter-spacing:1.5px;text-transform:
   <div class="notes-list" id="notes-list"></div>
 </section>
 
+<script src="js/team-preview-logic.js"></script>
 <script>
 const TYPE_COLORS = {
   Normal:'#A8A77A',Fire:'#EE8130',Water:'#6390F0',Electric:'#F7D02C',
@@ -296,7 +324,6 @@ const ROLE_STYLE = {
   'scarf-user':        ['#1f2937','#9ca3af'],
   'setup':             ['#7c2d12','#fed7aa'],
   'redirector':        ['#14532d','#bbf7d0'],
-  'fake-out':          ['#78350f','#fef3c7'],
   'priority':          ['#450a0a','#fecaca'],
   'spread-attacker':   ['#4c0519','#fecdd3'],
   'pivot':             ['#2e1065','#ddd6fe'],
@@ -314,9 +341,7 @@ const IMMUNITY_ABILITIES = new Set([
   'Storm Drain','Water Absorb','Flash Fire','Sap Sipper','Earth Eater','Dry Skin',
 ]);
 
-const SPEED_CTRL_ROLES = new Set([
-  'tr-setter','tailwind-setter','weather-setter','weather-speed','scarf-user','speed-drop'
-]);
+const SPEED_CTRL_ROLES = ['tr-setter','tailwind-setter','weather-setter','weather-speed','scarf-user','speed-drop'];
 
 const SPEED_ICONS = {
   'tr-setter':'🔄','tailwind-setter':'💨','weather-setter':'🌦',
@@ -333,7 +358,7 @@ const SPEED_LABELS = {
 };
 
 let PROFILES = null;
-let BRING_RATES = {};
+let LOGIC = null;
 
 // ── Autocomplete slots ───────────────────────────────────────────────────────
 function makeSlot(containerId, idx) {
@@ -447,13 +472,14 @@ function makePlaceholder(name, types) {
 for (let i = 0; i < 6; i++) makeSlot('my-slots', i);
 for (let i = 0; i < 6; i++) makeSlot('opp-slots', i);
 
-// ── Load profiles + bring rates ──────────────────────────────────────────────
+// ── Load data ────────────────────────────────────────────────────────────────
 Promise.all([
   fetch('data/TeamProfiles.json').then(r => r.json()),
   fetch('data/BringRates.json').then(r => r.json()),
-]).then(([profiles, rates]) => {
+  fetch('data/TeamArchetypes.json').then(r => r.json()),
+]).then(([profiles, bringRates, archetypes]) => {
   PROFILES = profiles;
-  BRING_RATES = rates;
+  LOGIC = createPreviewLogic({ profiles, bringRates, archetypes });
 });
 
 // ── Collect selected slugs ───────────────────────────────────────────────────
@@ -465,36 +491,57 @@ function getTeam(containerId) {
 
 // ── Analyze ──────────────────────────────────────────────────────────────────
 document.getElementById('analyze-btn').addEventListener('click', () => {
-  if (!PROFILES) return;
-  const myTeam  = getTeam('my-slots');
-  const oppTeam = getTeam('opp-slots');
-  if (!myTeam.length && !oppTeam.length) return;
+  if (!LOGIC) return;
+  const myTeamIn  = getTeam('my-slots');
+  const oppTeamIn = getTeam('opp-slots');
+  if (!myTeamIn.length && !oppTeamIn.length) return;
 
-  renderProfiles(myTeam,  'my-profiles');
-  renderProfiles(oppTeam, 'opp-profiles');
-  renderBringPrediction(oppTeam, myTeam);
-  renderCoverageTable(myTeam,  oppTeam, 'my-cov-table');
-  renderCoverageTable(oppTeam, myTeam,  'opp-cov-table');
-  renderSpeedAnalysis(myTeam, oppTeam);
-  renderMegaAnalysis(myTeam, oppTeam);
-  renderNotes(myTeam, oppTeam);
+  const R = LOGIC.analyze(myTeamIn, oppTeamIn);
+
+  renderMatchBadge('my-match-badge', R.my.match);
+  renderMatchBadge('opp-match-badge', R.opp.match);
+  renderProfiles(R.myTeam,  'my-profiles',  R.my.eff);
+  renderProfiles(R.oppTeam, 'opp-profiles', R.opp.eff);
+  renderBringPrediction(R);
+  renderBattlePlan(R);
+  renderCoverageTable(R.myTeam,  R.oppTeam, 'my-cov-table');
+  renderCoverageTable(R.oppTeam, R.myTeam,  'opp-cov-table');
+  renderSpeedAnalysis(R);
+  renderMegaAnalysis(R);
+  renderNotes(R);
 
   document.getElementById('results').removeAttribute('hidden');
   document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
 });
 
+function renderMatchBadge(id, match) {
+  const el = document.getElementById(id);
+  if (!match.teamCount) {
+    el.textContent = 'no DB match — species averages';
+    el.className = 'match-badge weak';
+  } else {
+    el.textContent = (match.partial ? 'closest archetypes: ' : 'matched ') +
+      `${match.teamCount} tournament teams`;
+    el.className = 'match-badge' + (match.partial ? ' weak' : '');
+  }
+}
+
 // ── Profile cards ─────────────────────────────────────────────────────────────
-function renderProfiles(team, containerId) {
+function renderProfiles(team, containerId, effMap) {
   const el = document.getElementById(containerId);
   el.innerHTML = '';
   team.forEach(slug => {
     const p = PROFILES[slug];
     if (!p) return;
-    el.appendChild(makeProfileCard(slug, p));
+    el.appendChild(makeProfileCard(slug, p, effMap[slug]));
   });
 }
 
-function makeProfileCard(slug, p) {
+function pctSuffix(pct) {
+  return (pct !== null && pct !== undefined && pct < 90) ? ` ${pct}%` : '';
+}
+
+function makeProfileCard(slug, p, eff) {
   const card = document.createElement('div');
   card.className = 'prof-card';
 
@@ -505,6 +552,14 @@ function makeProfileCard(slug, p) {
   const t1 = p.types[1] ? TYPE_COLORS[p.types[1]] : t0;
   bar.style.background = `linear-gradient(90deg, ${t0} 50%, ${t1} 50%)`;
   card.appendChild(bar);
+
+  if (eff && eff.predicted) {
+    const pred = document.createElement('div');
+    pred.className = 'pred-badge';
+    pred.textContent = `Predicted ${eff.predicted}%`;
+    pred.title = 'Not entered — predicted from the matched archetype';
+    card.appendChild(pred);
+  }
 
   // Sprite
   if (p.image_url) {
@@ -545,82 +600,101 @@ function makeProfileCard(slug, p) {
                                               `Slow (${p.stats.spe})`;
   card.appendChild(spd);
 
-  // Ability
+  const ability = eff ? eff.ability : p.top_ability;
   const abl = document.createElement('div');
-  abl.className = 'prof-ability' + (IMMUNITY_ABILITIES.has(p.top_ability) ? ' immune-ability' : '');
-  abl.textContent = p.top_ability || '—';
-  abl.title = p.top_ability || '';
+  abl.className = 'prof-ability' + (IMMUNITY_ABILITIES.has(ability) ? ' immune-ability' : '');
+  abl.textContent = (ability || '—') + (eff ? pctSuffix(eff.abilityPct) : '');
+  abl.title = ability || '';
   card.appendChild(abl);
 
-  // Item
-  if (p.top_item) {
-    const item = document.createElement('div');
-    item.className = 'prof-item';
-    item.textContent = p.top_item;
-    item.title = p.top_item;
-    card.appendChild(item);
+  const item = eff ? eff.item : p.top_item;
+  if (item) {
+    const itemEl = document.createElement('div');
+    itemEl.className = 'prof-item';
+    itemEl.textContent = item + (eff ? pctSuffix(eff.itemPct) : '');
+    itemEl.title = item;
+    card.appendChild(itemEl);
   }
 
-  // Roles
+  // Most likely moveset (archetype-matched when available)
+  const topSet = eff && eff.sets.length ? eff.sets[0] : null;
+  if (topSet) {
+    const mv = document.createElement('div');
+    mv.className = 'prof-moves';
+    mv.innerHTML = topSet.moves.map(m => {
+      const label = m.replace(/-/g,' ');
+      return m === 'trick-room' ? `<span class="mv-tr">${label}</span>` : label;
+    }).join(' · ');
+    mv.title = eff.sets.map(s => `${s.pct}%: ${s.moves.map(x=>x.replace(/-/g,' ')).join(' / ')}`).join('\n');
+    card.appendChild(mv);
+  }
+
+  // Roles (with archetype probability when uncertain)
   const rolesEl = document.createElement('div');
   rolesEl.className = 'prof-roles';
-  const shownRoles = filterRoles(p.roles);
-  shownRoles.forEach(role => {
+  roleChips(slug, p, eff).forEach(({role, pct}) => {
     const chip = document.createElement('span');
     chip.className = 'role-chip';
     const style = ROLE_STYLE[role] || ['#374151','#9ca3af'];
     chip.style.background = style[0];
     chip.style.color = style[1];
-    chip.textContent = role.replace(/-/g,' ');
+    chip.textContent = role.replace(/-/g,' ') + pctSuffix(pct);
     chip.title = role;
     rolesEl.appendChild(chip);
   });
   card.appendChild(rolesEl);
 
   // Mega info
-  if (p.mega) {
+  if (eff && eff.isMega && eff.megaForm) {
     const megaEl = document.createElement('div');
     megaEl.className = 'prof-mega';
-    const formNames = p.mega.forms.map(f => {
-      const weatherNote = f.weather_roles.length ? ` (${f.ability})` : '';
-      return f.name + weatherNote;
-    });
-    megaEl.textContent = '★ ' + formNames.join(' / ');
-    megaEl.title = p.mega.forms.map(f =>
-      `${f.name}: ${f.types.join('/')} | ${f.ability} | Used ${f.usage_count}x`
-    ).join('\n');
+    megaEl.textContent = `★ ${eff.megaForm.name}`;
+    megaEl.title = `${eff.megaForm.name}: ${eff.megaForm.types.join('/')} | ${eff.megaForm.ability}`;
+    card.appendChild(megaEl);
+  } else if (!eff && p.mega) {
+    const megaEl = document.createElement('div');
+    megaEl.className = 'prof-mega';
+    megaEl.textContent = '★ ' + p.mega.forms.map(f => f.name).join(' / ');
     card.appendChild(megaEl);
   }
 
   return card;
 }
 
-function filterRoles(roles) {
-  // Priority: speed control + utility first, then attacker axis last
-  const priority = [
-    'fake-out','tr-setter','tailwind-setter','weather-setter','weather-speed',
-    'scarf-user','redirector','setup','priority','spread-attacker','pivot',
-    'support','screen-setter','terrain-setter','speed-drop',
-    'physical-attacker','special-attacker','mixed-attacker'
-  ];
-  const sorted = [...roles].sort((a,b) =>
-    (priority.indexOf(a)+1 || 99) - (priority.indexOf(b)+1 || 99)
-  );
-  // Drop attacker-axis if there are already 4+ meaningful roles
-  const meaningful = sorted.filter(r => !r.includes('-attacker'));
-  if (meaningful.length >= 3) return sorted.filter(r => !r.endsWith('-attacker')).slice(0,5);
-  return sorted.slice(0,5);
+const ROLE_PRIORITY = [
+  'fake-out','tr-setter','tailwind-setter','weather-setter','weather-speed',
+  'scarf-user','redirector','setup','priority','spread-attacker','pivot',
+  'support','screen-setter','terrain-setter','speed-drop',
+  'physical-attacker','special-attacker','mixed-attacker'
+];
+
+function roleChips(slug, p, eff) {
+  let entries;
+  if (eff) {
+    entries = Object.entries(eff.roleProbs)
+      .filter(([, pct]) => pct === null || pct >= 25)
+      .map(([role, pct]) => ({ role, pct }));
+    if (!entries.length && p.attack_axis) {
+      entries = [{ role: p.attack_axis + '-attacker', pct: null }];
+    }
+  } else {
+    entries = p.roles.map(role => ({ role, pct: null }));
+  }
+  entries.sort((a, b) =>
+    (ROLE_PRIORITY.indexOf(a.role) + 1 || 99) - (ROLE_PRIORITY.indexOf(b.role) + 1 || 99));
+  const meaningful = entries.filter(e => !e.role.endsWith('-attacker'));
+  if (meaningful.length >= 3) return meaningful.slice(0, 5);
+  return entries.slice(0, 5);
 }
 
-// ── Coverage matrix ──────────────────────────────────────────────────────────
+// ── Coverage matrix (STAB typing — species data) ─────────────────────────────
 function renderCoverageTable(atkTeam, defTeam, tableId) {
   const table = document.getElementById(tableId);
   table.innerHTML = '';
 
-  // Header row
   const thead = table.createTHead();
   const hrow = thead.insertRow();
-  hrow.insertCell().className = 'row-header'; // blank corner
+  hrow.insertCell().className = 'row-header';
   defTeam.forEach(dSlug => {
     const p = PROFILES[dSlug];
     const th = document.createElement('th');
@@ -646,7 +720,6 @@ function renderCoverageTable(atkTeam, defTeam, tableId) {
     const ap = PROFILES[aSlug];
     const row = tbody.insertRow();
 
-    // Row header
     const rh = row.insertCell();
     rh.className = 'row-header';
     rh.innerHTML = `<div>${ap ? ap.name : aSlug}</div>`;
@@ -670,26 +743,12 @@ function renderCoverageTable(atkTeam, defTeam, tableId) {
       cell.className = 'cov-cell';
       if (!ap || !dp) { cell.textContent = '—'; return; }
 
-      const { mult, bestType } = maxStabEff(ap, dp);
+      const { mult, bestType } = LOGIC.maxStabEff(ap, dp);
       cell.title = `${ap.name} (${ap.stab_types.join('/')}) vs ${dp.name} → ${bestType}: ×${mult}`;
       cell.textContent = multLabel(mult);
       cell.className = 'cov-cell ' + multClass(mult);
     });
   });
-}
-
-function maxStabEff(atkProfile, defProfile) {
-  const chart = defProfile.defensive.chart || {};
-  let max = 0, bestType = '—';
-  for (const t of atkProfile.stab_types) {
-    const m = chart[t] ?? 1;
-    if (m > max) { max = m; bestType = t; }
-  }
-  // Special case: if all stab types are immune, max=0 which is still notable
-  if (max === 0) {
-    bestType = atkProfile.stab_types.find(t => (chart[t] ?? 1) === 0) || '—';
-  }
-  return { mult: max, bestType };
 }
 
 function multLabel(m) {
@@ -712,28 +771,35 @@ function multClass(m) {
 }
 
 // ── Speed analysis ────────────────────────────────────────────────────────────
-function renderSpeedAnalysis(myTeam, oppTeam) {
+function renderSpeedAnalysis(R) {
   const el = document.getElementById('speed-content');
   el.innerHTML = '';
 
-  function teamSpeedRows(team, tag, tagClass) {
+  function teamSpeedRows(team, effMap, tag, tagClass) {
     const rows = [];
     team.forEach(slug => {
-      const p = PROFILES[slug];
+      const p = PROFILES[slug], eff = effMap[slug];
       if (!p) return;
-      const speedRoles = p.roles.filter(r => SPEED_CTRL_ROLES.has(r));
-      speedRoles.forEach(role => {
-        let detail = '';
-        if (role === 'scarf-user') detail = `${p.scarf_pct}% usage`;
-        else if (role === 'weather-speed') detail = `needs weather active`;
-        rows.push({ slug, name: p.name, role, detail, tag, tagClass });
+      SPEED_CTRL_ROLES.forEach(role => {
+        let prob = null;
+        if (eff) {
+          if (!(role in eff.roleProbs)) {
+            if (role === 'scarf-user' && !eff.sets.length && p.roles.includes(role)) prob = null;
+            else return;
+          } else prob = eff.roleProbs[role];
+          if (prob !== null && prob < 25) return;
+        } else if (!p.roles.includes(role)) return;
+        let detail = prob !== null && prob < 90 ? `${prob}% of matched teams` : '';
+        if (role === 'scarf-user' && !detail) detail = `${p.scarf_pct}% usage`;
+        if (role === 'weather-speed' && !detail) detail = 'needs weather active';
+        rows.push({ name: p.name, role, detail, tag, tagClass });
       });
     });
     return rows;
   }
 
-  const myRows  = teamSpeedRows(myTeam,  'My',  'my');
-  const oppRows = teamSpeedRows(oppTeam, 'Opp', 'opp');
+  const myRows  = teamSpeedRows(R.myTeam,  R.my.eff,  'My',  'my');
+  const oppRows = teamSpeedRows(R.oppTeam, R.opp.eff, 'Opp', 'opp');
   const allRows = [...oppRows, ...myRows];
 
   if (!allRows.length) {
@@ -741,11 +807,9 @@ function renderSpeedAnalysis(myTeam, oppTeam) {
     return;
   }
 
-  // Group by role
   const grouped = {};
   allRows.forEach(r => {
-    if (!grouped[r.role]) grouped[r.role] = [];
-    grouped[r.role].push(r);
+    (grouped[r.role] = grouped[r.role] || []).push(r);
   });
 
   Object.entries(grouped).forEach(([role, items]) => {
@@ -767,42 +831,45 @@ function renderSpeedAnalysis(myTeam, oppTeam) {
 }
 
 // ── Mega matchup analysis ─────────────────────────────────────────────────────
-function renderMegaAnalysis(myTeam, oppTeam) {
+function renderMegaAnalysis(R) {
   const el = document.getElementById('mega-content');
   el.innerHTML = '';
 
-  function megaRows(team, defTeam, tag, tagClass) {
+  function megaRows(team, effMap, marginals, tag, tagClass) {
+    const users = team.filter(s => effMap[s] && effMap[s].isMega);
     const rows = [];
-    team.forEach(slug => {
-      const p = PROFILES[slug];
-      if (!p || !p.mega) return;
-      if (p.mega.forms.length === 1) {
-        const f = p.mega.forms[0];
-        const weatherNote = f.weather_roles.length
-          ? ` — sets ${f.ability} on evolution`
-          : '';
-        rows.push({ name: p.name, text: `→ ${f.name}${weatherNote}`, tag, tagClass, forms: p.mega.forms, defTeam });
-      } else {
-        // Multiple megas — predict which is better vs opponent
-        const scored = p.mega.forms.map(f => ({
-          form: f,
-          score: scoreMegaVs(f, defTeam),
-        })).sort((a,b) => b.score - a.score);
-        const best = scored[0].form;
-        const weatherNote = best.weather_roles.length ? ` (${best.ability})` : '';
+    users.forEach(slug => {
+      const eff = effMap[slug];
+      const form = eff.megaForm;
+      const flexNote = eff.flex >= 0.4 ? ' — base form also playable (flex)' : '';
+      rows.push({
+        name: eff.name,
+        text: form ? `→ ${form.name}${flexNote}` : `holds ${eff.stoneName}${flexNote}`,
+        title: form ? `${form.name}: ${form.types.join('/')} | ${form.ability} | weak to: ${form.defensive.weaknesses.join(', ')}` : '',
+        tag, tagClass,
+      });
+    });
+    if (users.length > 1) {
+      const locked = users.filter(s => effMap[s].flex < 0.4);
+      if (locked.length > 1) {
+        const byP = [...users].sort((a, b) => (marginals[b] || 0) - (marginals[a] || 0));
+        const text = Object.keys(marginals).length
+          ? `only one can mega — most likely ${effMap[byP[0]].name}`
+          : `only one can mega — usually bring just one (${locked.map(s => effMap[s].name).join(' / ')} are weak un-mega'd)`;
         rows.push({
-          name: p.name,
-          text: `Best vs opp: ${best.name}${weatherNote}`,
-          tag, tagClass, forms: scored.map(s => s.form), defTeam, multi: true,
+          name: `${users.length} mega users`,
+          text, title: '', tag, tagClass, icon: '⚠',
         });
       }
-    });
+    }
     return rows;
   }
 
-  const myMegas  = megaRows(myTeam,  oppTeam, 'My',  'my');
-  const oppMegas = megaRows(oppTeam, myTeam,  'Opp', 'opp');
-  const allMegas = [...oppMegas, ...myMegas];
+  const oppMarginal = R.oppBring ? R.oppBring.marginal : {};
+  const allMegas = [
+    ...megaRows(R.oppTeam, R.opp.eff, oppMarginal, 'Opp', 'opp'),
+    ...megaRows(R.myTeam,  R.my.eff,  {},          'My',  'my'),
+  ];
 
   if (!allMegas.length) {
     el.innerHTML = '<div class="strat-empty">No mega-capable Pokémon on either team</div>';
@@ -812,149 +879,36 @@ function renderMegaAnalysis(myTeam, oppTeam) {
   allMegas.forEach(m => {
     const row = document.createElement('div');
     row.className = 'strat-row';
-    const formDetails = m.forms.map(f => {
-      const wn = f.weather_roles.length ? ` [${f.ability}]` : '';
-      return `${f.name}${wn} — weak to: ${f.defensive.weaknesses.join(', ') || 'none'}`;
-    }).join('\n');
     row.innerHTML = `
-      <div class="strat-icon">⬟</div>
+      <div class="strat-icon">${m.icon || '⬟'}</div>
       <div class="strat-content">
         <div class="strat-title">
           <span class="team-tag ${m.tagClass}">${m.tag}</span>${m.name}
         </div>
-        <div class="strat-detail" title="${formDetails}">${m.text}</div>
+        <div class="strat-detail" title="${m.title}">${m.text}</div>
       </div>
     `;
     el.appendChild(row);
   });
 }
 
-function scoreMegaVs(megaForm, defTeam) {
-  // Score = number of opposing pokemon this mega's STAB threatens (≥2x)
-  let score = 0;
-  defTeam.forEach(dSlug => {
-    const dp = PROFILES[dSlug];
-    if (!dp) return;
-    const { mult } = maxStabEff({ stab_types: megaForm.types }, dp);
-    if (mult >= 2) score += mult;
-  });
-  // Bonus: weather setter mega
-  if (megaForm.weather_roles.includes('weather-setter')) score += 1;
-  return score;
-}
-
 // ── Bring prediction ──────────────────────────────────────────────────────────
-const ROLE_BRING_SCORE = {
-  'fake-out': 0.88, 'tr-setter': 0.80, 'tailwind-setter': 0.80,
-  'weather-setter': 0.72, 'redirector': 0.65, 'setup': 0.55,
-  'spread-attacker': 0.50, 'screen-setter': 0.50, 'priority': 0.45,
-  'pivot': 0.40, 'weather-speed': 0.40, 'support': 0.38,
-};
-
-const ROLE_LEAD_SCORE = {
-  'fake-out': 0.92, 'tailwind-setter': 0.82, 'tr-setter': 0.78,
-  'weather-setter': 0.70, 'redirector': 0.65, 'screen-setter': 0.60,
-  'terrain-setter': 0.55, 'speed-drop': 0.50, 'setup': 0.42,
-  'weather-speed': 0.38, 'spread-attacker': 0.30, 'pivot': 0.30,
-};
-
-function computeBringScore(slug, profile, myTeam) {
-  const rate = BRING_RATES[slug];
-  const n = rate ? rate.appearances : 0;
-  const confidence = Math.min(1, Math.sqrt(n / 30));
-  const historical = rate ? rate.bring_rate * confidence : 0;
-
-  const roleScore = Math.min(1, profile.roles.reduce((best, r) =>
-    Math.max(best, ROLE_BRING_SCORE[r] || 0), 0.28));
-
-  let covScore = 0;
-  if (myTeam && myTeam.length) {
-    let maxMult = 0;
-    myTeam.forEach(dSlug => {
-      const dp = PROFILES[dSlug];
-      if (!dp) return;
-      const { mult } = maxStabEff(profile, dp);
-      if (mult > maxMult) maxMult = mult;
-    });
-    covScore = maxMult >= 4 ? 1 : maxMult >= 2 ? 0.6 : 0;
-  }
-
-  const megaBonus = profile.mega ? 0.08 : 0;
-  return 0.35 * historical + 0.40 * roleScore + 0.25 * covScore + megaBonus;
-}
-
-function computeLeadScore(slug, profile) {
-  const rate = BRING_RATES[slug];
-  const n = rate ? rate.appearances : 0;
-  const confidence = Math.min(1, Math.sqrt(n / 30));
-  const historical = rate ? rate.lead_rate * confidence : 0;
-  const roleScore = Math.min(1, profile.roles.reduce((best, r) =>
-    Math.max(best, ROLE_LEAD_SCORE[r] || 0), 0.15));
-  return 0.5 * historical + 0.5 * roleScore;
-}
-
-function combinations(arr, k) {
-  if (k === 0) return [[]];
-  if (arr.length < k) return [];
-  const [first, ...rest] = arr;
-  return [
-    ...combinations(rest, k - 1).map(c => [first, ...c]),
-    ...combinations(rest, k),
-  ];
-}
-
-function synergyBonus(combo) {
-  let bonus = 0;
-  const profiles = combo.map(m => PROFILES[m.slug]).filter(Boolean);
-  const roles = profiles.flatMap(p => p.roles);
-  if (roles.includes('tr-setter') && profiles.some(p => p.speed_tier === 'slow'))          bonus += 0.30;
-  if (roles.includes('weather-setter') && roles.includes('weather-speed'))                  bonus += 0.30;
-  if (roles.includes('tailwind-setter') && profiles.some(p =>
-    ['spread-attacker','physical-attacker','special-attacker'].some(r => p.roles.includes(r)))) bonus += 0.20;
-  if (roles.includes('fake-out') && roles.includes('setup'))                                bonus += 0.20;
-  if (roles.includes('redirector') && profiles.some(p =>
-    ['spread-attacker','physical-attacker','special-attacker'].some(r => p.roles.includes(r)))) bonus += 0.15;
-  // Penalty: bringing 2+ mega-capable mons means one has a dead item slot
-  const megaCount = profiles.filter(p => p.mega).length;
-  if (megaCount > 1) bonus -= 0.25 * (megaCount - 1);
-  return bonus;
-}
-
-function synergyLabel(combo) {
-  const profiles = combo.map(m => PROFILES[m.slug]).filter(Boolean);
-  const roles = profiles.flatMap(p => p.roles);
-  const labels = [];
-  if (roles.includes('tr-setter') && profiles.some(p => p.speed_tier === 'slow'))          labels.push('TR core');
-  if (roles.includes('weather-setter') && roles.includes('weather-speed'))                  labels.push('Weather core');
-  if (roles.includes('tailwind-setter') && profiles.some(p =>
-    ['spread-attacker','physical-attacker','special-attacker'].some(r => p.roles.includes(r)))) labels.push('Tailwind core');
-  if (roles.includes('fake-out') && roles.includes('setup'))                                labels.push('Fake-out + Setup');
-  if (roles.includes('redirector') && profiles.some(p =>
-    ['spread-attacker','physical-attacker','special-attacker'].some(r => p.roles.includes(r)))) labels.push('Redirect core');
-  return labels.join(' · ');
-}
-
-function renderBringPrediction(oppTeam, myTeam) {
+function renderBringPrediction(R) {
   const el = document.getElementById('bring-prediction');
   el.innerHTML = '';
+  if (!R.oppTeam.length || !R.oppBring) return;
 
-  if (!oppTeam.length) return;
+  const name = slug => (R.opp.eff[slug] && R.opp.eff[slug].name) || (PROFILES[slug] && PROFILES[slug].name) || slug;
+  const marginal = R.oppBring.marginal;
 
-  const scored = oppTeam.map(slug => {
-    const p = PROFILES[slug];
-    if (!p) return { slug, name: slug, score: 0.5, leadScore: 0.3 };
-    return { slug, name: p.name, score: computeBringScore(slug, p, myTeam), leadScore: computeLeadScore(slug, p) };
-  }).sort((a, b) => b.score - a.score);
-
-  // Individual bring likelihood bars
   const barsWrap = document.createElement('div');
   barsWrap.className = 'bring-bars';
-  scored.forEach(m => {
-    const pct = Math.min(100, Math.round(m.score * 100));
+  Object.entries(marginal).sort((a, b) => b[1] - a[1]).forEach(([slug, p]) => {
+    const pct = Math.min(100, Math.round(p * 100));
     const row = document.createElement('div');
     row.className = 'bring-bar-row';
     row.innerHTML = `
-      <div class="bring-bar-name">${m.name}</div>
+      <div class="bring-bar-name">${name(slug)}</div>
       <div class="bring-bar-track"><div class="bring-bar-fill" style="width:${pct}%"></div></div>
       <div class="bring-bar-pct">${pct}%</div>
     `;
@@ -962,14 +916,7 @@ function renderBringPrediction(oppTeam, myTeam) {
   });
   el.appendChild(barsWrap);
 
-  // Top 3 scenarios via C(6,4)=15 combos
-  const combos = combinations(scored, Math.min(4, scored.length));
-  const rankedCombos = combos.map(combo => {
-    const base = combo.reduce((s, m) => s + m.score, 0) / combo.length;
-    const syn = synergyBonus(combo);
-    return { combo, total: base + syn * 0.3, syn };
-  }).sort((a, b) => b.total - a.total);
-
+  const rankedCombos = R.oppBring.ranked;
   if (!rankedCombos.length) return;
 
   const subHdr = document.createElement('div');
@@ -993,13 +940,11 @@ function renderBringPrediction(oppTeam, myTeam) {
     const confPct = Math.round((sc.total / (maxTotal || 1)) * 100);
     card.innerHTML += `<div class="scenario-conf"><div class="scenario-conf-fill" style="width:${confPct}%"></div></div>`;
 
-    // Predict leads = top 2 by leadScore within this combo
     const byLead = [...sc.combo].sort((a, b) => b.leadScore - a.leadScore);
     const leadSet = new Set(byLead.slice(0, 2).map(m => m.slug));
 
     const monList = document.createElement('div');
     monList.className = 'scenario-mons';
-    // Show leads first, then backs
     const ordered = [...byLead.slice(0,2), ...byLead.slice(2)];
     ordered.forEach(m => {
       const isLead = leadSet.has(m.slug);
@@ -1007,14 +952,14 @@ function renderBringPrediction(oppTeam, myTeam) {
       const monRow = document.createElement('div');
       monRow.className = 'scenario-mon';
       const imgHtml = p?.image_url
-        ? `<img src="${p.image_url}" class="scenario-img" alt="${m.name}" onerror="this.style.display='none'">`
+        ? `<img src="${p.image_url}" class="scenario-img" alt="${name(m.slug)}" onerror="this.style.display='none'">`
         : '';
-      monRow.innerHTML = `<span class="tag-${isLead ? 'lead' : 'back'}">${isLead ? 'Lead' : 'Back'}</span>${imgHtml}<span class="scenario-mon-name">${m.name}</span>`;
+      monRow.innerHTML = `<span class="tag-${isLead ? 'lead' : 'back'}">${isLead ? 'Lead' : 'Back'}</span>${imgHtml}<span class="scenario-mon-name">${name(m.slug)}</span>`;
       monList.appendChild(monRow);
     });
     card.appendChild(monList);
 
-    const syn = synergyLabel(sc.combo);
+    const syn = LOGIC.synergyLabel(sc.combo.map(m => m.slug), R.opp.eff);
     if (syn) {
       const synEl = document.createElement('div');
       synEl.className = 'scenario-synergy';
@@ -1028,15 +973,94 @@ function renderBringPrediction(oppTeam, myTeam) {
   el.appendChild(scenariosRow);
 }
 
+// ── Battle plan ───────────────────────────────────────────────────────────────
+function renderBattlePlan(R) {
+  const el = document.getElementById('battle-plan');
+  el.innerHTML = '';
+
+  if (!R.plan) {
+    el.innerHTML = '<div class="strat-empty">Fill both full teams of 6 (a predicted 6th counts) to unlock the full battle-plan solve</div>';
+    return;
+  }
+  const plan = R.plan;
+  const name = slug => (R.my.eff[slug] && R.my.eff[slug].name) ||
+    (R.opp.eff[slug] && R.opp.eff[slug].name) || (PROFILES[slug] && PROFILES[slug].name) || slug;
+
+  const bringCard = document.createElement('div');
+  bringCard.className = 'plan-card';
+  bringCard.innerHTML = `
+    <div class="plan-title">Your Recommended Bring-4</div>
+    <div class="plan-mons">${plan.myBestBring.map(name).join(' · ')}</div>
+  `;
+  el.appendChild(bringCard);
+
+  const leadCard = document.createElement('div');
+  leadCard.className = 'plan-card';
+  leadCard.innerHTML = `
+    <div class="plan-title">Recommended Lead (vs their likely bring-4)</div>
+    <div class="plan-mons">${name(plan.myLead.p1)} + ${name(plan.myLead.p2)}
+      <span class="plan-vs">back:</span> ${plan.myLead.back.map(name).join(', ')}
+    </div>
+  `;
+  el.appendChild(leadCard);
+
+  const counterCard = document.createElement('div');
+  counterCard.className = 'plan-card';
+  const rows = plan.counterLeads.map(cl => `
+    <div class="counter-lead-row">
+      <span>If they lead <strong>${name(cl.oppP1)}${cl.oppTag1}</strong> + <strong>${name(cl.oppP2)}${cl.oppTag2}</strong></span>
+      <span class="counter-arrow">→</span>
+      <span>lead <strong>${name(cl.myP1)} + ${name(cl.myP2)}</strong> (back: ${cl.back.map(name).join(', ')})</span>
+    </div>
+  `).join('');
+  counterCard.innerHTML = `<div class="plan-title">Counter-Leads</div>${rows}`;
+  el.appendChild(counterCard);
+
+  // Weather back-threats
+  const myWeatherCounters = R.myTeam.filter(slug =>
+    LOGIC.weatherCounterBonus(slug, R.my.eff[slug], R.oppTeam, R.opp.eff) > 0);
+  if (myWeatherCounters.length) {
+    const threats = LOGIC.weatherBackThreats(myWeatherCounters, R.my.eff, R.oppTeam, R.opp.eff, plan.predOppBring);
+    const wxCard = document.createElement('div');
+    wxCard.className = 'plan-card';
+    const counterNames = myWeatherCounters.map(name).join(', ');
+    let body = `<div class="plan-mons">Your weather counter: <strong>${counterNames}</strong></div>`;
+    if (threats.length) {
+      body += threats.map(t => `
+        <div class="counter-lead-row">
+          <span><strong>${t.name}</strong> — ${t.desc}</span>
+          <span class="plan-vs">[${t.label}]</span>
+        </div>
+      `).join('');
+    } else {
+      body += '<div class="counter-lead-row">No back-threats found — your weather counter should stick.</div>';
+    }
+    wxCard.innerHTML = `<div class="plan-title">Weather Back-Threats</div>${body}`;
+    el.appendChild(wxCard);
+  }
+}
+
 // ── Key notes ─────────────────────────────────────────────────────────────────
-function renderNotes(myTeam, oppTeam) {
+function renderNotes(R) {
   const el = document.getElementById('notes-list');
   el.innerHTML = '';
   const notes = [];
+  const { myTeam, oppTeam } = R;
 
-  // Wasted STAB: top offensive move type is 0x against opponent
-  [...myTeam.map(s=>({slug:s,tag:'My',tc:'my'})), ...oppTeam.map(s=>({slug:s,tag:'Opp',tc:'opp'}))]
-    .forEach(({slug, tag, tc}) => {
+  if (R.predicted) {
+    const p = PROFILES[R.predicted.slug];
+    notes.push({
+      icon: '🔮',
+      text: `<strong>Predicted 6th Pokémon:</strong> ${p ? p.name : R.predicted.slug} — appears in <strong>${R.predicted.pct}%</strong> of matched teams` +
+        (R.opp.match.predictedSixth.length > 1
+          ? ` (alternatives: ${R.opp.match.predictedSixth.slice(1).map(c => `${PROFILES[c.slug]?.name || c.slug} ${c.pct}%`).join(', ')})`
+          : ''),
+    });
+  }
+
+  // Wasted STAB
+  [...myTeam.map(s=>({slug:s,tc:'my'})), ...oppTeam.map(s=>({slug:s,tc:'opp'}))]
+    .forEach(({slug, tc}) => {
       const p = PROFILES[slug];
       if (!p) return;
       const defTeam = tc === 'my' ? oppTeam : myTeam;
@@ -1046,8 +1070,10 @@ function renderNotes(myTeam, oppTeam) {
           if (!dp) return;
           const mult = dp.defensive.chart[stabType] ?? 1;
           if (mult === 0) {
-            const reason = dp.top_ability && IMMUNITY_ABILITIES.has(dp.top_ability)
-              ? `${dp.top_ability}`
+            const defEff = (tc === 'my' ? R.opp.eff : R.my.eff)[dSlug];
+            const defAbility = (defEff && defEff.ability) || dp.top_ability;
+            const reason = defAbility && IMMUNITY_ABILITIES.has(defAbility)
+              ? `${defAbility}`
               : `${dp.types.join('/')} typing`;
             notes.push({
               icon: '⚠',
@@ -1058,28 +1084,42 @@ function renderNotes(myTeam, oppTeam) {
       });
     });
 
-  // Weather synergy: weather setter + weather speed user on same team
-  function detectWeatherSynergy(team, tag) {
-    const setters  = team.filter(s => PROFILES[s]?.roles.includes('weather-setter')).map(s => PROFILES[s].name);
-    const abusers  = team.filter(s => PROFILES[s]?.roles.includes('weather-speed')).map(s => PROFILES[s].name);
-    const megaSetters = team.flatMap(s => {
-      const p = PROFILES[s];
-      if (!p?.mega) return [];
-      return p.mega.forms.filter(f => f.weather_roles.includes('weather-setter'))
-        .map(f => `${p.name} (${f.name})`);
+  // Trick Room reading from matched archetypes
+  function detectTR(team, effMap, tag) {
+    const setters = team.filter(s => effMap[s] && LOGIC.roleP(effMap[s], 'tr-setter') >= 0.25);
+    if (!setters.length) return;
+    const slowMons = team.filter(s => PROFILES[s]?.speed_tier === 'slow').map(s => PROFILES[s].name);
+    if (slowMons.length < 2) return;
+    const setterDesc = setters.map(s => {
+      const pct = effMap[s].roleProbs['tr-setter'];
+      return `${effMap[s].name}${pct !== null && pct < 90 ? ` (TR in ${pct}% of matched teams)` : ''}`;
+    }).join(', ');
+    notes.push({
+      icon: '🔄',
+      text: `<strong>${tag} team likely runs Trick Room</strong> — setter: ${setterDesc} + ${slowMons.length} slow Pokémon (${slowMons.join(', ')})`,
     });
-    const allSetters = [...setters, ...megaSetters];
-    if (allSetters.length && abusers.length) {
+  }
+  detectTR(myTeam,  R.my.eff,  'My');
+  detectTR(oppTeam, R.opp.eff, 'Opponent');
+
+  // Weather synergy
+  function detectWeatherSynergy(team, effMap, tag) {
+    const setters = team.filter(s => effMap[s] && (LOGIC.roleP(effMap[s], 'weather-setter') >= 0.5 ||
+      (effMap[s].megaForm && effMap[s].megaForm.weather_roles && effMap[s].megaForm.weather_roles.includes('weather-setter'))))
+      .map(s => effMap[s].name);
+    const abusers = team.filter(s => effMap[s] && LOGIC.roleP(effMap[s], 'weather-speed') >= 0.5)
+      .map(s => effMap[s].name);
+    if (setters.length && abusers.length) {
       notes.push({
         icon: '☀',
-        text: `<strong>${tag} team weather core:</strong> ${allSetters.join(', ')} sets weather → ${abusers.join(', ')} doubles speed`,
+        text: `<strong>${tag} team weather core:</strong> ${setters.join(', ')} sets weather → ${abusers.join(', ')} doubles speed`,
       });
     }
   }
-  detectWeatherSynergy(myTeam,  'My');
-  detectWeatherSynergy(oppTeam, 'Opponent');
+  detectWeatherSynergy(myTeam,  R.my.eff,  'My');
+  detectWeatherSynergy(oppTeam, R.opp.eff, 'Opponent');
 
-  // Coverage gaps: for each opponent pokemon, list which of mine can STAB threaten it
+  // Coverage gaps (incl. archetype coverage moves, not just STAB)
   oppTeam.forEach(dSlug => {
     const dp = PROFILES[dSlug];
     if (!dp) return;
@@ -1087,7 +1127,7 @@ function renderNotes(myTeam, oppTeam) {
       .map(aSlug => {
         const ap = PROFILES[aSlug];
         if (!ap) return null;
-        const { mult, bestType } = maxStabEff(ap, dp);
+        const { mult, bestType } = LOGIC.bestCoverage(aSlug, dSlug, LOGIC.effMoves(R.my.eff[aSlug]));
         return mult >= 2 ? { name: ap.name, mult, bestType } : null;
       })
       .filter(Boolean)
@@ -1096,32 +1136,16 @@ function renderNotes(myTeam, oppTeam) {
     if (!answers.length) {
       notes.push({
         icon: '🔴',
-        text: `<strong>No STAB answer</strong> to <strong>${dp.name}</strong> on your team — no Pokémon threatens it with STAB`,
+        text: `<strong>No super-effective answer</strong> to <strong>${dp.name}</strong> on your team`,
       });
     } else if (answers.length <= 2) {
       const answerList = answers.map(a => `${a.name} (${a.bestType} ×${a.mult})`).join(', ');
       notes.push({
         icon: '🎯',
-        text: `Your only STAB answer${answers.length > 1 ? 's' : ''} to <strong>${dp.name}</strong>: ${answerList}`,
+        text: `Your only super-effective answer${answers.length > 1 ? 's' : ''} to <strong>${dp.name}</strong>: ${answerList}`,
       });
     }
   });
-
-  // TR detection: tr-setter + multiple slow mons
-  function detectTR(team, tag) {
-    const hasTR = team.some(s => PROFILES[s]?.roles.includes('tr-setter'));
-    if (!hasTR) return;
-    const slowCount = team.filter(s => PROFILES[s]?.speed_tier === 'slow').length;
-    if (slowCount >= 2) {
-      const slowMons = team.filter(s => PROFILES[s]?.speed_tier === 'slow').map(s => PROFILES[s].name);
-      notes.push({
-        icon: '🔄',
-        text: `<strong>${tag} team likely runs Trick Room</strong> — TR setter + ${slowCount} slow Pokémon (${slowMons.join(', ')})`,
-      });
-    }
-  }
-  detectTR(myTeam,  'My');
-  detectTR(oppTeam, 'Opponent');
 
   if (!notes.length) {
     notes.push({ icon: '✓', text: 'No critical matchup issues detected.' });
