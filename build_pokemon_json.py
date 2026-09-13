@@ -137,11 +137,33 @@ def fix_eternal_flower_floette(pokemon):
     return [p for p in pokemon if p is not base]
 
 
+# Species whose upstream name is one specific cosmetic variant instead of the
+# base species Champions treats as canonical — e.g. Florges now comes through
+# as "Florges Red Flower" (its old entry was plain "Florges", with all 5
+# flower colors listed as stat-identical flavor forms). Unlike Floette, there's
+# no separate populated/unpopulated pair to merge — just a rename.
+VARIANT_RENAMES = {
+    "Florges Red Flower": "Florges",
+}
+
+
+def fix_variant_named_species(pokemon):
+    for p in pokemon:
+        if p["name"] in VARIANT_RENAMES:
+            p["name"] = VARIANT_RENAMES[p["name"]]
+    for p in pokemon:
+        for mate in (p.get("doubles") or {}).get("teammates", []):
+            if mate["name"] in VARIANT_RENAMES:
+                mate["name"] = VARIANT_RENAMES[mate["name"]]
+    return pokemon
+
+
 with open("index_dump.json", encoding="utf-8") as f:
     data = json.load(f)
 
 pokemon = [build_entry(p) for p in data["pokemon"]]
 pokemon = fix_eternal_flower_floette(pokemon)
+pokemon = fix_variant_named_species(pokemon)
 
 # sort by doubles usage rank, nulls last
 pokemon.sort(key=lambda p: p["doubles"]["usage_rank"] if p.get("doubles") and p["doubles"]["usage_rank"] else 9999)
