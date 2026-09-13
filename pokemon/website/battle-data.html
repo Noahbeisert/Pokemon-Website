@@ -550,6 +550,9 @@ function slug(name) {
   s = s.replace(/^Galarian (.+)$/, '$1-Galar');
   s = s.replace(/^Paldean (.+)$/, '$1-Paldea');
   s = s.replace(/^Eternal Flower (.+)$/, '$1-Eternal');
+  // Indeedee's gender is a real forme with its own sprite (unlike the
+  // cosmetic Male/Female stripped below) — convert before that strip runs.
+  s = s.replace(/^Indeedee Female$/, 'Indeedee-F');
   // Strip all form qualifiers — use base sprite rather than break
   s = s.replace(/ (Male|Female)$/, '');
   s = s.replace(/ \w+ Forme?$/, '');   // "Shield Form", "Attack Forme", etc.
@@ -663,13 +666,17 @@ function megaStoneItem(items, activeMega) {
   return (letter && !stoneEntry.name.endsWith(letter)) ? `${stoneEntry.name} ${letter}` : stoneEntry.name;
 }
 
-// A few DB keys carry a form suffix that isn't a real distinct roster slot
-// (Aegislash always starts Shield Forme; Basculegion's gender is cosmetic —
-// nobody runs Female) — collapse those back to the plain species name.
+// A few DB keys carry a form suffix that needs translating to valid Showdown
+// syntax. Aegislash always starts Shield Forme and Basculegion's gender is
+// cosmetic (nobody runs Female) — both collapse to the plain species name.
+// Indeedee's gender is a real forme with its own ability/moveset (Female runs
+// Psychic Surge/Own Tempo as a Follow Me redirector, Male runs the Choice
+// Scarf attacker) — it needs the "-F" suffix, not collapsing away.
 function baseDisplayName(name) {
   return name
     .replace(/^Aegislash Shield Forme$/, 'Aegislash')
-    .replace(/^Basculegion (Male|Female)$/, 'Basculegion');
+    .replace(/^Basculegion (Male|Female)$/, 'Basculegion')
+    .replace(/^Indeedee Female$/, 'Indeedee-F');
 }
 
 function buildShowdownSet(name, slotIdx) {
@@ -1356,7 +1363,6 @@ fetch('../../pokemon_data.json')
   .then(arr => {
     arr.forEach(p => { DB[p.name] = p; });
     ALL = arr
-      .filter(p => p.doubles)
       .sort((a, b) => (a.doubles?.usage_rank ?? 9999) - (b.doubles?.usage_rank ?? 9999))
       .map(p => p.name);
 

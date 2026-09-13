@@ -108,10 +108,32 @@ def build_entry(p):
     }
 
 
+def fix_eternal_flower_floette(pokemon):
+    # championsbattledata.com tracks Eternal Flower Floette (the only forme
+    # that can hold Floettite and Mega Evolve) as a separate row from plain
+    # Floette, but resolves its display name/types/stats to nothing — it comes
+    # through as a blank "Floette Form 5" placeholder. Plain Floette itself
+    # sees zero ranked usage since nobody runs a Floette that can't Mega.
+    # Fold the real (populated) Floette entry's identity into the placeholder
+    # that actually carries the battle data, and drop the unused plain entry.
+    by_name = {p["name"]: p for p in pokemon}
+    base = by_name.get("Floette")
+    eternal = by_name.get("Floette Form 5")
+    if not base or not eternal:
+        return pokemon
+    eternal["name"] = "Eternal Flower Floette"
+    eternal["types"] = base["types"]
+    eternal["sprite"] = base["sprite"]
+    eternal["base_stats"] = base["base_stats"]
+    eternal["forms"] = base["forms"]
+    return [p for p in pokemon if p is not base]
+
+
 with open("index_dump.json", encoding="utf-8") as f:
     data = json.load(f)
 
 pokemon = [build_entry(p) for p in data["pokemon"]]
+pokemon = fix_eternal_flower_floette(pokemon)
 
 # sort by doubles usage rank, nulls last
 pokemon.sort(key=lambda p: p["doubles"]["usage_rank"] if p.get("doubles") and p["doubles"]["usage_rank"] else 9999)
