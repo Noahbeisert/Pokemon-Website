@@ -126,6 +126,14 @@ def fix_eternal_flower_floette(pokemon):
     eternal["sprite"] = base["sprite"]
     eternal["base_stats"] = base["base_stats"]
     eternal["forms"] = base["forms"]
+
+    # Other Pokemon's teammate lists still cite the old placeholder name —
+    # repoint those references too, or the teammates panel shows a dead card.
+    for p in pokemon:
+        for mate in (p.get("doubles") or {}).get("teammates", []):
+            if mate["name"] == "Floette Form 5":
+                mate["name"] = "Eternal Flower Floette"
+
     return [p for p in pokemon if p is not base]
 
 
